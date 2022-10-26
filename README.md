@@ -1,92 +1,160 @@
-# the-cresim
+# The Cresims
 
+[NOTION](https://pouncing-paddleboat-749.notion.site/The-Cresims-9261c42c1b00420783bc90cf49ffb7c4)
 
+### REQUISITO 01 - REGRAS GERAIS
 
-## Getting started
+- Ao criar um personagem, o jogador deverá criar um nome para o Cresim;
+- O jogador pode criar quantos personagens quiser;
+- O Cresim terá 60 “dias” de vida (3.600.000ms ou 1 hora);
+    - O jogo termina quando o tempo de vida do personagem acaba.
+- O dia de um Cresim tem 60.000ms (1 minuto);
+- O Cresim começará com 1.500 Cresceleons (moeda do jogo);
+- O jogador poderá escolher uma aspiração ao iniciar o jogo (poderá ser uma das 5 habilidades disponíveis: GASTRONOMIA, PINTURA, JOGOS, JARDINAGEM OU MUSICA);
+- Quando o Cresim estiver ocupado com alguma tarefa (dormindo, treinando, trabalhando…) o jogador não poderá jogar com esse personagem);
+- O Cresim deve iniciar com 28 pontos de higiene.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+### REQUISITO 02 - ENERGIA
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+- O Cresim tem 32 pontos de energia máximos e iniciará o jogo com a carga completa;
+- O Cresim ganha 4 pontos de energia a cada 5.000ms dormidos, e ganha 2 pontos bônus a cada 5.000ms a mais que dormir direto, ou seja, se dormir 10.000ms, ganha 8 pontos + 2;
+- O Cresim não deve ficar com os pontos de energia negativados, e nem passar dos pontos máximos de energia (32 pontos)
 
-## Add your files
+### REQUISITO 03 - HABILIDADES E ASPIRAÇÕES
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+- O Cresim pode evoluir as habilidades de gastronomia, pintura, jogos, jardinagem e musica;
+- Para isso, ele deve comprar itens que vão permiti-lo praticar e acrescentar pontos de habilidade;
+    
+    [ITENS DE HABILIDADE](https://pouncing-paddleboat-749.notion.site/ITENS-DE-HABILIDADE-e53fd35cd124496f888303b73f499a3a)
+    
+    Link para requisição: [https://emilyspecht.github.io/the-cresim/itens-habilidades.json](https://emilyspecht.github.io/the-cresim/itens-habilidades.json)
+    
+- Cada ciclo de treino dura 8.000ms. Quando completo, ele ganha os pontos de habilidade do item que ele utilizou;
+- Caso a habilidade que o Cresim esteja exercitando seja sua aspiração, ele poderá acrescentar +1 ponto de habilidade a cada ciclo de treino;
+- Em um ciclo de treino, o Cresim perde 4 pontos de energia;
+- Na medida em que vai evoluindo nas habilidades, o nível de habilidade e salário vão aumentando;
+- Cada habilidade tem 3 níveis: JUNIOR, PLENO E SÊNIOR:
+    - O Cresim iniciará no nível JUNIOR, com 0 pontos de habilidade;
+    - Cada nível tem uma quantidade de pontos de habilidade para alcançar. Quando o Cresim alcança os pontos de habilidade requeridos, ele passa para o próximo nível.
+    
+    🍼 **JUNIOR**
+    
+    0 - 16 pontos
+    
+    🔥 **PLENO**
+    
+    17 - 26 pontos
+    
+    👑 **SENIOR**
+    
+    maior que 27 pontos
+    
 
-```
-cd existing_repo
-git remote add origin https://git.ecrescer.cwi.com.br/staff/javascript/the-cresim.git
-git branch -M main
-git push -uf origin main
-```
+### REQUISITO 04 - TRABALHO
 
-## Integrate with your tools
+[EMPREGOS](https://pouncing-paddleboat-749.notion.site/EMPREGOS-b37df020cad94ce7b015e7e21093db7b)
 
-- [ ] [Set up project integrations](https://git.ecrescer.cwi.com.br/staff/javascript/the-cresim/-/settings/integrations)
+Link para requisição: [https://emilyspecht.github.io/the-cresim/empregos.json](https://emilyspecht.github.io/the-cresim/empregos.json)
 
-## Collaborate with your team
+- A jornada de trabalho padrão de um Cresim é de 20.000 ms;
+- O Cresim deve perder 10 pontos de energia na jornada de trabalho padrão;
+- Se um Cresim começar a trabalhar com menos de 10 pontos de energia, ele deve ganhar -10% Cresceleons a cada ponto de energia menor que 5;
+- O Cresim só pode trabalhar até 2 pontos de energia, ou seja, a jornada de trabalho deve ser recalculada, juntamente ao salário, e ele deve parar antes e receber equivalente;
+    
+    <aside>
+    💡 Supondo que o Cresim esteja com 10 pontos de energia e ganhe 160 Cresceleons por dia de trabalho:
+    
+    cargaDeTrabalho / pontosDeEnergiaAtuais = msParaCadaPontoDeEnergia  
+    $20.000 / 10 = 2.000ms$  
+    Cada ponto de energia sao 2.000ms de trabalho  
+    
+    pontosDeEnergiaAtuais - pontosDeEnergiaMinimo = pontosDeEnergiaParaGastar * msParaCadaPontoDeEnergia = maximoDeTempoParaTrabalhar  
+    $10 - 2 = 8 * 2.000 = 16.000ms$  
+    O Cresim vai poder trabalhar até 16.000ms  
+    
+    cargaDeTrabalho / salarioDiario = tempoEmMsParaCadaCresceleon  
+    $20.000 / 160 = 125ms$  
+    A cada 125ms o Cresim ganha 1 Cresceleon  
+    
+    msParaCadaPontoDeEnergia / tempoEmMsParaCadaCresceleon = cresceleonParaCadaPontoDeEnergia  
+    $2.000ms / 125ms = 16 cresceleons$  
+    A cada 2.000ms o Cresim ganha 16 Cresceleons  
+    
+    pontosDeEnergiaParaDesconto - pontosDeEnergiaMinimo = pontosDeEnergiaParaRecalculo  
+    $5 - 2 = 3$  
+    3 pontos de energia servirão para o recálculo (desconto de 10%) do salário do Cresim  
+    
+    pontosDeEnergiaParaRecalculo * (cresceleonParaCadaPontoDeEnergia - porcentagemDeDesconto) = recalculoSalarioCresimCansado  
+    $3 * (16 - 10porcento) = 43,2$  
+    O Cresim receberá 43,2 Cresceleons referente ao tempo em que trabalhou cansado  
+    
+    pontosDeEnergiaAtuais - pontosDeEnergiaParaDesconto = pontosDeEnergiaCresimDescansado  
+    $10 - 5 = 5$  
+    O Cresim ainda tem 5 pontos de energia descansado para trabalhar  
+    
+    pontosDeEnergiaCresimDescansado * cresceleonParaCadaPontoDeEnergia = salarioCresimDescansado  
+    $5 * 16 = 80 cresceleons$   
+    O Cresim receberá 80 Cresceleons referente ao tempo em que trabalhou descansado  
+    
+    recalculoSalarioCresimCansado + salarioCresimDescansado = salarioTotal  
+    $43,2 + 80 = 123,2$  
+    O Cresim receberá 123,2 Cresceleons recalculados ao fim de um turno de trabalho  
+    
+    </aside>
+    
+- O Cresim não deve conseguir COMEÇAR a trabalhar com os pontos de energia menores que 4;
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+### REQUISITO 05 - RELACIONAMENTOS
 
-## Test and Deploy
+[INTERAÇÕES](https://pouncing-paddleboat-749.notion.site/INTERA-ES-99852c862c3e421693e208d8f0a4b88d)
 
-Use the built-in continuous integration in GitLab.
+Link para requisição: [https://emilyspecht.github.io/the-cresim/interacoes.json](https://emilyspecht.github.io/the-cresim/interacoes.json)
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
+- Um Cresim pode se comunicar com outro;
+- Ao comunicar-se, o relacionamento dos Cresims vai evoluindo de acordo com os pontos de cada tipo de interação;
+- Cada nível de relacionamento desbloqueia novas interações para os Cresims;
+- Os níveis de relacionamento consistem em:
 
-***
+ 💔 INIMIZADE 
 
-# Editing this README
+< 0 pontos
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+ 🌱 NEUTRO 
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+0 - 10 pontos
 
-## Name
-Choose a self-explaining name for your project.
+ 🍻 AMIZADE 
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+11 - 25 pontos
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+ ❤️‍🔥 AMOR 
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+maior que 25 pontos
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+- O Cresim vai iniciar com apenas as interações NEUTRAS disponíveis, e de acordo de como ele ir  evoluindo, outras categorias de interações vão liberando, assim surgindo mais opções para que os Cresims interajam;
+    - Se o Cresim evoluir do NEUTRO para AMIZADE, então ele terá as interações de NEUTRO e AMIZADE; se ele evoluir para amor, então ele terá as categorias NEUTRO, AMIZADE E AMOR; se ele evoluir para INIMIZADE, então ele terá NEUTRO e INIMIZADE.
+- O Cresim perde pontos de energia referente a cada interação;
+    - O outro Cresim envolvido na interação gasta METADE dos pontos de energia da interação.
+- O tempo gasto em cada interação é o numero de pontos de energia multiplicado por 2000ms;
+    - Ambos os Cresims envolvidos gastam o mesmo tempo de energia.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+### REQUISITO 06 - CHEATS
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+[CHEATS](https://pouncing-paddleboat-749.notion.site/CHEATS-232e71c966be4c869c57140f55d6d44d)
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+Link para requisição: [https://emilyspecht.github.io/the-cresim/cheats.json](https://emilyspecht.github.io/the-cresim/cheats.json)
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- Durante qualquer momento onde o jogador tiver realizando algum input de dado no jogo ele poderá realizar um cheat.
+    - Esse cheat é um texto pré-definido que irá habilitar certas recompensas para o personagem;
+    - Caso o usuário tenha inputado algum comando de cheat, a aplicação deve aplicar o cheat e continuar de onde parou.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+### REQUISITO 07 - HIGIENE
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+- O Cresim deve perder 4 pontos de higiene quando trabalhar um turno inteiro;
+    - Caso ele não trabalhe um turno inteiro, deve ser feito o cálculo para descontar os pontos de higiene equivalente.
+- O Cresim deve perder 2 pontos de higiene a cada ciclo de treino;
+- O Cresim deve poder tomar banho;
+    - Quando o Cresim tomar banho, deve ser descontado 10 Cresceleons.
+- A higiene do Cresim não pode ficar menor que 4: caso isso aconteça, seu desempenho no trabalho será reduzido, ou seja, deve ser descontado 10% do salário do dia do Cresim.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+![image](https://user-images.githubusercontent.com/61355223/197869025-0a45e135-1e44-42b5-9d74-09e4823b21d4.png)
