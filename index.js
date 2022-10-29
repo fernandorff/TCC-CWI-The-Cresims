@@ -1,5 +1,5 @@
-import { useQuestion } from './src/services/question/use-question'
-import { useLocalStorage } from './src/services/local-storage/use-local-storage'
+import { useQuestion } from './src/services/question/use-question.js'
+import { useLocalStorage } from './src/services/local-storage/use-local-storage.js'
 
 const setAspiration = async () => {
   while (true) {
