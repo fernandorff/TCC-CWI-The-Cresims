@@ -1,10 +1,12 @@
+import { setEmployee } from "../characterActions/work"
+
 export const menuEmployee = async (character) => {
     const response = await employeesDataApi()
     printEmployes(response)
     const choice = await useQuestion('Escolha um cargo')
   
     character = {
-      ... await setEmployee(character, response[choice - 1].cargo)
+      ... await setEmployee(character, response[choice - 1])
     }
   
     console.log(character);
