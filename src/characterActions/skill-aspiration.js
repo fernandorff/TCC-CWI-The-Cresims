@@ -1,4 +1,4 @@
-import { setTimeLife } from "./common.js"
+import { setEnergy, setTimeLife } from "./common.js"
 
 export const setSkill = (character, productChoice, aspiration) => {
   if (isBuy(character.cresceleons, productChoice.preco)) {
@@ -12,11 +12,13 @@ export const setSkill = (character, productChoice, aspiration) => {
 
 export const cicleTrainCharacterProductPurchased = (character, productChoice, skillChoice) => {
   const TIME_CICLE_TRAINNING = 8000
+  const ENERGY_DECREMENT = 4
 
   return {
     ...character,
     skill: setSkill(character, productChoice, skillChoice),
-    time: setTimeLife(character, TIME_CICLE_TRAINNING)
+    time: setTimeLife(character, TIME_CICLE_TRAINNING),
+    energy: setEnergy(character, ENERGY_DECREMENT)
   }
 }
 

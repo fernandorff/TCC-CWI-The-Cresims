@@ -18,3 +18,16 @@ const main = async () => {
 };
 
 main();
+
+const mock = {
+  name: 'Fulano',
+  aspiration: 'JOGOS',
+  cresceleons: 10500,
+  time: 3600000,
+  hygiene: 28,
+  energy: 32,
+  relationship: [],
+  skill: 0,
+  items: []
+}
+characterActionMenu(mock)
