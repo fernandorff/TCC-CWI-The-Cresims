@@ -50,9 +50,7 @@ export const recalculateCresceleons = async (character, workingDay) => {
 }
 
 const getPointEnergy = (energy) => {
-  if (energy <= 14 && energy >= 13) {
-    return energy - POINT_ENERGY_DECREMENT
-  }
+  if (energy <= 14 && energy >= 13) return energy - POINT_ENERGY_DECREMENT
 
   return POINT_ENERGY_MIN
 }
@@ -62,9 +60,7 @@ export const getSalary = async (levelSkill, employee) => {
   const salaryLevel = getEmployeesLevels(response, employee)
 
   const salary = salaryLevel.find(status => {
-    if (status.nivel === levelSkill) {
-      return status
-    }
+    if (status.nivel === levelSkill) return status
   })
 
   return salary.valor
@@ -72,9 +68,7 @@ export const getSalary = async (levelSkill, employee) => {
 
 const getEmployeesLevels = (response, employee) => {
   const salaryLevel = response.find(post => {
-    if (post.cargo === employee) {
-      return post
-    }
+    if (post.cargo === employee) return post
   })
 
   return salaryLevel.salario
