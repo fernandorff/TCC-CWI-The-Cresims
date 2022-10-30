@@ -27,6 +27,9 @@ describe('Exemplo teste suite', () => {
   })
 }
 )
+describe('04 - Trabalho', () => {
+
+})
 
 describe('5 - Habilidades e aspirações', () => {
   it('Deve conseguir comprar um item de habilidade', () => {
@@ -56,7 +59,7 @@ describe('5 - Habilidades e aspirações', () => {
     const product = itensSkill['GASTRONOMIA']
     const productChoice = product[1]
 
-    const characterBuys = buyProductItens(character, productChoice)
+    const characterBuys = cicleTrainCharacterProductPurchased(character, productChoice, 'GASTRONOMIA')
 
     const pointSkill = characterBuys.skill
     const pointSkillExpected = 5
@@ -69,7 +72,7 @@ describe('5 - Habilidades e aspirações', () => {
     const product = itensSkill[character.aspiration]
     const productChoice = product[0]
 
-    const characterBuys = buyProductItens(character, productChoice, 'JOGOS')
+    const characterBuys = cicleTrainCharacterProductPurchased(character, productChoice, 'JOGOS')
 
     const pointSkill = characterBuys.skill
     const pointSkillExpected = 3
@@ -89,11 +92,3 @@ describe('5 - Habilidades e aspirações', () => {
 
   })
 })
-
-
-
-
-
-
-
-
