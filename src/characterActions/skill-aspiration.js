@@ -22,15 +22,15 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
   }
 }
 
-export const buyProductItens = (character, productChoice, skillChoice) => {
-  const characterTrained = cicleTrainCharacterProductPurchased(character, productChoice, skillChoice)
+export const buyProductItens = (character, productChoice) => {
+  const characterBuys = { ...character }
 
   if (isBuy(character.cresceleons, productChoice.preco)) {
-    characterTrained.cresceleons = characterTrained.cresceleons - productChoice.preco
-    characterTrained.items.push(productChoice.nome)
+    characterBuys.cresceleons = characterBuys.cresceleons - productChoice.preco
+    characterBuys.items.push(productChoice.nome)
   }
 
-  return characterTrained
+  return characterBuys
 }
 
 export const isBuy = (cresceleons, priceProductChoice) => {
