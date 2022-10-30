@@ -47,23 +47,25 @@ export const recalculateCresceleons = (character, levelSkill, workingDay) => {
 
 export const getSalary = async (levelSkill, employee) => {
   const response = await employeesDataApi()
-  let salaryLevel, salary
+  const salaryLevel = getEmployeesLevels(response, employee)
 
-  response.forEach(post => {
-    if (post.cargo === employee) {
-      salaryLevel = post.salario
-      return
-    }
-  })
-
-  salaryLevel.forEach(status => {
+  const salary = salaryLevel.find(status => {
     if (status.nivel === levelSkill) {
-      salary = status.valor
-      return
+      return status.valor
     }
   })
 
   return salary
+}
+
+const getEmployeesLevels = (response, employee) => {
+  const salaryLevel = response.find(post => {
+    if (post.cargo === employee) {
+      return post.salario
+    }
+  })
+
+  return salaryLevel
 }
 
 export const setEmployee = async (character, employee) => {
