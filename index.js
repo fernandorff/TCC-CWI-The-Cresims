@@ -33,7 +33,7 @@ const setAspiration = async () => {
 const setCharacter = async () => {
   const name = await useQuestion("Qual o seu nome? ");
   const aspiration = await setAspiration();
-  const cresceleons = 1.5;
+  const cresceleons = 1500;
   const time = 3600000;
   const hygiene = 28;
   const energy = 32;
@@ -54,7 +54,7 @@ const setCharacter = async () => {
   };
 };
 
-const menu = async () => {
+const gameStartMenu = async () => {
   while (true) {
     console.log("Escolha uma das opções: ");
     console.log("1 - Criar Personagem");
@@ -71,15 +71,17 @@ const menu = async () => {
   }
 };
 
+const inGameMenu = async () => {};
+
 const main = async () => {
   const localStorage = useLocalStorage();
 
-  const obj = await menu();
+  const obj = await gameStartMenu();
 
-  const estorage = localStorage.getObject("nome-array") || [];
-  localStorage.setObject("caracteres", [...estorage, obj]);
+  const storage = localStorage.getObject("nome-array") || [];
+  localStorage.setObject("inGameCharacters", [...storage, obj]);
 
-  console.log(localStorage.getObject("caracteres"));
+  console.log(localStorage.getObject("inGameCharacters"));
 };
 
 main();
