@@ -9,14 +9,17 @@ export const work = async (character) => {
 
   const levelSkillCharacter = checkLevelSkill(character.skill)
 
-  if (character.energy < 15) {
+  if (character.energy >= 4 && character.energy < 15) {
     const cresceleonsRecalculates = await recalculateCresceleons(character, levelSkillCharacter, WORKING_DAY)
     characterWork.cresceleons = characterWork.cresceleons + cresceleonsRecalculates.salary
     characterWork.time = cresceleonsRecalculates.time
     characterWork.energy = cresceleonsRecalculates.energyDecrement
-  } else {
+  } else if(character.energy >= 15) {
     characterWork.time = setTimeLife(character, WORKING_DAY)
     characterWork.energy = setEnergy(character, ENERGY_DECREMENT)
+    characterWork.cresceleons = characterWork.cresceleons + await getSalary(levelSkillCharacter, character.employee)
+  } else {
+    return undefined
   }
 
   return characterWork
