@@ -18,17 +18,12 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
   const time = setTimeLife(character, TIME_CICLE_TRAINNING)
   const energy = setEnergy(character, ENERGY_DECREMENT)
   const levelSkill = checkLevelSkill(skill)
-
-  return {
-    ...character,
-    skill: skill,
-    time: time,
-    energy: energy,
-    employee: {
-      ...character.employee,
-      level: levelSkill
-    }
+  const employee = {
+    ...character.employee,
+    level: levelSkill
   }
+
+  return { ...character, skill, time, energy, employee }
 }
 
 export const buyProductItens = (character, productChoice) => {
@@ -38,7 +33,6 @@ export const buyProductItens = (character, productChoice) => {
     characterBuys.cresceleons = characterBuys.cresceleons - productChoice.preco
     characterBuys.items.push(productChoice.nome)
   }
-
   return characterBuys
 }
 
@@ -46,7 +40,6 @@ export const isBuy = (cresceleons, priceProductChoice) => {
   if (cresceleons >= priceProductChoice) {
     return true
   }
-
   return false
 }
 
@@ -58,6 +51,4 @@ export const checkLevelSkill = (points) => {
   } else if (points >= 27) {
     return 'SENIOR'
   }
-
-  return ''
 }
