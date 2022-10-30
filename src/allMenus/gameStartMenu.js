@@ -1,3 +1,4 @@
+import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
 import { useQuestion } from "../services/question/use-question.js";
 
 export const gameStartMenu = async () => {
@@ -13,7 +14,8 @@ export const gameStartMenu = async () => {
 Escolha uma das opções:
 
 1 - Criar Personagem
-2 - Configurações
+2 - Escolher Personagem
+3 - Listar Personagens
 `);
 
     const input = await useQuestion("Sua escolha: ");
@@ -21,6 +23,11 @@ Escolha uma das opções:
     switch (input) {
       case "1":
         return setCharacter();
+      case "2":
+        return getCharacter();
+      case "3":
+        await allChacteres();
+        break;
       default:
         console.clear();
         console.log(`
@@ -72,6 +79,10 @@ Qual a sua aspiração?
 };
 
 const setCharacter = async () => {
+  const localStorage = useLocalStorage();
+  const storage = localStorage.getObject("inGameCharacters") || [];
+
+  const id = storage.length
   const name = await useQuestion(`Qual o seu nome? `);
   const aspiration = await setAspiration();
   const cresceleons = 1500;
@@ -82,7 +93,8 @@ const setCharacter = async () => {
   const skill = 0;
   const items = [];
 
-  return {
+  const character = {
+    id,
     name,
     aspiration,
     cresceleons,
@@ -93,4 +105,32 @@ const setCharacter = async () => {
     skill,
     items,
   };
+
+  localStorage.setObject("inGameCharacters", [...storage, character]);
+
+  return character
 };
+
+const getCharacter = async () => {
+  const storage = useLocalStorage().getObject("inGameCharacters") || [];
+  while (true) {
+    const input = await useQuestion("Escolha o id do personagem: ");
+    const character = storage.find(charac => charac.id == input)
+    if (character) {
+      return character
+    }
+    console.log("Escolha um id valido")
+  }
+}
+
+const allChacteres = async () => {
+  const localStorage = useLocalStorage();
+  const storage = localStorage.getObject("inGameCharacters");
+
+  for (const obj of storage) {
+    console.table(obj)
+  }
+
+  const input = await useQuestion();
+
+}
