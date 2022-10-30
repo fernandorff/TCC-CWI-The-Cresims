@@ -1,4 +1,4 @@
-export async function toSleep(actingCharacter) {
+export const toSleep = async (actingCharacter) => {
   let sleepTime = 10;
   for (let i = 0; i < sleepTime; ++i) {
     let reticencias = ".";
@@ -25,5 +25,5 @@ ${actingCharacter.name} terminou de dormir!
     
 ${sleepTime} / ${sleepTime}
     
-    `);
-}
+`);
+};

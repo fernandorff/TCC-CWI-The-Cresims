@@ -1,5 +1,36 @@
 import { useQuestion } from "../services/question/use-question.js";
 
+export const gameStartMenu = async () => {
+  while (true) {
+    console.clear();
+    console.log(`
+####################################
+###                              ###
+###   BEM VINDO AO THE CRESIMS   ###
+###                              ###
+####################################
+
+Escolha uma das opções:
+
+1 - Criar Personagem
+2 - Configurações
+`);
+
+    const input = await useQuestion("Sua escolha: ");
+
+    switch (input) {
+      case "1":
+        return setCharacter();
+      default:
+        console.clear();
+        console.log(`
+        ### Escolha uma opção válida ###
+        `);
+        break;
+    }
+  }
+};
+
 const setAspiration = async () => {
   while (true) {
     console.log(`
@@ -57,35 +88,4 @@ const setCharacter = async () => {
     skill,
     items,
   };
-};
-
-export const gameStartMenu = async () => {
-  while (true) {
-    console.clear();
-    console.log(`
-####################################
-###                              ###
-###   BEM VINDO AO THE CRESIMS   ###
-###                              ###
-####################################
-
-Escolha uma das opções:
-
-1 - Criar Personagem
-2 - Configurações
-`);
-
-    const input = await useQuestion("Sua escolha: ");
-
-    switch (input) {
-      case "1":
-        return setCharacter();
-      default:
-        console.clear();
-        console.log(`
-        ### Escolha uma opção válida ###
-        `);
-        break;
-    }
-  }
 };

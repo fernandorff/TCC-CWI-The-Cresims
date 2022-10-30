@@ -2,8 +2,6 @@ import { useLocalStorage } from "./src/services/local-storage/use-local-storage.
 import { gameStartMenu } from "./src/allMenus/gameStartMenu.js";
 import { characterActionMenu } from "./src/allMenus/characterActionMenu.js";
 
-//    menu do personagem           actingCharacter = personagem que está agindo nesse menu
-
 const main = async () => {
   const localStorage = useLocalStorage();
 

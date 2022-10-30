@@ -1,7 +1,7 @@
 import { toSleep } from "../characterActions/toSleep.js";
 import { useQuestion } from "../services/question/use-question.js";
 
-export async function characterActionMenu(character) {
+export const characterActionMenu = async (character) => {
   const actingCharacter = character;
   while (true) {
     console.log(`
@@ -24,53 +24,67 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
     const input = await useQuestion("Sua escolha: ");
 
     switch (input) {
-      case "1": // Trabalhar
+      // Trabalhar
+      case "1":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
         !!! Essa opção se encontra em implementação !!!
         `);
+        break;
 
-        break;
-      case "2": // Treinar habilidade
+      // Treinar habilidade
+      case "2":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
         !!! Essa opção se encontra em implementação !!!
         `);
         break;
-      case "3": // Dormir
+
+      // Dormir
+      case "3":
         console.clear();
         toSleep(actingCharacter);
         break;
-      case "4": // Tomar banho
+
+      // Tomar banho
+      case "4":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
         !!! Essa opção se encontra em implementação !!!
         `);
         break;
-      case "5": // Comprar item
+
+      // Comprar item
+      case "5":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
         !!! Essa opção se encontra em implementação !!!
         `);
         break;
-      case "6": // Interagir com outro personagem
+
+      // Interagir com outro personagem
+      case "6":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
         !!! Essa opção se encontra em implementação !!!
         `);
         break;
-      case "7": // Esperar personagem
+
+      // Esperar personagem
+      case "7":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
         !!! Essa opção se encontra em implementação !!!
         `);
         break;
+
+      // OPÇÃO INVALIDA
       default:
         console.clear();
         console.log(`
@@ -79,4 +93,4 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
         break;
     }
   }
-}
+};
