@@ -47,14 +47,19 @@ Qual a sua aspiração?
 
     switch (input) {
       case "1":
+        console.clear();
         return "GASTRONOMIA";
       case "2":
+        console.clear();
         return "PINTURA";
       case "3":
+        console.clear();
         return "JOGOS";
       case "4":
+        console.clear();
         return "JARDINAGEM";
       case "5":
+        console.clear();
         return "MUSICA";
       default:
         console.clear();

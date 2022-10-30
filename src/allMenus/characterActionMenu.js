@@ -5,6 +5,13 @@ export const characterActionMenu = async (character) => {
   const actingCharacter = character;
   while (true) {
     console.log(`
+####################################
+###                              ###
+###   BEM VINDO AO THE CRESIMS   ###
+###                              ###
+####################################
+
+
 - ${actingCharacter.name} -
  ,,,   ⏱   Tempo de jogo: ${actingCharacter.time}
 (_oo   ✨  Energia: ${actingCharacter.energy}/32
@@ -13,14 +20,16 @@ export const characterActionMenu = async (character) => {
  LL    🎮  Pontos de ${actingCharacter.aspiration}: ${actingCharacter.skill}
 
 Escolha uma ação para o(a) ${actingCharacter.name}:
-1. 🚧 Trabalhar (Tempo gasto: 20000ms)
-2. 🚧 Treinar habilidade (${actingCharacter.aspiration} - Tempo gasto: 8000ms)
-3. ⚙️  Dormir (Tempo gasto: até recuperar toda a energia, recupera)
-4. 🚧 Tomar banho (Tempo gasto: Não definido na documentação) 
-5. 🚧 Comprar item
-6. 🚧 Interagir com outro persongaem (Tempo: 2000ms | Disponíveis: a definir)
-7. 🚧 Esperar personagem (Espera outro personagem ficar livre)
-8. 🚧 Cheats
+1.  🚧 Trabalhar (Tempo gasto: 20000ms)
+2.  🚧 Treinar habilidade (${actingCharacter.aspiration} - Tempo gasto: 8000ms)
+3.  ⚙️  Dormir (Tempo gasto: até recuperar toda a energia, recupera)
+4.  🚧 Tomar banho (Tempo gasto: Não definido na documentação) 
+5.  🚧 Comprar item
+6.  🚧 Interagir com outro persongaem (Tempo: 2000ms | Disponíveis: a definir)
+7.  🚧 Esperar personagem (Espera outro personagem ficar livre)
+8.  🚧 Cheats
+9.  ⚙️  Perder 10 energia
+10. ⚙️  Perder 10 higiene
 `);
     const input = await useQuestion("Sua escolha: ");
 
@@ -85,12 +94,33 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
         `);
         break;
 
+      // Aplicar cheats
       case "8":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
         !!! Essa opção se encontra em implementação !!!
         `);
+        break;
+
+      // Perder 10 energia
+      case "9":
+        console.clear();
+        console.log(`
+        - Opção ${input} escolhida
+        ### ${actingCharacter.name} perde 10 de energia
+        `);
+        actingCharacter.energy -= 10;
+        break;
+
+      // Perder 10 higiene
+      case "10":
+        console.clear();
+        console.log(`
+        - Opção ${input} escolhida
+        ### ${actingCharacter.name} perde 10 de higiene
+        `);
+        actingCharacter.hygiene -= 10;
         break;
 
       // OPÇÃO INVALIDA

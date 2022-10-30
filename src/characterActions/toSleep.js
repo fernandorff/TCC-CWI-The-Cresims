@@ -36,7 +36,7 @@ Pressione ENTER para voltar ao menu inicial...
 
 Quanto tempo você quer dormir?
 
-1. Até recuperar toda a energia (x ms)
+1. Até recuperar toda a energia9 (x ms)
 2. 1 ciclo de sono (5000 ms) +4 energia
 3. 2 ciclos de sono (10000 ms) +10 energia
 4. 3 ciclos de sono (15000 ms) +18 energia
