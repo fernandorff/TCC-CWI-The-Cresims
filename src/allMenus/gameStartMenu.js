@@ -74,7 +74,8 @@ Qual a sua aspiração?
 };
 
 const setCharacter = async () => {
-  const storage = useLocalStorage().getObject("inGameCharacters") || [];
+  const localStorage = useLocalStorage();
+  const storage = localStorage.getObject("inGameCharacters") || [];
 
   const id = storage.length
   const name = await useQuestion(`Qual o seu nome? `);
@@ -87,7 +88,7 @@ const setCharacter = async () => {
   const skill = 0;
   const items = [];
 
-  return {
+  const character = {
     id,
     name,
     aspiration,
@@ -99,16 +100,29 @@ const setCharacter = async () => {
     skill,
     items,
   };
+
+  localStorage.setObject("inGameCharacters", [...storage, character]);
+
+  return character
 };
 
 const getCharacter = async () => {
   const storage = useLocalStorage().getObject("inGameCharacters") || [];
-  const input = await useQuestion("Escolha o id do personagem: ");
-  const character = storage.find(charac => charac.id == input)
-  return character
+  while (true) {
+    const input = await useQuestion("Escolha o id do personagem: ");
+    const character = storage.find(charac => charac.id == input)
+    if (character) {
+      return character
+    }
+    console.log("Escolha um id valido")
+  }
 }
 
 const allChacteres = () => {
   const localStorage = useLocalStorage();
-  console.log(localStorage.getObject("inGameCharacters"));
+  const storage = localStorage.getObject("inGameCharacters");
+
+  for (const obj of storage) {
+    console.table(obj)
+  }
 }

@@ -3,12 +3,7 @@ import { gameStartMenu } from "./src/allMenus/gameStartMenu.js";
 import { characterActionMenu } from "./src/allMenus/characterActionMenu.js";
 
 const main = async () => {
-  const localStorage = useLocalStorage();
-
   const obj = await gameStartMenu();
-
-  const storage = localStorage.getObject("inGameCharacters") || [];
-  localStorage.setObject("inGameCharacters", [...storage, obj]);
 
   console.clear();
 
