@@ -19,7 +19,12 @@ beforeEach(() => {
     relationship: [],
     skill: 0,
     items: [],
-    employee: 'Jogador de Dota'
+    employee: {
+      id: 1,
+      office: 'Jogador de Dota', 
+      category: 'JOGOS',
+      salary: 160
+    }
   }
 
   product = itensSkill[character.aspiration]
@@ -45,7 +50,7 @@ describe('04 - Trabalho', () => {
   it('Deve receber o salario do dia ao trabalhar uma jornda padrão', async () => {
     const characterWork = await work(character)
 
-    const salary = characterWork.cresceleons - character.cresceleons
+    const salary = characterWork.employee.salary
     const salaryExpected = 160.0
 
     expect(salary).toBe(salaryExpected)
@@ -55,7 +60,7 @@ describe('04 - Trabalho', () => {
     character.energy = 9
     const characterWork = await work(character)
 
-    const salary = characterWork.cresceleons - character.cresceleons
+    const salary = characterWork.employee.salary
     const salaryExpected = 119.1
 
     expect(salary.toFixed(1)).toBe(salaryExpected.toFixed(1))
@@ -130,9 +135,11 @@ describe('5 - Habilidades e aspirações', () => {
 
   it('Deve avançar o nivel de habilidade quando completar os pontos necessarios', () => {
     const characterLevelSkill = { ...character }
-    characterLevelSkill.skill = 27
+    characterLevelSkill.skill = 26
 
-    const levelSkill = checkLevelSkill(characterLevelSkill.skill)
+    const characterTrainning = cicleTrainCharacterProductPurchased(characterLevelSkill, productChoice, characterLevelSkill.aspiration)
+
+    const levelSkill = characterTrainning.employee.level
     const levelSkillExpected = 'SENIOR'
 
     expect(levelSkill).toBe(levelSkillExpected)
