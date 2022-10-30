@@ -7,8 +7,8 @@ export const characterActionMenu = async (character) => {
     console.log(`
 - ${actingCharacter.name} -
  ,,,   ⏱   Tempo de jogo: ${actingCharacter.time}
-(_oo   ✨  Energia: ${actingCharacter.energy}
-<|>    🛁  Higiene: ${actingCharacter.hygiene}
+(_oo   ✨  Energia: ${actingCharacter.energy}/32
+<|>    🛁  Higiene: ${actingCharacter.hygiene}/28
  |     💵  Cresceleons: ${actingCharacter.cresceleons}
  LL    🎮  Pontos de ${actingCharacter.aspiration}: ${actingCharacter.skill}
 
