@@ -2,11 +2,14 @@ import { employeesDataApi } from "../services/api/app.js"
 import { setEnergy, setTimeLife } from "./common.js"
 import { checkLevelSkill } from "./skill-aspiration.js"
 
+const POINT_ENERGY_MIN = 2
+const POINT_ENERGY_DECREMENT = 10
+const WORKING_DAY = 20000
+const TEN_PERCENT = 0.10
+const POINT_ENERGY_FOR_DISCOUNT = 5
+
 export const work = async (character) => {
   const characterWork = { ...character }
-  const ENERGY_DECREMENT = 10
-  const WORKING_DAY = 20000
-
   const levelSkillCharacter = checkLevelSkill(character.skill)
 
   if (character.energy < 4 || character.employee === undefined) {
@@ -19,7 +22,7 @@ export const work = async (character) => {
     characterWork.employee.salary = cresceleonsRecalculates.salary
   } else if (character.energy >= 15) {
     characterWork.time = setTimeLife(character, WORKING_DAY)
-    characterWork.energy = setEnergy(character, ENERGY_DECREMENT)
+    characterWork.energy = setEnergy(character, POINT_ENERGY_DECREMENT)
     characterWork.cresceleons = characterWork.cresceleons + character.employee.salary
     characterWork.employee.salary = await getSalary(levelSkillCharacter, character.employee.office)
   }
@@ -28,10 +31,6 @@ export const work = async (character) => {
 }
 
 export const recalculateCresceleons = async (character, workingDay) => {
-  const POINT_ENERGY_MIN = 2
-  const TEN_PERCENT = 0.10
-  const POINT_ENERGY_FOR_DISCOUNT = 5
-
   const salaryCresim = character.employee.salary
   const msForEachPointEnergy = workingDay / character.energy
   const pointEnergyForSpend = (character.energy - POINT_ENERGY_MIN)
@@ -43,19 +42,17 @@ export const recalculateCresceleons = async (character, workingDay) => {
   const pointsEnergyCurrent = character.energy - POINT_ENERGY_FOR_DISCOUNT
   const salaryCresimRested = pointsEnergyCurrent * cresceleonForEachPointEnergy
 
-  return {
-    time: character.time - maxTimeToWork,
-    salary: recalculateSalaryCresimTired + salaryCresimRested,
-    energyDecrement: character.energy - pointEnergyForSpend
-  }
+  const time = character.time - maxTimeToWork
+  const salary = recalculateSalaryCresimTired + salaryCresimRested
+  const energyDecrement = character.energy - pointEnergyForSpend
+
+  return { time, salary, energyDecrement }
 }
 
 const getPointEnergy = (energy) => {
-  if (energy <= 14 && energy >= 13) {
-    return energy - 10
-  }
+  if (energy <= 14 && energy >= 13) return energy - POINT_ENERGY_DECREMENT
 
-  return 2
+  return POINT_ENERGY_MIN
 }
 
 export const getSalary = async (levelSkill, employee) => {
@@ -63,9 +60,7 @@ export const getSalary = async (levelSkill, employee) => {
   const salaryLevel = getEmployeesLevels(response, employee)
 
   const salary = salaryLevel.find(status => {
-    if (status.nivel === levelSkill) {
-      return status
-    }
+    if (status.nivel === levelSkill) return status
   })
 
   return salary.valor
@@ -73,26 +68,23 @@ export const getSalary = async (levelSkill, employee) => {
 
 const getEmployeesLevels = (response, employee) => {
   const salaryLevel = response.find(post => {
-    if (post.cargo === employee) {
-      return post
-    }
+    if (post.cargo === employee) return post
   })
 
   return salaryLevel.salario
 }
 
-export const setEmployee = async (character, employee) => {
+export const setEmployee = async (character, office) => {
   const levelSkillCharacter = checkLevelSkill(character.skill)
   const salary = await getSalary(levelSkillCharacter, employee.cargo)
 
-  return {
-    ...character,
-    employee: {
-      id: employee.id,
-      level: levelSkillCharacter,
-      office: employee.cargo,
-      category: employee.categoria,
-      salary: salary
-    }
+  const employee = {
+    id: office.id,
+    level: levelSkillCharacter,
+    office: office.cargo,
+    category: office.categoria,
+    salary: salary
   }
+
+  return { ...character, employee }
 }
