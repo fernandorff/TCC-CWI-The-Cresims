@@ -43,11 +43,11 @@ export const recalculateCresceleons = async (character, workingDay) => {
   const pointsEnergyCurrent = character.energy - POINT_ENERGY_FOR_DISCOUNT
   const salaryCresimRested = pointsEnergyCurrent * cresceleonForEachPointEnergy
 
-  return {
-    time: character.time - maxTimeToWork,
-    salary: recalculateSalaryCresimTired + salaryCresimRested,
-    energyDecrement: character.energy - pointEnergyForSpend
-  }
+  const time = character.time - maxTimeToWork
+  const salary = recalculateSalaryCresimTired + salaryCresimRested
+  const energyDecrement = character.energy - pointEnergyForSpend
+
+  return { time, salary, energyDecrement }
 }
 
 const getPointEnergy = (energy) => {
