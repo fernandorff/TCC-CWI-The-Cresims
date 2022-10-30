@@ -14,7 +14,8 @@ export const gameStartMenu = async () => {
 Escolha uma das opções:
 
 1 - Criar Personagem
-2 - Configurações
+2 - Escolher Personagem
+3 - Listar Personagens
 `);
 
     const input = await useQuestion("Sua escolha: ");
@@ -22,6 +23,11 @@ Escolha uma das opções:
     switch (input) {
       case "1":
         return setCharacter();
+      case "2":
+        return getCharacter();
+      case "3":
+        allChacteres();
+        break;
       default:
         console.clear();
         console.log(`
@@ -94,3 +100,15 @@ const setCharacter = async () => {
     items,
   };
 };
+
+const getCharacter = async () => {
+  const storage = useLocalStorage().getObject("inGameCharacters") || [];
+  const input = await useQuestion("Escolha o id do personagem: ");
+  const character = storage.find(charac => charac.id == input)
+  return character
+}
+
+const allChacteres = () => {
+  const localStorage = useLocalStorage();
+  console.log(localStorage.getObject("inGameCharacters"));
+}

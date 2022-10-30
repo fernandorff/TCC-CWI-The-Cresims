@@ -10,8 +10,6 @@ const main = async () => {
   const storage = localStorage.getObject("inGameCharacters") || [];
   localStorage.setObject("inGameCharacters", [...storage, obj]);
 
-  console.log(localStorage.getObject("inGameCharacters"));
-
   console.clear();
 
   characterActionMenu(obj);
