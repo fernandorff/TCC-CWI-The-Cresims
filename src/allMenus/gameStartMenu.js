@@ -1,3 +1,4 @@
+import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
 import { useQuestion } from "../services/question/use-question.js";
 
 export const gameStartMenu = async () => {
@@ -67,6 +68,9 @@ Qual a sua aspiração?
 };
 
 const setCharacter = async () => {
+  const storage = useLocalStorage().getObject("inGameCharacters") || [];
+
+  const id = storage.length
   const name = await useQuestion(`Qual o seu nome? `);
   const aspiration = await setAspiration();
   const cresceleons = 1500;
@@ -78,6 +82,7 @@ const setCharacter = async () => {
   const items = [];
 
   return {
+    id,
     name,
     aspiration,
     cresceleons,
