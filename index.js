@@ -1,78 +1,85 @@
-import { useQuestion } from './src/services/question/use-question.js'
-import { useLocalStorage } from './src/services/local-storage/use-local-storage.js'
+import { useQuestion } from "./src/services/question/use-question.js";
+import { useLocalStorage } from "./src/services/local-storage/use-local-storage.js";
 
 const setAspiration = async () => {
   while (true) {
-    console.log("Qual a sua aspiração? ")
-    
-    console.log("1 - Gastronomia")
-    console.log("2 - Pintura")
-    console.log("3 - Jogos")
-    console.log("4 - Jardinagem")
-    console.log("5 - Música")
+    console.log("Qual a sua aspiração? ");
 
-    const input = await useQuestion("Sua escolha: ")
+    console.log("1 - Gastronomia");
+    console.log("2 - Pintura");
+    console.log("3 - Jogos");
+    console.log("4 - Jardinagem");
+    console.log("5 - Música");
+
+    const input = await useQuestion("Sua escolha: ");
 
     switch (input) {
       case "1":
-        return "GASTRONOMIA"
-      case "2": 
-        return "PINTURA"
+        return "GASTRONOMIA";
+      case "2":
+        return "PINTURA";
       case "3":
-        return "JOGOS"
+        return "JOGOS";
       case "4":
-        return "JARDINAGEM" 
+        return "JARDINAGEM";
       case "5":
-        return "MUSICA"
+        return "MUSICA";
       default:
-        console.log("Escolha uma das opções dadas acima")
+        console.log("Escolha uma das opções dadas acima");
     }
   }
-}
+};
 
 const setCharacter = async () => {
-  const name = await useQuestion("Qual o seu nome? ")
-  const aspiration = await setAspiration()
-  const cresceleons =  1.500
-  const time = 3600000
-  const hygiene = 28
-  const energy = 32
-  const relationship = []
-  const skill = 0
-  const items = []
+  const name = await useQuestion("Qual o seu nome? ");
+  const aspiration = await setAspiration();
+  const cresceleons = 1.5;
+  const time = 3600000;
+  const hygiene = 28;
+  const energy = 32;
+  const relationship = [];
+  const skill = 0;
+  const items = [];
 
   return {
-    name, aspiration, cresceleons, time, 
-    hygiene, energy, relationship, skill, items
-  }
-}
+    name,
+    aspiration,
+    cresceleons,
+    time,
+    hygiene,
+    energy,
+    relationship,
+    skill,
+    items,
+  };
+};
 
 const menu = async () => {
   while (true) {
-    console.log("Escolha uma das opções: ")
-    console.log("1 - Criar Personagem")
-    console.log("2 - Configurações")
+    console.log("Escolha uma das opções: ");
+    console.log("1 - Criar Personagem");
+    console.log("2 - Configurações");
 
-    const input = await useQuestion("Sua escolha: ")
+    const input = await useQuestion("Sua escolha: ");
 
     switch (input) {
       case "1":
-        return setCharacter()
+        return setCharacter();
       default:
-          console.log("Escolha uma das opções dadas acima")
+        console.log("Escolha uma das opções dadas acima");
     }
   }
-}
+};
 
 const main = async () => {
-  const localStorage = useLocalStorage()
-  
-  const obj = await menu()
-  
-  const estorage = localStorage.getObject('nome-array') || []
-  localStorage.setObject('caracteres', [ ...estorage, obj])
-  
-  console.log(localStorage.getObject('caracteres'))
-}
+  const localStorage = useLocalStorage();
 
-main()
+  const obj = await menu();
+
+  const estorage = localStorage.getObject("nome-array") || [];
+  localStorage.setObject("caracteres", [...estorage, obj]);
+
+  console.log(localStorage.getObject("caracteres"));
+};
+
+main();
