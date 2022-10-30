@@ -31,18 +31,13 @@ export const buyProductItens = (character, productChoice) => {
 }
 
 export const isBuy = (cresceleons, priceProductChoice) => {
-  if (cresceleons >= priceProductChoice) {
-    return true
-  }
+  if (cresceleons >= priceProductChoice) return true
+
   return false
 }
 
 export const checkLevelSkill = (points) => {
-  if (points >= 0 && points <= 16) {
-    return 'JUNIOR'
-  } else if (points >= 17 && points <= 26) {
-    return 'PLENO'
-  } else if (points >= 27) {
-    return 'SENIOR'
-  }
+  if (points >= 0 && points <= 16) return 'JUNIOR'
+  else if (points >= 17 && points <= 26) return 'PLENO'
+  else if (points >= 27) return 'SENIOR'
 }
