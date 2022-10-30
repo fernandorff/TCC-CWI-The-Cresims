@@ -17,14 +17,15 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
   const skill = setSkill(character, productChoice, skillChoice)
   const time = setTimeLife(character, TIME_CICLE_TRAINNING)
   const energy = setEnergy(character, ENERGY_DECREMENT)
-  const levelSkill = checkLevelSkill(skill) 
+  const levelSkill = checkLevelSkill(skill)
 
   return {
     ...character,
     skill: skill,
     time: time,
-    energy: energy, 
+    energy: energy,
     employee: {
+      ...character.employee,
       level: levelSkill
     }
   }
