@@ -135,9 +135,11 @@ describe('5 - Habilidades e aspirações', () => {
 
   it('Deve avançar o nivel de habilidade quando completar os pontos necessarios', () => {
     const characterLevelSkill = { ...character }
-    characterLevelSkill.skill = 27
+    characterLevelSkill.skill = 26
 
-    const levelSkill = checkLevelSkill(characterLevelSkill.skill)
+    const characterTrainning = cicleTrainCharacterProductPurchased(characterLevelSkill, productChoice, characterLevelSkill.aspiration)
+
+    const levelSkill = characterTrainning.employee.level
     const levelSkillExpected = 'SENIOR'
 
     expect(levelSkill).toBe(levelSkillExpected)
