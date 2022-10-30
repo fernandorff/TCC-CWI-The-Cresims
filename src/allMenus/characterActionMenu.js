@@ -20,6 +20,7 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 5. 🚧 Comprar item
 6. 🚧 Interagir com outro persongaem (Tempo: 2000ms | Disponíveis: a definir)
 7. 🚧 Esperar personagem (Espera outro personagem ficar livre)
+8. 🚧 Cheats
 `);
     const input = await useQuestion("Sua escolha: ");
 
@@ -77,6 +78,14 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 
       // Esperar personagem
       case "7":
+        console.clear();
+        console.log(`
+        - Opção ${input} escolhida
+        !!! Essa opção se encontra em implementação !!!
+        `);
+        break;
+
+      case "8":
         console.clear();
         console.log(`
         - Opção ${input} escolhida
