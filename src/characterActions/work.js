@@ -77,7 +77,7 @@ const getEmployeesLevels = (response, employee) => {
       return post
     }
   })
-
+  
   return salaryLevel.salario
 }
 
@@ -85,14 +85,13 @@ export const setEmployee = async (character, employee) => {
   const levelSkillCharacter = checkLevelSkill(character.skill)
   const salary = await getSalary(levelSkillCharacter, employee.cargo)
 
-  return {
-    ...character,
-    employee: {
-      id: employee.id,
-      level: levelSkillCharacter,
-      office: employee.cargo,
-      category: employee.categoria,
-      salary: salary
-    }
+  const employee = {
+    id: employee.id,
+    level: levelSkillCharacter,
+    office: employee.cargo,
+    category: employee.categoria,
+    salary: salary
   }
+
+  return { ...character, employee }
 }
