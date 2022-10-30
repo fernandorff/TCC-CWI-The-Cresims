@@ -26,7 +26,7 @@ Escolha uma das opções:
       case "2":
         return getCharacter();
       case "3":
-        allChacteres();
+        await allChacteres();
         break;
       default:
         console.clear();
@@ -118,11 +118,14 @@ const getCharacter = async () => {
   }
 }
 
-const allChacteres = () => {
+const allChacteres = async () => {
   const localStorage = useLocalStorage();
   const storage = localStorage.getObject("inGameCharacters");
 
   for (const obj of storage) {
     console.table(obj)
   }
+
+  const input = await useQuestion();
+
 }
