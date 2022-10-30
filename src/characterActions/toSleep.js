@@ -1,4 +1,7 @@
+import { useQuestion } from "../services/question/use-question.js";
+
 export const toSleep = async (character) => {
+  console.clear(gt);
   const actingCharacter = character;
   let sleepTime = 0;
 
@@ -43,7 +46,7 @@ Quanto tempo você quer dormir?
 5. 4 ciclos de sono (20000 ms) +28 energia
 
 X. Voltar ao menu de ações
-`).toUpperCase();
+`);
 
     switch (input) {
       case 1:
