@@ -2,11 +2,8 @@ import { setEnergy, setTimeLife } from "./common.js"
 
 export const setSkill = (character, productChoice, aspiration) => {
   if (isBuy(character.cresceleons, productChoice.preco)) {
-    if (character.aspiration === aspiration) {
-      return character.skill + productChoice.pontos + 1
-    } else {
-      return character.skill + productChoice.pontos
-    }
+    if (character.aspiration === aspiration) return character.skill + productChoice.pontos + 1
+    else return character.skill + productChoice.pontos
   }
 }
 
