@@ -71,7 +71,47 @@ const gameStartMenu = async () => {
   }
 };
 
-const inGameMenu = async () => {};
+//                                 actingCharacter = personagem que está agindo nesse menu
+const inGameMenuCharacter = async (actingCharacter) => {
+  while (true) {
+    console.log(`
+       - ${actingCharacter.name} -
+ ,,,   Tempo de jogo: ${actingCharacter.time}
+(_oo   Energia: ${actingCharacter.energy}
+/|\    Higiene: ${actingCharacter.hygiene}
+ |     Cresceleons: ${actingCharacter.cresceleons}
+ LL    Pontos de ${actingCharacter.aspiration}: ${skill}
+
+Escolha uma ação para o(a) ${actingCharacter.name}:
+1. Trabalhar (Tempo gasto: 20000ms)
+2. Treinar habilidade (${personagem.aspiration} - Tempo gasto: 8000ms)
+3. Dormir (Tempo gasto: até recuperar toda a energia, recupera)
+4. Tomar banho (Tempo gasto: Não definido na documentação) 
+5. Comprar item
+6. Interagir com outro persongaem (Tempo: 2000ms | Disponíveis: a definir)
+7. Esperar personagem (Espera outro personagem ficar livre)`);
+    const input = await useQuestion("Sua escolha: ");
+
+    switch (input) {
+      case "1":
+        console.log("!!! Essa opção se encontra em implementação !!!");
+      case "2":
+        console.log("!!! Essa opção se encontra em implementação !!!");
+      case "3":
+        console.log("!!! Essa opção se encontra em implementação !!!");
+      case "4":
+        console.log("!!! Essa opção se encontra em implementação !!!");
+      case "5":
+        console.log("!!! Essa opção se encontra em implementação !!!");
+      case "6":
+        console.log("!!! Essa opção se encontra em implementação !!!");
+      case "7":
+        console.log("!!! Essa opção se encontra em implementação !!!");
+      default:
+        console.log("Escolha uma das opções dadas acima");
+    }
+  }
+};
 
 const main = async () => {
   const localStorage = useLocalStorage();
