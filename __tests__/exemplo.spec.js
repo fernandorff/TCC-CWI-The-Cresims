@@ -1,6 +1,7 @@
 import { buyProductItens, checkLevelSkill, cicleTrainCharacterProductPurchased, isBuy } from "../src/characterActions/skill-aspiration"
 import { work } from "../src/characterActions/work"
-import { itensSkillDataApi } from "../src/services/api/app"
+import { itensSkillDataApi } from "../src/services/api/api"
+import executeCheat from "../src/cheats/cheats"
 
 let character, itensSkill, product, productChoice
 
@@ -37,6 +38,7 @@ describe('Exemplo teste suite', () => {
   })
 }
 )
+
 describe('04 - Trabalho', () => {
   it('Deve perder os pontos de energia ao trabalhar uma jornada padrão', async () => {
     const characterWork = await work(character)
@@ -143,5 +145,36 @@ describe('5 - Habilidades e aspirações', () => {
     const levelSkillExpected = 'SENIOR'
 
     expect(levelSkill).toBe(levelSkillExpected)
+  })
+})
+
+describe('6 - Cheats', () => {
+  it('Deve conseguir aplicar o cheat SORTENAVIDA e receber as recompensas', async () => {
+    const newCharacter = await executeCheat(character, "SORTENAVIDA")
+    const numExpect = 176
+    expect(newCharacter.employee.salary).toBe(numExpect)
+  })
+
+  it ('Deve conseguir aplicar o cheat DEITADONAREDE e receber as recompensas', async () => {
+    const newCharacter = await executeCheat(character, "DEITADONAREDE")
+    const numExpect = 37
+    expect(newCharacter.energy).toBe(numExpect)
+  })
+
+  it('Deve conseguir aplicar o cheat JUNIM e receber as recompensas para a habilidade escolhida', async () => {
+    
+  })
+
+  it('Deve conseguir aplicar o cheat CAROLINAS e receber as recompensas', async () => {
+    const newCharacter = await executeCheat(character, "CAROLINAS")
+    console.log(newCharacter)
+    const numExpect = 3700000
+    expect(newCharacter.time).toBe(numExpect)
+  })
+
+  it('Deve conseguir aplicar o cheat SINUSITE ter a vida zerada', async () => {
+    const newCharacter = await executeCheat(character, "SINUSITE")
+    const numExpect = 0
+    expect(newCharacter.time).toBe(numExpect)
   })
 })

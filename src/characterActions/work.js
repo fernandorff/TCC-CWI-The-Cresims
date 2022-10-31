@@ -1,4 +1,4 @@
-import { employeesDataApi } from "../services/api/app.js"
+import { employeesDataApi } from "../services/api/api.js"
 import { setEnergy, setTimeLife } from "./common.js"
 import { checkLevelSkill } from "./skill-aspiration.js"
 
