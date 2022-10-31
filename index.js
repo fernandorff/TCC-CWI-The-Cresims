@@ -7,7 +7,7 @@ const main = async () => {
 
   console.clear();
 
-  characterActionMenu(obj);
+  await characterActionMenu(obj);
 };
 
 main();
