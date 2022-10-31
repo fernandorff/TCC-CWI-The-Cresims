@@ -14,20 +14,28 @@ export const characterActionMenu = async (character) => {
 ${await theCresimsLogo()}
 
 ${await characterInfoDisplay(actingCharacter)}
-
 ${warningMessage}
-
 Escolha uma ação para o(a) ${actingCharacter.name}:
-1.  ❌ Trabalhar { - 20000 ⌛️ | - 🛁 | + 💵 }
-2.  ❌ Treinar habilidade de ${actingCharacter.aspiration} { - 8000 ⌛️ | + 🎮 }
-3.  ✅ Dormir { - ⌛️ | + ✨}
-4.  ✅ Tomar banho { -2000 ⌛️ | -10 💵 | + 100% 🛁 }
+
+1.  ❌ Trabalhar ( -20000⌛️  -🛁  +💵 )
+
+2.  ❌ Treinar habilidade de ${actingCharacter.aspiration} ( -8000⌛️  +🎮 )
+
+3.  ✅ Dormir ( -⌛️  +✨ )
+
+4.  ✅ Tomar banho ( -2000⌛️  -10💵  +100%🛁 )
+
 5.  ❌ Comprar item
-6.  ❌ Interagir com outro persongaem { - 2000 ⌛️ | + ? ❤️ }
+
+6.  ❌ Interagir com outro persongaem ( -2000⌛️  +❤️ )
+
 7.  ❌ Esperar personagem (Espera outro personagem ficar livre)
+
 8.  ❌ Aplicar cheat
-9.  ✅ { - 10 ✨ }
-10. ✅ { - 10 🛁 }
+
+9.  ✅ ( -10✨ )
+
+10. ✅ ( -10🛁 )
 
 Sua escolha:`);
 
