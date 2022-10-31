@@ -24,7 +24,7 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 3.  ✅ Dormir ( -⌛️  +✨ )
 
 4.  ✅ Tomar banho ( -2000⌛️  -10💵  +100%🛁 )
-
+ 
 5.  ❌ Comprar item
 
 6.  ❌ Interagir com outro personagem ( -2000⌛️  +❤️ )
