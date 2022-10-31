@@ -1,6 +1,8 @@
 import { buyProductItens, checkLevelSkill, cicleTrainCharacterProductPurchased, isBuy } from "../src/characterActions/skill-aspiration"
 import { work } from "../src/characterActions/work"
-import { itensSkillDataApi } from "../src/services/api/app"
+import { itensSkillDataApi } from "../src/services/api/api"
+import { executeCheat } from "../src/cheats/cheats"
+import { cheatJunim } from "../src/cheats/cheatJunim"
 
 let character, itensSkill, product, productChoice
 
@@ -24,7 +26,18 @@ beforeEach(() => {
       office: 'Jogador de Dota', 
       category: 'JOGOS',
       salary: 160
-    }
+    },
+    ability: [
+      {
+        name: 'CULINARIA',
+        skill: 0
+      },
+      {
+        name: 'JOGOS',
+        skill: 0,
+        aspiration: true
+      }
+    ]
   }
 
   product = itensSkill[character.aspiration]
@@ -37,6 +50,7 @@ describe('Exemplo teste suite', () => {
   })
 }
 )
+
 describe('04 - Trabalho', () => {
   it('Deve perder os pontos de energia ao trabalhar uma jornada padrão', async () => {
     const characterWork = await work(character)
@@ -143,5 +157,38 @@ describe('5 - Habilidades e aspirações', () => {
     const levelSkillExpected = 'SENIOR'
 
     expect(levelSkill).toBe(levelSkillExpected)
+  })
+})
+
+describe('6 - Cheats', () => {
+  it('Deve conseguir aplicar o cheat SORTENAVIDA e receber as recompensas', async () => {
+    const newCharacter = await executeCheat(character, "SORTENAVIDA")
+    const numExpect = 176
+    expect(newCharacter.employee.salary).toBe(numExpect)
+  })
+
+  it ('Deve conseguir aplicar o cheat DEITADONAREDE e receber as recompensas', async () => {
+    const newCharacter = await executeCheat(character, "DEITADONAREDE")
+    const numExpect = 37
+    expect(newCharacter.energy).toBe(numExpect)
+  })
+
+  it('Deve conseguir aplicar o cheat JUNIM e receber as recompensas para a habilidade escolhida', async () => {
+    const newCharacter = await cheatJunim(character, "CULINARIA")
+    const skillLevel = newCharacter.ability[0].skill
+    const numExpect = 5
+    expect(skillLevel).toBe(numExpect)
+  })
+
+  it('Deve conseguir aplicar o cheat CAROLINAS e receber as recompensas', async () => {
+    const newCharacter = await executeCheat(character, "CAROLINAS")
+    const numExpect = 3700000
+    expect(newCharacter.time).toBe(numExpect)
+  })
+
+  it('Deve conseguir aplicar o cheat SINUSITE ter a vida zerada', async () => {
+    const newCharacter = await executeCheat(character, "SINUSITE")
+    const numExpect = 0
+    expect(newCharacter.time).toBe(numExpect)
   })
 })
