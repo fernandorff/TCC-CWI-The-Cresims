@@ -2,7 +2,10 @@ import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "../allMenus/characterInfoDisplay.js";
 import { characterActionMenu } from "../allMenus/characterActionMenu.js";
 
+//
 // calcula o tempo necessário para preencher energia completamente segundo as regras de negocio
+//
+
 const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
   let timeForFullEnergy = 0;
   let energyForFull = 32 - actingCharacter.energy;
@@ -20,6 +23,10 @@ const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
   return timeForFullEnergy;
 };
 
+//
+// Executa ação de dormir
+//
+
 const sleepAction = async (actingCharacter, sleepTime) => {
   for (let i = 0; i < sleepTime; ++i) {
     let waitingDots = ".";
@@ -33,7 +40,6 @@ const sleepAction = async (actingCharacter, sleepTime) => {
 ${actingCharacter.name} está dormindo${waitingDots}
             
 ${i} / ${sleepTime}
-            
 `);
     actingCharacter.time -= 1000;
     await new Promise((resolve) => setTimeout(resolve, 1000));
@@ -46,15 +52,21 @@ ${actingCharacter.name} terminou de dormir!
     
 ${sleepTime} / ${sleepTime}
 `);
+  let pressEnter = await useQuestion(`Pressione ENTER para continuar...`);
 };
+
+// ********************************
+// Exibe o menu de opções de dormir
+//
 
 export const sleepMenu = async (character) => {
   console.clear();
   const actingCharacter = character;
   let sleepTime = 0;
   let warningMessage = ``;
+  let sleepMenuRunning = true;
 
-  while (true) {
+  while (sleepMenuRunning == true) {
     console.clear();
     let input = await useQuestion(`
 ### The Cresims ###
@@ -77,32 +89,62 @@ X. Voltar ao menu de ações
 `);
 
     switch (input) {
-      case 1:
-        sleepTime = calculateNecessaryTimeForFullEnergy / 1000;
-        await sleepAction(actingCharacter, sleepTime);
+      case "1":
+        sleepMenuRunning = false;
+        await sleepAction(
+          actingCharacter,
+          (await calculateNecessaryTimeForFullEnergy(actingCharacter)) / 1000
+        );
+        actingCharacter.energy = 32;
+        await characterActionMenu(actingCharacter);
         break;
 
-      case 2:
+      case "2":
         sleepTime = 5;
+        sleepMenuRunning = false;
         await sleepAction(actingCharacter, sleepTime);
+        actingCharacter.energy += 4;
+        if (actingcharacter.energy > 32) {
+          actingCharacter.energy = 32;
+        }
+        await characterActionMenu(actingCharacter);
         break;
 
-      case 3:
+      case "3":
         sleepTime = 10;
+        sleepMenuRunning = false;
         await sleepAction(actingCharacter, sleepTime);
+        actingCharacter.energy += 10;
+        if (actingcharacter.energy > 32) {
+          actingCharacter.energy = 32;
+        }
+        await characterActionMenu(actingCharacter);
         break;
 
-      case 4:
+      case "4":
         sleepTime = 15;
+        sleepMenuRunning = false;
         await sleepAction(actingCharacter, sleepTime);
+        actingCharacter.energy += 18;
+        if (actingcharacter.energy > 32) {
+          actingCharacter.energy = 32;
+        }
+        await characterActionMenu(actingCharacter);
         break;
 
-      case 5:
+      case "5":
         sleepTime = 20;
+        sleepMenuRunning = false;
         await sleepAction(actingCharacter, sleepTime);
+        actingCharacter.energy += 28;
+        if (actingcharacter.energy > 32) {
+          actingCharacter.energy = 32;
+        }
+        await characterActionMenu(actingCharacter);
         break;
 
-      case "X":
+      case "X" || "x":
+        sleepMenuRunning = false;
         characterActionMenu(actingCharacter);
         break;
     }

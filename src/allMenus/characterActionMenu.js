@@ -3,9 +3,10 @@ import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 
 export const characterActionMenu = async (character) => {
+  let characterActionMenuRunning = true;
   const actingCharacter = character;
   let warningMessage = "";
-  while (true) {
+  while (characterActionMenuRunning == true) {
     console.clear();
     console.log(`
 ####################################
@@ -62,6 +63,7 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
           break;
         }
         console.clear();
+        characterActionMenuRunning = false;
         await sleepMenu(actingCharacter);
         break;
 

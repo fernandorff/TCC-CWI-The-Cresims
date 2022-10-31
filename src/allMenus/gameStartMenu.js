@@ -2,7 +2,8 @@ import { useLocalStorage } from "../services/local-storage/use-local-storage.js"
 import { useQuestion } from "../services/question/use-question.js";
 
 export const gameStartMenu = async () => {
-  while (true) {
+  let gameStartMenuRunning = true;
+  while (gameStartMenuRunning == true) {
     console.clear();
     console.log(`
 ####################################
@@ -116,6 +117,8 @@ const getCharacter = async () => {
   while (true) {
     const input = await useQuestion("Escolha o id do personagem: ");
     const character = storage.find((charac) => charac.id == input);
+    //gameStartMenuRunning = false;
+
     if (character) {
       return character;
     }
