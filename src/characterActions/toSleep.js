@@ -1,7 +1,7 @@
 import { useQuestion } from "../services/question/use-question.js";
 
 export const toSleep = async (character) => {
-  console.clear(gt);
+  console.clear();
   const actingCharacter = character;
   let sleepTime = 0;
 
@@ -12,11 +12,11 @@ export const toSleep = async (character) => {
 ### The Cresims ###
 
 - ${actingCharacter.name} -
- ,,,   ⏱   Tempo de jogo: ${actingCharacter.time}
-(_oo   ✨  Energia: ${actingCharacter.energy}/32
-<|>    🛁  Higiene: ${actingCharacter.hygiene}/28
- |     💵  Cresceleons: ${actingCharacter.cresceleons}
- LL    🎮  Pontos de ${actingCharacter.aspiration}: ${actingCharacter.skill}
+ ,,,,   ⏱   Tempo de jogo: ${actingCharacter.time}
+(⚆_⚆   ✨  Energia: ${actingCharacter.energy}/32
+ <|>    🛁  Higiene: ${actingCharacter.hygiene}/28
+  LL     💵  Cresceleons: ${actingCharacter.cresceleons}
+        🎮  Pontos de ${actingCharacter.aspiration}: ${actingCharacter.skill}
     
 
 ${actingCharacter} está cheio de energia!
