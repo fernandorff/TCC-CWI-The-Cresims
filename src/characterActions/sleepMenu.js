@@ -73,16 +73,14 @@ ${await theCresimsLogo()}
 ${await characterInfoDisplay(actingCharacter)}
 
 Quanto tempo você quer dormir?
-
 ${warningMessage}
-
-1. Até recuperar toda a energia { - ${await calculateNecessaryTimeForFullEnergy(
+1. Até recuperar toda a energia ( -${await calculateNecessaryTimeForFullEnergy(
       actingCharacter
-    )} ⌛️ | + 100% ✨ }
-2. 1 ciclo de sono  { - 5000  ⌛️ | + 4  ✨ }
-3. 2 ciclos de sono { - 10000 ⌛️ | + 10 ✨ }
-4. 3 ciclos de sono { - 15000 ⌛️ | + 18 ✨ }
-5. 4 ciclos de sono { - 20000 ⌛️ | + 28 ✨ }
+    )}⌛️  +100%✨ )
+2. 1 ciclo de sono  ( -5000⌛️  +4✨ )
+3. 2 ciclos de sono ( -10000⌛️  +10✨ )
+4. 3 ciclos de sono ( -15000⌛️  +18✨ )
+5. 4 ciclos de sono ( -20000⌛️  +28✨ )
 
 X. Voltar ao menu de ações
 
@@ -147,6 +145,14 @@ Sua escolha:`);
       case "X":
         sleepMenuRunning = false;
         await characterActionMenu(actingCharacter);
+        break;
+
+      default:
+        console.clear();
+        warningMessage = `
+- Opção ${input} escolhida
+### Escolha uma opção válida ###
+`;
         break;
     }
   }
