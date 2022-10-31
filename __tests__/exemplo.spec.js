@@ -1,8 +1,8 @@
 import { buyProductItens, checkLevelSkill, cicleTrainCharacterProductPurchased, isBuy } from "../src/characterActions/skill-aspiration"
 import { work } from "../src/characterActions/work"
 import { itensSkillDataApi } from "../src/services/api/api"
-import executeCheat from "../src/cheats/cheats"
-import cheatJunim from "../src/cheats/cheatJunim"
+import { executeCheat } from "../src/cheats/cheats"
+import { cheatJunim } from "../src/cheats/cheatJunim"
 
 let character, itensSkill, product, productChoice
 

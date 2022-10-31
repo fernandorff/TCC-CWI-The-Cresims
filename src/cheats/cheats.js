@@ -1,7 +1,8 @@
-import { cheatsDataApi } from '../services/api/api'
-import cheatJunim from './cheatJunim';
+import { menuAbilitys } from '../allMenus/menuAbilitys.js';
+import { cheatsDataApi } from '../services/api/api.js';
+import { cheatJunim } from './cheatJunim.js';
 
-export default executeCheat = async (character, input) => {
+export const executeCheat = async (character, input) => {
     const listCheats = await cheatsDataApi();
     const code = input.toUpperCase();
     const cheat = listCheats.find(cheat => cheat.codigo == code);
@@ -21,7 +22,8 @@ export default executeCheat = async (character, input) => {
             character.energy += 5;
             break;
         case "JUNIM":
-            return cheatJunim(character, "JOGOS");
+            const ability = menuAbilitys();
+            return cheatJunim(character, ability);
         case "CAROLINAS":
             character.time += 100000;
             break; 

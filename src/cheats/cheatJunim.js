@@ -1,4 +1,4 @@
-export default cheatJunim = (character, ability) => {
+export const cheatJunim = (character, ability) => {
     const code = ability.toUpperCase();
     const listAbility = character.ability;
     
