@@ -27,15 +27,11 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 
 5.  ❌ Comprar item
 
-6.  ❌ Interagir com outro persongaem ( -2000⌛️  +❤️ )
+6.  ❌ Interagir com outro personagem ( -2000⌛️  +❤️ )
 
-7.  ❌ Esperar personagem (Espera outro personagem ficar livre)
+7.  ✅ ( -10✨ )
 
-8.  ❌ Aplicar cheat
-
-9.  ✅ ( -10✨ )
-
-10. ✅ ( -10🛁 )
+8.  ✅ ( -10🛁 )
 
 Sua escolha:`);
 
@@ -115,26 +111,8 @@ Sua escolha:`);
         `;
         break;
 
-      // Esperar personagem
-      case "7":
-        console.clear();
-        warningMessage = `
-- Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
-        `;
-        break;
-
-      // Aplicar cheats
-      case "8":
-        console.clear();
-        warningMessage = `
-- Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
-        `;
-        break;
-
       // Perder 10 energia
-      case "9":
+      case "7":
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
@@ -144,7 +122,7 @@ Sua escolha:`);
         break;
 
       // Perder 10 higiene
-      case "10":
+      case "8":
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida

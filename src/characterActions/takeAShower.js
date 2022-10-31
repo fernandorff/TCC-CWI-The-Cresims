@@ -21,7 +21,7 @@ ${i} / ${showerTime}
   }
   console.clear();
   console.log(`
-### The Cresims
+${await theCresimsLogo()}
         
 ${actingCharacter.name} terminou de tomar banho!
     
