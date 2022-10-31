@@ -32,19 +32,17 @@ export const work = async (character) => {
 
 export const recalculateCresceleons = async (character, workingDay) => {
   const salaryCresim = character.employee.salary
-  const msForEachPointEnergy = workingDay / character.energy
-  const pointEnergyForSpend = (character.energy - POINT_ENERGY_MIN)
-  const maxTimeToWork = pointEnergyForSpend * workingDay
-  const timeInMsForEachCresceleon = workingDay / salaryCresim
-  const cresceleonForEachPointEnergy = msForEachPointEnergy / timeInMsForEachCresceleon
-  const pointEnergyForRecalculate = POINT_ENERGY_FOR_DISCOUNT - getPointEnergy(character.energy)
-  const recalculateSalaryCresimTired = pointEnergyForRecalculate * (cresceleonForEachPointEnergy - (cresceleonForEachPointEnergy * TEN_PERCENT))
-  const pointsEnergyCurrent = character.energy - POINT_ENERGY_FOR_DISCOUNT
-  const salaryCresimRested = pointsEnergyCurrent * cresceleonForEachPointEnergy
+  const cresceleonForEachPointEnergy = salaryCresim / character.energy
+  const cresceleonTenPercentForEachPointEnergy = cresceleonForEachPointEnergy - (cresceleonForEachPointEnergy * TEN_PERCENT)
+  const pointEnergyCresimRested = character.energy - POINT_ENERGY_FOR_DISCOUNT
+  const pointEnergyCresimTired = POINT_ENERGY_FOR_DISCOUNT - getPointEnergy(character.energy)
+  const salaryCresimRested = pointEnergyCresimRested * cresceleonForEachPointEnergy
+  const salaryCresimTired = pointEnergyCresimTired * cresceleonTenPercentForEachPointEnergy
+  const maxTimeToWork = (workingDay / character.energy) * (character.energy - POINT_ENERGY_MIN)
 
   const time = character.time - maxTimeToWork
-  const salary = recalculateSalaryCresimTired + salaryCresimRested
-  const energyDecrement = character.energy - pointEnergyForSpend
+  const salary = salaryCresimRested + salaryCresimTired
+  const energyDecrement = character.energy <= 11 ? POINT_ENERGY_MIN : character.energy - POINT_ENERGY_DECREMENT
 
   return { time, salary, energyDecrement }
 }
@@ -76,7 +74,7 @@ const getEmployeesLevels = (response, employee) => {
 
 export const setEmployee = async (character, office) => {
   const levelSkillCharacter = checkLevelSkill(character.skill)
-  const salary = await getSalary(levelSkillCharacter, employee.cargo)
+  const salary = await getSalary(levelSkillCharacter, office.cargo)
 
   const employee = {
     id: office.id,

@@ -1,15 +1,29 @@
-import { setEmployee } from "../characterActions/work"
+import { setEmployee, work } from "../characterActions/work.js"
+import { employeesDataApi } from "../services/api/app.js";
+import { useQuestion } from "../services/question/use-question.js";
 
-export const menuEmployee = async (character) => {
-  const response = await employeesDataApi()
-  printEmployes(response)
-  const choice = await useQuestion('Escolha um cargo')
+export const menuWork = async (character) => {
+  let characterWork = await work(character)
 
-  character = {
-    ... await setEmployee(character, response[choice - 1])
+  if (!characterWork) {
+    console.log(`O personagem ${character.name} não possui um emprego, escolha um: \n`);
+    const response = await employeesDataApi()
+    const choice = await choiceEmployee(response)
+
+    characterWork = {
+      ... await setEmployee(character, response[choice - 1])
+    }
   }
 
-  console.log(character);
+  // Aqui atualiza os dados do cresim com localStorage
+  console.log(characterWork);
+}
+
+export const choiceEmployee = async (response) => {
+  printEmployes(response)
+  const choice = await useQuestion('\nEscolha um cargo')
+
+  return choice
 }
 
 export const printEmployes = (employees) => {
