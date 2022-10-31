@@ -3,7 +3,7 @@ import { takeAShower } from "../characterActions/takeAShower.js";
 import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
-import { executeCheat } from '../cheats/cheats.js'
+import { executeCheat } from "../cheats/cheats.js";
 
 export const characterActionMenu = async (character) => {
   let showMenu = true;
@@ -27,11 +27,14 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 4.  ✅ Tomar banho ( -2000⌛️  -10💵  +100%🛁 )
  
 5.  ❌ Comprar item
-6.  ❌ Interagir com outro persongaem { - 2000 ⌛️ | + ? ❤️ }
-7.  ❌ Esperar personagem (Espera outro personagem ficar livre)
-8.  ✅ Aplicar cheat
-9.  ✅ { - 10 ✨ }
-10. ✅ { - 10 🛁 }
+
+6.  ❌ Interagir com outro persongaem ( -2000⌛️  +❤️ )
+
+7.  ✅ Aplicar cheat
+
+8.  ✅ ( -10✨ )
+
+9.  ✅ ( -10🛁 )
 
 Sua escolha:`);
 
@@ -111,17 +114,8 @@ Sua escolha:`);
         `;
         break;
 
-      // Esperar personagem
-      case "7":
-        console.clear();
-        warningMessage = `
-- Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
-        `;
-        break;
-
       // Aplicar cheats
-      case "8":
+      case "7":
         const inputCheat = await useQuestion("Escreva seu cheat: ");
         await executeCheat(actingCharacter, inputCheat);
         warningMessage = `
@@ -131,7 +125,7 @@ Sua escolha:`);
         break;
 
       // Perder 10 energia
-      case "7":
+      case "8":
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
@@ -141,7 +135,7 @@ Sua escolha:`);
         break;
 
       // Perder 10 higiene
-      case "8":
+      case "9":
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida

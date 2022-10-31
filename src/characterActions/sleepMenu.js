@@ -34,14 +34,14 @@ const sleepAction = async (actingCharacter, sleepTime) => {
     }
     console.clear();
     console.log(`
-### The Cresims ###
+${await theCresimsLogo()}
 
 ${actingCharacter.name} está dormindo${waitingDots}
             
 ${i} / ${sleepTime}
 `);
     actingCharacter.time -= 1000;
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
   }
   console.clear();
   console.log(`
