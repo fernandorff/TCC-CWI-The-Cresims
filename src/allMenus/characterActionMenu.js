@@ -1,10 +1,10 @@
-import { toSleep } from "../characterActions/toSleep.js";
+import { sleepMenu } from "../characterActions/sleepMenu.js";
 import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 
 export const characterActionMenu = async (character) => {
   const actingCharacter = character;
-  let warningMessage;
+  let warningMessage = "";
   while (true) {
     console.clear();
     console.log(`
@@ -37,8 +37,8 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "1":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        !!! Essa opção se encontra em implementação !!!
+- Opção ${input} escolhida
+!!! Essa opção se encontra em implementação !!!
         `;
         break;
 
@@ -46,23 +46,31 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "2":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        !!! Essa opção se encontra em implementação !!!
+- Opção ${input} escolhida
+!!! Essa opção se encontra em implementação !!!
         `;
         break;
 
       // Dormir
       case "3":
+        if (actingCharacter.energy >= 32) {
+          actingCharacter.energy = 32;
+          warningMessage = `
+- Opção ${input} escolhida
+### O personagem está com a energia completa ###
+`;
+          break;
+        }
         console.clear();
-        toSleep(actingCharacter);
+        await sleepMenu(actingCharacter);
         break;
 
       // Tomar banho
       case "4":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        !!! Essa opção se encontra em implementação !!!
+- Opção ${input} escolhida
+!!! Essa opção se encontra em implementação !!!
         `;
         break;
 
@@ -70,8 +78,8 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "5":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        !!! Essa opção se encontra em implementação !!!
+- Opção ${input} escolhida
+!!! Essa opção se encontra em implementação !!!
         `;
         break;
 
@@ -79,8 +87,8 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "6":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        !!! Essa opção se encontra em implementação !!!
+- Opção ${input} escolhida
+!!! Essa opção se encontra em implementação !!!
         `;
         break;
 
@@ -88,8 +96,8 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "7":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        !!! Essa opção se encontra em implementação !!!
+- Opção ${input} escolhida
+!!! Essa opção se encontra em implementação !!!
         `;
         break;
 
@@ -97,8 +105,8 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "8":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        !!! Essa opção se encontra em implementação !!!
+- Opção ${input} escolhida
+!!! Essa opção se encontra em implementação !!!
         `;
         break;
 
@@ -106,9 +114,9 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "9":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        ### ${actingCharacter.name} perde 10 de energia ###
-        `;
+- Opção ${input} escolhida
+### ${actingCharacter.name} perde 10 de energia ###
+`;
         actingCharacter.energy -= 10;
         break;
 
@@ -116,9 +124,9 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       case "10":
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        ### ${actingCharacter.name} perde 10 de energia ###
-        `;
+- Opção ${input} escolhida
+### ${actingCharacter.name} perde 10 de energia ###
+`;
         actingCharacter.hygiene -= 10;
         break;
 
@@ -126,9 +134,9 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
       default:
         console.clear();
         warningMessage = `
-        - Opção ${input} escolhida
-        ### Escolha uma opção válida ###
-        `;
+- Opção ${input} escolhida
+### Escolha uma opção válida ###
+`;
         break;
     }
   }
