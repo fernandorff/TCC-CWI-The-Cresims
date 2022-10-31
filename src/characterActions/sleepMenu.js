@@ -103,7 +103,7 @@ Sua escolha:`);
         sleepMenuRunning = false;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 4;
-        if (actingcharacter.energy > 32) {
+        if (actingCharacter.energy > 32) {
           actingCharacter.energy = 32;
         }
         await characterActionMenu(actingCharacter);

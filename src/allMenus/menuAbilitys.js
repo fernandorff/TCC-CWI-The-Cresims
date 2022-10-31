@@ -1,37 +1,31 @@
-export const menuAbilitys = async () => {
+import { useQuestion } from "../services/question/use-question.js";
+
+export const menuAbilitys = async (text) => {
     while (true) {
         const input = await useQuestion(`
-    Escolha uma das habilidades a seguit:
-    1.  Gastronomia
-    2.  Pintura
-    3.  Jogos
-    4.  Jardinagem
-    5.  Musica
+${text}
+1.  Gastronomia
+2.  Pintura
+3.  Jogos
+4.  Jardinagem
+5.  Musica
 
-    Sua escolha:`);
+Sua escolha:`);
+        console.clear();
 
         switch (input) {
             case "1":
-                console.clear();
                 return "GASTRONOMIA";
             case "2":
-                console.clear();
                 return "PINTURA";
             case "3":
-                console.clear();
                 return "JOGOS";
             case "4":
-                console.clear();
                 return "JARDINAGEM";
             case "5":
-                console.clear();
                 return "MUSICA";
             default:
-                console.clear();
-                warningMessage = `
-        ### Escolha uma opção válida ###
-        `;
-            break;
+                console.log("### Escolha uma opção válida ###")
         }
     }
 }

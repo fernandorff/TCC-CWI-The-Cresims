@@ -1,5 +1,6 @@
 import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
 import { useQuestion } from "../services/question/use-question.js";
+import { menuAbilitys } from "./menuAbilitys.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const gameStartMenu = async () => {
@@ -29,50 +30,8 @@ Sua escolha: `);
       case "2":
         return getCharacter();
       case "3":
-        await getAllCraracters();
+        await getAllCharacters();
         break;
-      default:
-        console.clear();
-        warningMessage = `
-### Escolha uma opção válida ###
-`;
-        break;
-    }
-  }
-};
-
-const setAspiration = async () => {
-  let warningMessage = ``;
-  while (true) {
-    console.log();
-
-    const input = await useQuestion(`
-Qual a sua aspiração? 
-${warningMessage}
-1 - Gastronomia
-2 - Pintura
-3 - Jogos
-4 - Jardinagem
-5 - Música
-
-Sua escolha: `);
-
-    switch (input) {
-      case "1":
-        console.clear();
-        return "GASTRONOMIA";
-      case "2":
-        console.clear();
-        return "PINTURA";
-      case "3":
-        console.clear();
-        return "JOGOS";
-      case "4":
-        console.clear();
-        return "JARDINAGEM";
-      case "5":
-        console.clear();
-        return "MUSICA";
       default:
         console.clear();
         warningMessage = `
@@ -89,7 +48,7 @@ const setCharacter = async () => {
 
   const id = storage.length;
   const name = await useQuestion(`Qual o seu nome? `);
-  const aspiration = await setAspiration();
+  const aspiration = await menuAbilitys("Qual a sua aspiração?");
   const cresceleons = 1500;
   const time = 3600000;
   const hygiene = 28;
@@ -129,14 +88,14 @@ const getCharacter = async () => {
   }
 };
 
-const getAllCraracters = async () => {
+const getAllCharacters = async () => {
   const localStorage = useLocalStorage();
-  const storage = localStorage.getObject("inGameCharacters.json");
+  const storage = localStorage.getObject("inGameCharacters.json") || [];
 
   for (const obj of storage) {
     console.table(obj);
   }
-  let pressEnter = await useQuestion(`
+  
+  await useQuestion(`
 Pressione ENTER para continuar...`);
-  const input = await useQuestion();
 };
