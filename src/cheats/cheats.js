@@ -1,4 +1,5 @@
 import { cheatsDataApi } from '../services/api/api'
+import cheatJunim from './cheatJunim';
 
 export default executeCheat = async (character, input) => {
     const listCheats = await cheatsDataApi();
@@ -15,14 +16,12 @@ export default executeCheat = async (character, input) => {
             const salary = character.employee.salary;
             const porcentage = cheat.valor;
             character.employee.salary += (salary * porcentage / 100);
-            console.log(character.salary)
             break;
         case "DEITADONAREDE":
             character.energy += 5;
             break;
         case "JUNIM":
-            character.skill += 5;
-            break;
+            return cheatJunim(character, "JOGOS");
         case "CAROLINAS":
             character.time += 100000;
             break; 

@@ -2,6 +2,7 @@ import { buyProductItens, checkLevelSkill, cicleTrainCharacterProductPurchased, 
 import { work } from "../src/characterActions/work"
 import { itensSkillDataApi } from "../src/services/api/api"
 import executeCheat from "../src/cheats/cheats"
+import cheatJunim from "../src/cheats/cheatJunim"
 
 let character, itensSkill, product, productChoice
 
@@ -25,7 +26,18 @@ beforeEach(() => {
       office: 'Jogador de Dota', 
       category: 'JOGOS',
       salary: 160
-    }
+    },
+    ability: [
+      {
+        name: 'CULINARIA',
+        skill: 0
+      },
+      {
+        name: 'JOGOS',
+        skill: 0,
+        aspiration: true
+      }
+    ]
   }
 
   product = itensSkill[character.aspiration]
@@ -162,12 +174,14 @@ describe('6 - Cheats', () => {
   })
 
   it('Deve conseguir aplicar o cheat JUNIM e receber as recompensas para a habilidade escolhida', async () => {
-    
+    const newCharacter = await cheatJunim(character, "CULINARIA")
+    const skillLevel = newCharacter.ability[0].skill
+    const numExpect = 5
+    expect(skillLevel).toBe(numExpect)
   })
 
   it('Deve conseguir aplicar o cheat CAROLINAS e receber as recompensas', async () => {
     const newCharacter = await executeCheat(character, "CAROLINAS")
-    console.log(newCharacter)
     const numExpect = 3700000
     expect(newCharacter.time).toBe(numExpect)
   })
