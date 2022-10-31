@@ -1,6 +1,7 @@
 import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "../allMenus/characterInfoDisplay.js";
 import { characterActionMenu } from "../allMenus/characterActionMenu.js";
+import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
 
 //
 // calcula o tempo necessário para preencher energia completamente segundo as regras de negocio
@@ -44,7 +45,7 @@ ${i} / ${sleepTime}
   }
   console.clear();
   console.log(`
-### The Cresims
+${await theCresimsLogo()}
         
 ${actingCharacter.name} terminou de dormir!
     
@@ -67,7 +68,7 @@ export const sleepMenu = async (character) => {
   while (sleepMenuRunning == true) {
     console.clear();
     let input = await useQuestion(`
-### The Cresims ###
+${await theCresimsLogo()}
 
 ${await characterInfoDisplay(actingCharacter)}
 
@@ -75,13 +76,13 @@ Quanto tempo você quer dormir?
 
 ${warningMessage}
 
-1. Até recuperar toda a energia (${await calculateNecessaryTimeForFullEnergy(
+1. Até recuperar toda a energia { - ${await calculateNecessaryTimeForFullEnergy(
       actingCharacter
-    )} ms)
-2. 1 ciclo de sono (5000 ms) +4 energia
-3. 2 ciclos de sono (10000 ms) +10 energia
-4. 3 ciclos de sono (15000 ms) +18 energia
-5. 4 ciclos de sono (20000 ms) +28 energia
+    )} ⌛️ | + 100% ✨ }
+2. 1 ciclo de sono  { - 5000  ⌛️ | + 4  ✨ }
+3. 2 ciclos de sono { - 10000 ⌛️ | + 10 ✨ }
+4. 3 ciclos de sono { - 15000 ⌛️ | + 18 ✨ }
+5. 4 ciclos de sono { - 20000 ⌛️ | + 28 ✨ }
 
 X. Voltar ao menu de ações
 

@@ -5,10 +5,10 @@ import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const characterActionMenu = async (character) => {
-  let characterActionMenuRunning = true;
+  let showMenu = true;
   const actingCharacter = character;
   let warningMessage = "";
-  while (characterActionMenuRunning == true) {
+  while (showMenu == true) {
     console.clear();
     const input = await useQuestion(`
 ${await theCresimsLogo()}
@@ -18,16 +18,16 @@ ${await characterInfoDisplay(actingCharacter)}
 ${warningMessage}
 
 Escolha uma ação para o(a) ${actingCharacter.name}:
-1.  ❌ Trabalhar (Tempo gasto: 20000ms)
-2.  ❌ Treinar habilidade (${actingCharacter.aspiration} - Tempo gasto: 8000ms)
-3.  ✅ Dormir (Tempo gasto: até recuperar toda a energia, recupera)
-4.  ✅ Tomar banho { -2000 ⏱ | -10 💵 | + 100% 🛁 }
+1.  ❌ Trabalhar { - 20000 ⌛️ | - 🛁 | + 💵 }
+2.  ❌ Treinar habilidade de ${actingCharacter.aspiration} { - 8000 ⌛️ | + 🎮 }
+3.  ✅ Dormir { - ⌛️ | + ✨}
+4.  ✅ Tomar banho { -2000 ⌛️ | -10 💵 | + 100% 🛁 }
 5.  ❌ Comprar item
-6.  ❌ Interagir com outro persongaem (Tempo: 2000ms | Disponíveis: a definir)
+6.  ❌ Interagir com outro persongaem { - 2000 ⌛️ | + ? ❤️ }
 7.  ❌ Esperar personagem (Espera outro personagem ficar livre)
-8.  ❌ Cheats
-9.  ✅ Perder 10 energia
-10. ✅ Perder 10 higiene
+8.  ❌ Aplicar cheat
+9.  ✅ { - 10 ✨ }
+10. ✅ { - 10 🛁 }
 
 Sua escolha:`);
 
@@ -61,7 +61,7 @@ Sua escolha:`);
           break;
         }
         console.clear();
-        characterActionMenuRunning = false;
+        showMenu = false;
         await sleepMenu(actingCharacter);
         break;
 
@@ -75,9 +75,17 @@ Sua escolha:`);
 `;
           break;
         }
+        if (actingCharacter.cresceleons < 10) {
+          warningMessage = `
+- Opção ${input} escolhida
+!!! O personagem não tem 10 Cresceleons !!!
+`;
+          break;
+        }
         console.clear();
-        characterActionMenuRunning = false;
+        showMenu = false;
         actingCharacter.hygiene = 28;
+        actingCharacter.cresceleons -= 10;
         await takeAShower(actingCharacter, 5);
         break;
 
