@@ -1,25 +1,27 @@
 import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
 import { useQuestion } from "../services/question/use-question.js";
+import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const gameStartMenu = async () => {
   let gameStartMenuRunning = true;
+  let warningMessage = ``;
   while (gameStartMenuRunning == true) {
     console.clear();
-    console.log(`
-####################################
-###                              ###
-###   BEM VINDO AO THE CRESIMS   ###
-###                              ###
-####################################
-
+    const input = await useQuestion(`
+  ▀██ ▀██▀  ▀█▀         ▀██                                          ▄           
+   ▀█▄ ▀█▄  ▄▀    ▄▄▄▄   ██    ▄▄▄▄    ▄▄▄   ▄▄ ▄▄ ▄▄     ▄▄▄▄     ▄██▄    ▄▄▄   
+    ██  ██  █   ▄█▄▄▄██  ██  ▄█   ▀▀ ▄█  ▀█▄  ██ ██ ██  ▄█▄▄▄██     ██   ▄█  ▀█▄ 
+     ███ ███    ██       ██  ██      ██   ██  ██ ██ ██  ██          ██   ██   ██ 
+      █   █      ▀█▄▄▄▀ ▄██▄  ▀█▄▄▄▀  ▀█▄▄█▀ ▄██ ██ ██▄  ▀█▄▄▄▀     ▀█▄▀  ▀█▄▄█▀ 
+${await theCresimsLogo()}
+                                                                                          
 Escolha uma das opções:
-
+${warningMessage}
 1 - Criar Personagem
 2 - Escolher Personagem
 3 - Listar Personagens
-`);
 
-    const input = await useQuestion("Sua escolha: ");
+Sua escolha: `);
 
     switch (input) {
       case "1":
@@ -27,31 +29,33 @@ Escolha uma das opções:
       case "2":
         return getCharacter();
       case "3":
-        await allChacteres();
+        await getAllCraracters();
         break;
       default:
         console.clear();
-        console.log(`
-        ### Escolha uma opção válida ###
-        `);
+        warningMessage = `
+### Escolha uma opção válida ###
+`;
         break;
     }
   }
 };
 
 const setAspiration = async () => {
+  let warningMessage = ``;
   while (true) {
-    console.log(`
-Qual a sua aspiração? 
+    console.log();
 
+    const input = await useQuestion(`
+Qual a sua aspiração? 
+${warningMessage}
 1 - Gastronomia
 2 - Pintura
 3 - Jogos
 4 - Jardinagem
 5 - Música
-`);
 
-    const input = await useQuestion("Sua escolha: ");
+Sua escolha: `);
 
     switch (input) {
       case "1":
@@ -71,9 +75,9 @@ Qual a sua aspiração?
         return "MUSICA";
       default:
         console.clear();
-        console.log(`
+        warningMessage = `
 ### Escolha uma opção válida ###
-        `);
+`;
         break;
     }
   }
@@ -117,7 +121,6 @@ const getCharacter = async () => {
   while (true) {
     const input = await useQuestion("Escolha o id do personagem: ");
     const character = storage.find((charac) => charac.id == input);
-    //gameStartMenuRunning = false;
 
     if (character) {
       return character;
@@ -126,13 +129,14 @@ const getCharacter = async () => {
   }
 };
 
-const allChacteres = async () => {
+const getAllCraracters = async () => {
   const localStorage = useLocalStorage();
   const storage = localStorage.getObject("inGameCharacters.json");
 
   for (const obj of storage) {
     console.table(obj);
   }
-
+  let pressEnter = await useQuestion(`
+Pressione ENTER para continuar...`);
   const input = await useQuestion();
 };

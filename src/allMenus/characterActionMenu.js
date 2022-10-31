@@ -1,6 +1,8 @@
 import { sleepMenu } from "../characterActions/sleepMenu.js";
+import { takeAShower } from "../characterActions/takeAShower.js";
 import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
+import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const characterActionMenu = async (character) => {
   let characterActionMenuRunning = true;
@@ -8,12 +10,8 @@ export const characterActionMenu = async (character) => {
   let warningMessage = "";
   while (characterActionMenuRunning == true) {
     console.clear();
-    console.log(`
-####################################
-###                              ###
-###   BEM VINDO AO THE CRESIMS   ###
-###                              ###
-####################################
+    const input = await useQuestion(`
+${await theCresimsLogo()}
 
 ${await characterInfoDisplay(actingCharacter)}
 
@@ -23,15 +21,15 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 1.  ❌ Trabalhar (Tempo gasto: 20000ms)
 2.  ❌ Treinar habilidade (${actingCharacter.aspiration} - Tempo gasto: 8000ms)
 3.  ✅ Dormir (Tempo gasto: até recuperar toda a energia, recupera)
-4.  ❌ Tomar banho (Tempo gasto: Não definido na documentação) 
+4.  ✅ Tomar banho { -2000 ⏱ | -10 💵 | + 100% 🛁 }
 5.  ❌ Comprar item
 6.  ❌ Interagir com outro persongaem (Tempo: 2000ms | Disponíveis: a definir)
 7.  ❌ Esperar personagem (Espera outro personagem ficar livre)
 8.  ❌ Cheats
 9.  ✅ Perder 10 energia
 10. ✅ Perder 10 higiene
-`);
-    const input = await useQuestion("Sua escolha: ");
+
+Sua escolha:`);
 
     switch (input) {
       // Trabalhar
@@ -69,11 +67,18 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 
       // Tomar banho
       case "4":
-        console.clear();
-        warningMessage = `
+        if (actingCharacter.hygiene >= 28) {
+          actingCharacter.hygiene = 28;
+          warningMessage = `
 - Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
-        `;
+### O personagem está completamente limpo ###
+`;
+          break;
+        }
+        console.clear();
+        characterActionMenuRunning = false;
+        actingCharacter.hygiene = 28;
+        await takeAShower(actingCharacter, 5);
         break;
 
       // Comprar item

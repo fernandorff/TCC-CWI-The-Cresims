@@ -10,16 +10,14 @@ const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
   let timeForFullEnergy = 0;
   let energyForFull = 32 - actingCharacter.energy;
   let bonus = 0;
-  if (energyForFull <= 0) {
-    return timeForFullEnergy;
-  } else {
-    while (energyForFull >= 0) {
-      timeForFullEnergy += 5000;
-      energyForFull -= 4;
-      energyForFull -= bonus;
-      bonus += 2;
-    }
+
+  while (energyForFull > 0) {
+    timeForFullEnergy += 5000;
+    energyForFull -= 4;
+    energyForFull -= bonus;
+    bonus += 2;
   }
+
   return timeForFullEnergy;
 };
 
@@ -55,7 +53,7 @@ ${sleepTime} / ${sleepTime}
   let pressEnter = await useQuestion(`Pressione ENTER para continuar...`);
 };
 
-// ********************************
+//
 // Exibe o menu de opções de dormir
 //
 
@@ -86,7 +84,9 @@ ${warningMessage}
 5. 4 ciclos de sono (20000 ms) +28 energia
 
 X. Voltar ao menu de ações
-`);
+
+Sua escolha:`);
+    input = input.toUpperCase();
 
     switch (input) {
       case "1":
@@ -143,9 +143,9 @@ X. Voltar ao menu de ações
         await characterActionMenu(actingCharacter);
         break;
 
-      case "X" || "x":
+      case "X":
         sleepMenuRunning = false;
-        characterActionMenu(actingCharacter);
+        await characterActionMenu(actingCharacter);
         break;
     }
   }
