@@ -15,21 +15,31 @@ export const executeCheat = async (character, input) => {
     switch (cheat.codigo) {
         case "SORTENAVIDA":
             const salary = character.employee.salary;
-            const porcentage = cheat.valor;
-            character.employee.salary += (salary * porcentage / 100);
-            break;
+            return {
+                ...character,
+                employee: {
+                    ...character.employee,
+                    salary: salary + (salary * cheat.valor / 100)
+                }
+            }
         case "DEITADONAREDE":
-            character.energy += 5;
-            break;
+            return {
+                ...character,
+                energy: character.energy + 5
+            }
         case "JUNIM":
             const ability = menuAbilitys();
             return cheatJunim(character, ability);
         case "CAROLINAS":
-            character.time += 100000;
-            break; 
+            return {
+                ...character,
+                time: character.time + 100000
+            }
         case "SINUSITE":
-            character.time = 0;
-            break;
+            return {
+                ...character,
+                time: 0
+            }
     }
  
     return character;

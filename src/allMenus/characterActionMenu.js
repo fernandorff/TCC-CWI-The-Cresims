@@ -125,7 +125,7 @@ Sua escolha:`);
 - Opção ${input} escolhida
 ### Cheat aplicado com sucesso ###
 `;
-          break;
+        break;
 
       // Perder 10 energia
       case "9":
