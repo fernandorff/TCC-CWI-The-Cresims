@@ -80,9 +80,9 @@ Qual a sua aspiração?
 
 const setCharacter = async () => {
   const localStorage = useLocalStorage();
-  const storage = localStorage.getObject("inGameCharacters") || [];
+  const storage = localStorage.getObject("inGameCharacters.json") || [];
 
-  const id = storage.length
+  const id = storage.length;
   const name = await useQuestion(`Qual o seu nome? `);
   const aspiration = await setAspiration();
   const cresceleons = 1500;
@@ -106,31 +106,30 @@ const setCharacter = async () => {
     items,
   };
 
-  localStorage.setObject("inGameCharacters", [...storage, character]);
+  localStorage.setObject("inGameCharacters.json", [...storage, character]);
 
-  return character
+  return character;
 };
 
 const getCharacter = async () => {
-  const storage = useLocalStorage().getObject("inGameCharacters") || [];
+  const storage = useLocalStorage().getObject("inGameCharacters.json") || [];
   while (true) {
     const input = await useQuestion("Escolha o id do personagem: ");
-    const character = storage.find(charac => charac.id == input)
+    const character = storage.find((charac) => charac.id == input);
     if (character) {
-      return character
+      return character;
     }
-    console.log("Escolha um id valido")
+    console.log("Escolha um id valido");
   }
-}
+};
 
 const allChacteres = async () => {
   const localStorage = useLocalStorage();
-  const storage = localStorage.getObject("inGameCharacters");
+  const storage = localStorage.getObject("inGameCharacters.json");
 
   for (const obj of storage) {
-    console.table(obj)
+    console.table(obj);
   }
 
   const input = await useQuestion();
-
-}
+};

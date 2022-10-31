@@ -1,5 +1,25 @@
 import { useQuestion } from "../services/question/use-question.js";
 
+const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
+  let timeForFullEnergy = 0;
+  let energyForFull = 32 - actingCharacter.energy;
+  let bonusSleep = 0;
+
+  if (energyForFull <= 0) {
+    return timeForFullEnergy;
+  } else {
+    while (energyForFull >= 0) {
+      timeForFullEnergy += 5000;
+      energyForFull -= 4;
+      energyForFull -= bonusSleep;
+
+      bonusSleep += 2;
+    }
+  }
+  console.log("tempo para ficar com energia cheia ", timeForFullEnergy);
+  return timeForFullEnergy;
+};
+
 export const toSleep = async (character) => {
   console.clear();
   const actingCharacter = character;
@@ -39,11 +59,16 @@ Pressione ENTER para voltar ao menu inicial...
 
 Quanto tempo você quer dormir?
 
+(tempo necessário: ${await calculateNecessaryTimeForFullEnergy(
+      actingCharacter
+    )})
+
 1. Até recuperar toda a energia9 (x ms)
 2. 1 ciclo de sono (5000 ms) +4 energia
 3. 2 ciclos de sono (10000 ms) +10 energia
 4. 3 ciclos de sono (15000 ms) +18 energia
 5. 4 ciclos de sono (20000 ms) +28 energia
+6. Calcular tempo necessário para energia total
 
 X. Voltar ao menu de ações
 `);
@@ -75,26 +100,6 @@ X. Voltar ao menu de ações
       default:
         break;
     }
-  }
-
-  async function calculateNecessaryTimeForFullEnergy(actingCharacter) {
-    let timeForFullEnergy = 0;
-    const energyForFull = 32 - actingCharacter.energy;
-    let bonusSleep = 0;
-
-    if (energyForFull <= 0) {
-      return timeForFullEnergy;
-    } else {
-      while (energyForFull >= 0) {
-        timeForFullEnergy += 5000;
-        energyForFull -= 4;
-        energyForFull -= bonusSleep;
-
-        bonusSleep += 2;
-      }
-    }
-    console.log("tempo para ficar com energia cheia ", timeForFullEnergy);
-    return timeForFullEnergy;
   }
 
   async function sleepAction(actingCharacter, sleepTime) {
