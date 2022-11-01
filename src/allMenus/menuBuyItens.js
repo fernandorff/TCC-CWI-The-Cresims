@@ -10,11 +10,12 @@ export const menuBuyItens = async (character) => {
   const characterBuys = buyProductItens(character, product, skillChoice.toUpperCase())
 
   if (characterBuys) {
-    // Armazenar a alteração no localStorage aqui com characterBuys
-    console.log(characterBuys);
-  } else {
-    console.log('Crescelons insufucientes');
+    return characterBuys
   }
+
+  console.log('Crescelons insufucientes');
+
+  return characterBuys
 }
 
 export const productChoice = async (response, skillChoice) => {

@@ -2,25 +2,26 @@ import { employeesDataApi } from "../services/api/api.js"
 import { setEnergy, setTimeLife } from "./common.js"
 import { checkLevelSkill } from "./skillAspiration.js"
 
-const POINT_ENERGY_MIN = 2
 const POINT_ENERGY_DECREMENT = 10
 const WORKING_DAY = 20000
+const POINT_ENERGY_MIN = 2
 const TEN_PERCENT = 0.10
 const POINT_ENERGY_FOR_DISCOUNT = 5
+const POINT_ENERGY_FOR_EACH_ENERGY = 2000
 
 export const work = async (character) => {
   const characterWork = { ...character }
   const levelSkillCharacter = checkLevelSkill(character.skill)
 
   if (character.energy < 4 || character.employee === undefined) {
-    return undefined
+    return character
   } else if (character.energy >= 4 && character.energy < 15) {
     const cresceleonsRecalculates = await recalculateCresceleons(character, WORKING_DAY)
     characterWork.cresceleons = characterWork.cresceleons + cresceleonsRecalculates.salary
     characterWork.time = cresceleonsRecalculates.time
     characterWork.energy = cresceleonsRecalculates.energyDecrement
     characterWork.employee.salary = cresceleonsRecalculates.salary
-  } else if (character.energy >= 15) {
+  } else if (character.energy >= 10) {
     characterWork.time = setTimeLife(character, WORKING_DAY)
     characterWork.energy = setEnergy(character, POINT_ENERGY_DECREMENT)
     characterWork.cresceleons = characterWork.cresceleons + character.employee.salary
@@ -32,17 +33,19 @@ export const work = async (character) => {
 
 export const recalculateCresceleons = async (character, workingDay) => {
   const salaryCresim = character.employee.salary
-  const cresceleonForEachPointEnergy = salaryCresim / character.energy
-  const cresceleonTenPercentForEachPointEnergy = cresceleonForEachPointEnergy - (cresceleonForEachPointEnergy * TEN_PERCENT)
-  const pointEnergyCresimRested = character.energy - POINT_ENERGY_FOR_DISCOUNT
-  const pointEnergyCresimTired = POINT_ENERGY_FOR_DISCOUNT - getPointEnergy(character.energy)
-  const salaryCresimRested = pointEnergyCresimRested * cresceleonForEachPointEnergy
-  const salaryCresimTired = pointEnergyCresimTired * cresceleonTenPercentForEachPointEnergy
-  const maxTimeToWork = (workingDay / character.energy) * (character.energy - POINT_ENERGY_MIN)
+  const msForEachPointEnergy = POINT_ENERGY_FOR_EACH_ENERGY
+  const pointEnergyForSpend = (character.energy - POINT_ENERGY_MIN)
+  const maxTimeToWork = pointEnergyForSpend * workingDay
+  const timeInMsForEachCresceleon = workingDay / salaryCresim
+  const cresceleonForEachPointEnergy = msForEachPointEnergy / timeInMsForEachCresceleon
+  const pointEnergyForRecalculate = POINT_ENERGY_FOR_DISCOUNT - getPointEnergy(character.energy)
+  const recalculateSalaryCresimTired = pointEnergyForRecalculate * (cresceleonForEachPointEnergy - (cresceleonForEachPointEnergy * TEN_PERCENT))
+  const pointsEnergyCurrent = character.energy - POINT_ENERGY_FOR_DISCOUNT
+  const salaryCresimRested = pointsEnergyCurrent * cresceleonForEachPointEnergy
 
-  const time = character.time - maxTimeToWork
-  const salary = salaryCresimRested + salaryCresimTired
-  const energyDecrement = character.energy <= 11 ? POINT_ENERGY_MIN : character.energy - POINT_ENERGY_DECREMENT
+  const time = Math.floor(character.time - maxTimeToWork)
+  const salary = Number((recalculateSalaryCresimTired + salaryCresimRested).toFixed(1))
+  const energyDecrement = character.energy - pointEnergyForSpend
 
   return { time, salary, energyDecrement }
 }

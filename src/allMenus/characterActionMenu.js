@@ -6,6 +6,8 @@ import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 import { executeCheat } from "../cheats/cheats.js";
 import { menuWork } from "./menuWork.js";
+import { menuBuyItens } from "./menuBuyItens.js";
+import { menuTrainning } from "./menuTranning.js";
 
 export const characterActionMenu = async (character) => {
   let actingCharacter = character;
@@ -46,7 +48,6 @@ Sua escolha:`);
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
         `;
         actingCharacter = await menuWork(actingCharacter)
         break;
@@ -56,8 +57,8 @@ Sua escolha:`);
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
         `;
+        actingCharacter = await menuTrainning(actingCharacter)
         break;
 
       // Dormir
@@ -103,8 +104,8 @@ Sua escolha:`);
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
         `;
+        actingCharacter = await menuBuyItens(actingCharacter)
         break;
 
       // Interagir com outro personagem
