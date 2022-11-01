@@ -46,10 +46,7 @@ Sua escolha: `);
 };
 
 const setCharacter = async () => {
-  const localStorage = useLocalStorage();
-  const storage = localStorage.getObject("inGameCharacters.json") || [];
-
-  const id = storage.length + 1;
+  const id = getId();
   const name = await useQuestion(`Qual o seu nome? `);
   const aspiration = await menuAbilitys("Qual a sua aspiração?");
   const cresceleons = 1500;
@@ -73,13 +70,14 @@ const setCharacter = async () => {
     items,
   };
 
-  localStorage.setObject("inGameCharacters.json", [...storage, character]);
+  updateStorage([ ...getStorage(), character ]);
 
   return character;
 };
 
 const getCharacter = async () => {
-  const storage = useLocalStorage().getObject("inGameCharacters.json") || [];
+  const storage = getStorage();
+
   while (true) {
     const input = await useQuestion("Escolha o id do personagem: ");
     const character = storage.find((charac) => charac.id == input);
@@ -87,13 +85,13 @@ const getCharacter = async () => {
     if (character) {
       return character;
     }
+
     console.log("Escolha um id valido");
   }
 };
 
 const getAllCharacters = async () => {
-  const localStorage = useLocalStorage();
-  const storage = localStorage.getObject("inGameCharacters.json") || [];
+  const storage = getStorage()
 
   for (const obj of storage) {
     console.table(obj);
@@ -104,11 +102,33 @@ Pressione ENTER para continuar...`);
 };
 
 const deleteCharacters = async () => {
-  const localStorage = useLocalStorage();
-  const storage = localStorage.getObject("inGameCharacters.json") || [];
+  const storage = getStorage();
 
   const input = await useQuestion("Escolha o id do personagem: ");
   const newStorage = storage.filter((charac) => charac.id != input);
 
+  updateStorage([ ...newStorage ]);
+}
+
+const getId = () => {
+  const storage = getStorage()
+
+  for (let cont = 1; true; cont++) {
+    const character = storage.find((charac) => charac.id == cont);
+
+    if (!character) {
+      return cont;
+    }
+  }
+}
+
+const updateStorage = (newStorage) => {
+  const localStorage = useLocalStorage();
   localStorage.setObject("inGameCharacters.json", [...newStorage]);
+}
+
+const getStorage = () => {
+  const localStorage = useLocalStorage();
+  const storage = localStorage.getObject("inGameCharacters.json") || [];
+  return storage
 }
