@@ -1,4 +1,4 @@
-import axios from "axios.js";
+import axios from "axios";
 
 export const itensSkillDataApi = async () => {
   try {
@@ -7,7 +7,7 @@ export const itensSkillDataApi = async () => {
     );
     return response.data;
   } catch {
-    console.error("Ocorreu um error ao acessar a API de itens")
+    console.error("Ocorreu um error ao acessar a API de itens");
   }
 };
 
@@ -18,7 +18,7 @@ export const employeesDataApi = async () => {
     );
     return response.data;
   } catch {
-    console.error("Ocorreu um error ao acessar a API de empregos")
+    console.error("Ocorreu um error ao acessar a API de empregos");
   }
 };
 
@@ -29,7 +29,7 @@ export const interactionsDataApi = async () => {
     );
     return response.data;
   } catch {
-    console.error("Ocorreu um error ao acessar a API de interações")
+    console.error("Ocorreu um error ao acessar a API de interações");
   }
 };
 
@@ -40,6 +40,6 @@ export const cheatsDataApi = async () => {
     );
     return response.data;
   } catch {
-    console.error("Ocorreu um error ao acessar a API de cheats")
+    console.error("Ocorreu um error ao acessar a API de cheats");
   }
 };
