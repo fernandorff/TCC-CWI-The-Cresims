@@ -1,4 +1,4 @@
-import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
+import { getStorage, updateStorage } from "../crud/storage.js"
 import { sleepMenu } from "../characterActions/sleepMenu.js";
 import { takeAShower } from "../characterActions/takeAShower.js";
 import { useQuestion } from "../services/question/use-question.js";
@@ -161,13 +161,12 @@ Sua escolha:`);
         break;
     }
 
-    updateStorage(actingCharacter);
+    updateCharacterBD(actingCharacter);
   }
 };
 
-const updateStorage = character => {
-  const localStorage = useLocalStorage()
-  const listCharacter = localStorage.getObject("inGameCharacters.json")
+const updateCharacterBD = character => {
+  const listCharacter = getStorage();
   
   const newList = listCharacter.map(element => {
     if (character.id == element.id) {
@@ -176,5 +175,5 @@ const updateStorage = character => {
     return element
   })
 
-  localStorage.setObject("inGameCharacters.json", [...newList])
+  updateStorage([ ...newList ])
 }
