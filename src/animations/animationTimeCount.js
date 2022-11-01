@@ -1,6 +1,6 @@
 export const animationTimeCount = (time) => {
     let count = 0
-    while (count < (time / 1000)) {
+    while (count <= (time / 1000)) {
         console.clear()
         printBanner()
         console.log(`\n\t${count} / ${time / 1000}`);
