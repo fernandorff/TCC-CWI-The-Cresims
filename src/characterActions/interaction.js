@@ -7,6 +7,12 @@ export const interaction = async (character, characterSecondary, interaction) =>
     character.energy -= energy
     characterSecondary.energy -= (energy / 2)
 
+    if (character.energy < 0 || characterSecondary.energy < 0) {
+        character.energy += energy
+        characterSecondary.energy += (energy / 2)
+        return [character, characterSecondary]
+    }
+
     character.time -= time
     characterSecondary.time -= time
 

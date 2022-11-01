@@ -1,6 +1,5 @@
 import { getCharacter, updateCharacterBD } from "../crud/character.js"
 import { useQuestion } from "../services/question/use-question.js";
-import { updateStorage, getStorage } from "../crud/storage.js";
 import { 
     getLevelInteraction,
     listInteraction,
@@ -42,9 +41,18 @@ Id da interação escolhida: `)
 
             try {
                 const objInterection = list[input - 1];
+
                 const [ newCharacter, newCharacterSecond ] = await interaction(
                     character, characterSecond, objInterection
                 )
+
+                if (newCharacter.energy < 0 || newCharacterSecond.energy < 0) {
+                    console.clear()
+                    console.log("Pontos de energia insuficiente para realizar a interação")
+                    await useQuestion("Pressione enter para continuar")
+                    return character
+                }
+
                 await updateCharacterBD([newCharacterSecond])
 
                 console.log(`Interação "${objInterection.interacao}" realizada com sucesso`)
