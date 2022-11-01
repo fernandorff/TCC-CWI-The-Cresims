@@ -20,6 +20,7 @@ ${warningMessage}
 1 - Criar Personagem
 2 - Escolher Personagem
 3 - Listar Personagens
+4 - Deletar Personagem
 
 Sua escolha: `);
 
@@ -30,6 +31,9 @@ Sua escolha: `);
         return getCharacter();
       case "3":
         await getAllCharacters();
+        break;
+      case "4":
+        await deleteCharacters();
         break;
       default:
         console.clear();
@@ -98,3 +102,13 @@ const getAllCharacters = async () => {
   await useQuestion(`
 Pressione ENTER para continuar...`);
 };
+
+const deleteCharacters = async () => {
+  const localStorage = useLocalStorage();
+  const storage = localStorage.getObject("inGameCharacters.json") || [];
+
+  const input = await useQuestion("Escolha o id do personagem: ");
+  const newStorage = storage.filter((charac) => charac.id != input);
+
+  localStorage.setObject("inGameCharacters.json", [...newStorage]);
+}
