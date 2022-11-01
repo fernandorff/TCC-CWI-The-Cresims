@@ -122,7 +122,7 @@ Sua escolha:`);
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 18;
 
-        if (actingcharacter.energy > 32) {
+        if (actingCharacter.energy > 32) {
           actingCharacter.energy = 32;
         }
 
