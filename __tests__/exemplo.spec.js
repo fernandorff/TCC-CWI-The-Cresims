@@ -1,9 +1,8 @@
 import { 
   buyProductItens, 
-  checkLevelSkill, 
   cicleTrainCharacterProductPurchased, 
   isBuy 
-} from "../src/characterActions/skill-aspiration"
+} from "../src/characterActions/skillAspiration"
 import { work } from "../src/characterActions/work"
 import { itensSkillDataApi } from "../src/services/api/api"
 import { executeCheat } from "../src/cheats/cheats"
@@ -172,9 +171,10 @@ describe('6 - Cheats', () => {
   })
 
   it ('Deve conseguir aplicar o cheat DEITADONAREDE e receber as recompensas', async () => {
-    const newCharacter = await executeCheat(character, "DEITADONAREDE")
-    const numExpect = 37
-    expect(newCharacter.energy).toBe(numExpect)
+    const newCharacter = {...character, energy: 27}
+    const characterTest = await executeCheat(newCharacter, "DEITADONAREDE")
+    const numExpect = 32
+    expect(characterTest.energy).toBe(numExpect)
   })
 
   it('Deve conseguir aplicar o cheat JUNIM e receber as recompensas para a habilidade escolhida', async () => {

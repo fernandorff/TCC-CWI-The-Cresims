@@ -1,6 +1,6 @@
 import { employeesDataApi } from "../services/api/api.js"
 import { setEnergy, setTimeLife } from "./common.js"
-import { checkLevelSkill } from "./skill-aspiration.js"
+import { checkLevelSkill } from "./skillAspiration.js"
 
 const POINT_ENERGY_MIN = 2
 const POINT_ENERGY_DECREMENT = 10
