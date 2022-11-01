@@ -140,13 +140,13 @@ ${await characterInfoDisplay(actingCharacter)}
 
 Quanto tempo você quer dormir?
 ${warningMessage}
-1. Até recuperar toda a energia ( -${await calculateNecessaryTimeForFullEnergy(
+1. 1 ciclo de sono  ( -5000⌛️  +4✨ )
+2. 2 ciclos de sono ( -10000⌛️  +10✨ )
+3. 3 ciclos de sono ( -15000⌛️  +18✨ )
+4. 4 ciclos de sono ( -20000⌛️  +28✨ )
+5. Até recuperar toda a energia ( -${await calculateNecessaryTimeForFullEnergy(
       actingCharacter
     )}⌛️  +100%✨ )
-2. 1 ciclo de sono  ( -5000⌛️  +4✨ )
-3. 2 ciclos de sono ( -10000⌛️  +10✨ )
-4. 3 ciclos de sono ( -15000⌛️  +18✨ )
-5. 4 ciclos de sono ( -20000⌛️  +28✨ )
 
 X. Voltar ao menu de ações
 
@@ -154,7 +154,7 @@ Sua escolha:`);
     input = input.toUpperCase();
 
     switch (input) {
-      case "1":
+      case "5":
         await sleepAction(
           actingCharacter,
           (await calculateNecessaryTimeForFullEnergy(actingCharacter)) / 1000
@@ -163,7 +163,7 @@ Sua escolha:`);
         actingCharacter.energy = 32;
         return actingCharacter;
 
-      case "2":
+      case "1":
         sleepTime = 5;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 4;
@@ -174,7 +174,7 @@ Sua escolha:`);
 
         return actingCharacter;
 
-      case "3":
+      case "2":
         sleepTime = 10;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 10;
@@ -185,7 +185,7 @@ Sua escolha:`);
 
         return actingCharacter;
 
-      case "4":
+      case "3":
         sleepTime = 15;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 18;
@@ -196,7 +196,7 @@ Sua escolha:`);
 
         return actingCharacter;
 
-      case "5":
+      case "4":
         sleepTime = 20;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 28;

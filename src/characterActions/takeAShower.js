@@ -45,11 +45,11 @@ ${i} / ${showerTime}
   console.log(`
 ${await theCresimsLogo()}
 
-${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}
-${a(r())}${a(r())},,,${a(r())}${a(r())}
-${a(r())}<(u_u)>${a(r())}
-${a(r())}${a(r())} |${a(r())}${a(r())}
-${a(r())}${a(r())} LL ${a(r())}${a(r())}  
+
+    ,,,,
+  <(O_O)>
+     |
+.....LL.....   
         
 ${actingCharacter.name} terminou de tomar banho!
     
