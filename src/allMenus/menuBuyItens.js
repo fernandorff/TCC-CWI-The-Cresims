@@ -11,6 +11,7 @@ export const menuBuyItens = async (character) => {
 
   if (characterBuys) {
     // Armazenar a alteração no localStorage aqui com characterBuys
+    console.log(characterBuys);
   } else {
     console.log('Crescelons insufucientes');
   }

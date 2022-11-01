@@ -5,6 +5,7 @@ import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 import { executeCheat } from "../cheats/cheats.js";
+import { menuWork } from "./menuWork.js";
 
 export const characterActionMenu = async (character) => {
   let showMenu = true;
@@ -48,6 +49,7 @@ Sua escolha:`);
 - Opção ${input} escolhida
 !!! Essa opção se encontra em implementação !!!
         `;
+        actingCharacter = await menuWork(actingCharacter)
         break;
 
       // Treinar habilidade
