@@ -112,6 +112,7 @@ Sua escolha:`);
       // Interagir com outro personagem
       case "6":
         console.clear();
+        const characterTempInter = { ...actingCharacter }
         actingCharacter = await menuInteraction(actingCharacter)
         
         warningMessage = `

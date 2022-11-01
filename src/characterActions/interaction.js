@@ -1,8 +1,6 @@
 import { interactionsDataApi } from "../services/api/api.js"
 
-export const interaction = async (character, characterSecondary, interaction) => {
-    console.log(`A interação "${interaction.interacao}" foi realizada com sucesso`)
-    
+export const interaction = async (character, characterSecondary, interaction) => {    
     const energy = interaction.energia
     const time = energy * 2000
 

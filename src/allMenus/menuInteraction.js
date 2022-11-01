@@ -1,6 +1,6 @@
 import { getCharacter } from "../crud/character.js"
 import { useQuestion } from "../services/question/use-question.js";
-import { updateStorage } from "../crud/storage.js";
+import { updateStorage, getStorage } from "../crud/storage.js";
 import { 
     getLevelInteraction,
     listInteraction,
@@ -11,7 +11,7 @@ export const menuInteraction = async (character) => {
     while (true) {
         console.clear();
         console.log(`Para interagir com algum personagem é nescessario 
-            informar-lo primeiro`)
+informar-lo primeiro`)
         const characterInteraction = await getCharacter();
 
         if (characterInteraction.id != character.id) {
@@ -35,14 +35,23 @@ const selectInteraction = async (character, characterSecond) => {
 
         while (true) {
             showInteractions(list)
-            const input = await useQuestion(`Id da interação escolhida: `)
+            const input = await useQuestion(`Seu level de relacionamento 
+com "${characterSecond.name}" é "${level}" com ${points} pontos
 
-            if (Number(input)) {
+Id da interação escolhida: `)
+
+            try {
+                const objInterection = list[input - 1];
                 const [ newCharacter, newCharacterSecond ] = await interaction(
-                    character, characterSecond, list[input - 1]
+                    character, characterSecond, objInterection
                 )
-                await updateStorage([newCharacterSecond])
+                await updateCharacterBD([newCharacterSecond])
+
+                console.log(`Interação "${objInterection.interacao}" realizada com sucesso`)
+                await useQuestion("Pressione enter para continuar")
                 return newCharacter;
+            } catch {
+                console.log("Adicione um id de interação possivel")
             }
         }
     }
@@ -84,3 +93,16 @@ const showInteractions = (list) => {
         cont++;
     }
 }
+
+const updateCharacterBD = character => {
+    const listCharacter = getStorage();
+    
+    const newList = listCharacter.map(element => {
+      if (character.id == element.id) {
+        return character
+      }
+      return element
+    })
+  
+    updateStorage([ ...newList ])
+  }
