@@ -8,7 +8,7 @@ import { executeCheat } from "../cheats/cheats.js";
 
 export const characterActionMenu = async (character) => {
   let showMenu = true;
-  const actingCharacter = character;
+  let actingCharacter = character;
   let warningMessage = "";
 
   while (showMenu) {
@@ -69,8 +69,9 @@ Sua escolha:`);
 `;
           break;
         }
+        
         console.clear();
-        await sleepMenu(actingCharacter);
+        actingCharacter = await sleepMenu(actingCharacter);
         break;
 
       // Tomar banho
@@ -93,7 +94,7 @@ Sua escolha:`);
         console.clear();
         actingCharacter.hygiene = 28;
         actingCharacter.cresceleons -= 10;
-        updateStorage(await takeAShower(actingCharacter, 5));
+        actingCharacter = await takeAShower(actingCharacter, 5)
         break;
 
       // Comprar item
@@ -117,7 +118,7 @@ Sua escolha:`);
       // Aplicar cheats
       case "7":
         const inputCheat = await useQuestion("Escreva seu cheat: ");
-        await executeCheat(actingCharacter, inputCheat);
+        actingCharacter = await executeCheat(actingCharacter, inputCheat);
         warningMessage = `
 - Opção ${input} escolhida
 ### Cheat aplicado com sucesso ###
