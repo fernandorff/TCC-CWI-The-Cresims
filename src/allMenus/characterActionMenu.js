@@ -70,8 +70,7 @@ Sua escolha:`);
           break;
         }
         console.clear();
-        const newCaracter = await sleepMenu(actingCharacter);
-        updateStorage(newCaracter);
+        await sleepMenu(actingCharacter);
         break;
 
       // Tomar banho
@@ -94,7 +93,7 @@ Sua escolha:`);
         console.clear();
         actingCharacter.hygiene = 28;
         actingCharacter.cresceleons -= 10;
-        await takeAShower(actingCharacter, 5);
+        updateStorage(await takeAShower(actingCharacter, 5));
         break;
 
       // Comprar item
@@ -154,16 +153,21 @@ Sua escolha:`);
 `;
         break;
     }
+
+    updateStorage(actingCharacter);
   }
 };
 
-const updateStorage = (character) => {
+const updateStorage = character => {
   const localStorage = useLocalStorage()
   const listCharacter = localStorage.getObject("inGameCharacters.json")
   
-  listCharacter.forEach(element => {
-    if (character.id == element.id) element = character
+  const newList = listCharacter.map(element => {
+    if (character.id == element.id) {
+      return character
+    }
+    return element
   })
 
-  localStorage.setObject("inGameCharacters.json", [...listCharacter])
+  localStorage.setObject("inGameCharacters.json", [...newList])
 }

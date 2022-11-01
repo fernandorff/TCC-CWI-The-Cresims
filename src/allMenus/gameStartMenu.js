@@ -46,7 +46,7 @@ const setCharacter = async () => {
   const localStorage = useLocalStorage();
   const storage = localStorage.getObject("inGameCharacters.json") || [];
 
-  const id = storage.length;
+  const id = storage.length + 1;
   const name = await useQuestion(`Qual o seu nome? `);
   const aspiration = await menuAbilitys("Qual a sua aspiração?");
   const cresceleons = 1500;
