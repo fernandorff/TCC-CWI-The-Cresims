@@ -1,3 +1,4 @@
+import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
 import { sleepMenu } from "../characterActions/sleepMenu.js";
 import { takeAShower } from "../characterActions/takeAShower.js";
 import { useQuestion } from "../services/question/use-question.js";
@@ -7,9 +8,10 @@ import { executeCheat } from "../cheats/cheats.js";
 
 export const characterActionMenu = async (character) => {
   let showMenu = true;
-  const actingCharacter = character;
+  let actingCharacter = character;
   let warningMessage = "";
-  while (showMenu == true) {
+
+  while (showMenu) {
     console.clear();
     const input = await useQuestion(`
 ${await theCresimsLogo()}
@@ -67,9 +69,9 @@ Sua escolha:`);
 `;
           break;
         }
+        
         console.clear();
-        showMenu = false;
-        await sleepMenu(actingCharacter);
+        actingCharacter = await sleepMenu(actingCharacter);
         break;
 
       // Tomar banho
@@ -90,10 +92,9 @@ Sua escolha:`);
           break;
         }
         console.clear();
-        showMenu = false;
         actingCharacter.hygiene = 28;
         actingCharacter.cresceleons -= 10;
-        await takeAShower(actingCharacter, 5);
+        actingCharacter = await takeAShower(actingCharacter, 5)
         break;
 
       // Comprar item
@@ -117,7 +118,7 @@ Sua escolha:`);
       // Aplicar cheats
       case "7":
         const inputCheat = await useQuestion("Escreva seu cheat: ");
-        await executeCheat(actingCharacter, inputCheat);
+        actingCharacter = await executeCheat(actingCharacter, inputCheat);
         warningMessage = `
 - Opção ${input} escolhida
 ### Cheat aplicado com sucesso ###
@@ -153,5 +154,21 @@ Sua escolha:`);
 `;
         break;
     }
+
+    updateStorage(actingCharacter);
   }
 };
+
+const updateStorage = character => {
+  const localStorage = useLocalStorage()
+  const listCharacter = localStorage.getObject("inGameCharacters.json")
+  
+  const newList = listCharacter.map(element => {
+    if (character.id == element.id) {
+      return character
+    }
+    return element
+  })
+
+  localStorage.setObject("inGameCharacters.json", [...newList])
+}

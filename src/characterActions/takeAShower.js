@@ -1,4 +1,3 @@
-import { characterActionMenu } from "../allMenus/characterActionMenu.js";
 import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
 import { useQuestion } from "../services/question/use-question.js";
 
@@ -27,7 +26,7 @@ ${actingCharacter.name} terminou de tomar banho!
     
 ${showerTime} / ${showerTime}
 `);
-  let pressEnter = await useQuestion(`Pressione ENTER para continuar...`);
+  await useQuestion(`Pressione ENTER para continuar...`);
 
-  await characterActionMenu(actingCharacter);
+  return actingCharacter
 };
