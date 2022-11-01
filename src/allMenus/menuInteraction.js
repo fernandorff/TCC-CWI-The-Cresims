@@ -1,4 +1,4 @@
-import { getCharacter } from "../crud/character.js"
+import { getCharacter, updateCharacterBD } from "../crud/character.js"
 import { useQuestion } from "../services/question/use-question.js";
 import { updateStorage, getStorage } from "../crud/storage.js";
 import { 
@@ -93,16 +93,3 @@ const showInteractions = (list) => {
         cont++;
     }
 }
-
-const updateCharacterBD = character => {
-    const listCharacter = getStorage();
-    
-    const newList = listCharacter.map(element => {
-      if (character.id == element.id) {
-        return character
-      }
-      return element
-    })
-  
-    updateStorage([ ...newList ])
-  }
