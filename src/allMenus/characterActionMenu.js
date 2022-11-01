@@ -1,3 +1,4 @@
+import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
 import { sleepMenu } from "../characterActions/sleepMenu.js";
 import { takeAShower } from "../characterActions/takeAShower.js";
 import { useQuestion } from "../services/question/use-question.js";
@@ -9,7 +10,8 @@ export const characterActionMenu = async (character) => {
   let showMenu = true;
   const actingCharacter = character;
   let warningMessage = "";
-  while (showMenu == true) {
+
+  while (showMenu) {
     console.clear();
     const input = await useQuestion(`
 ${await theCresimsLogo()}
@@ -68,8 +70,8 @@ Sua escolha:`);
           break;
         }
         console.clear();
-        showMenu = false;
-        await sleepMenu(actingCharacter);
+        const newCaracter = await sleepMenu(actingCharacter);
+        updateStorage(newCaracter);
         break;
 
       // Tomar banho
@@ -90,7 +92,6 @@ Sua escolha:`);
           break;
         }
         console.clear();
-        showMenu = false;
         actingCharacter.hygiene = 28;
         actingCharacter.cresceleons -= 10;
         await takeAShower(actingCharacter, 5);
@@ -155,3 +156,14 @@ Sua escolha:`);
     }
   }
 };
+
+const updateStorage = (character) => {
+  const localStorage = useLocalStorage()
+  const listCharacter = localStorage.getObject("inGameCharacters.json")
+  
+  listCharacter.forEach(element => {
+    if (character.id == element.id) element = character
+  })
+
+  localStorage.setObject("inGameCharacters.json", [...listCharacter])
+}
