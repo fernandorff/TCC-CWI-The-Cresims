@@ -1,4 +1,9 @@
-import { buyProductItens, checkLevelSkill, cicleTrainCharacterProductPurchased, isBuy } from "../src/characterActions/skill-aspiration"
+import { 
+  buyProductItens, 
+  checkLevelSkill, 
+  cicleTrainCharacterProductPurchased, 
+  isBuy 
+} from "../src/characterActions/skill-aspiration"
 import { work } from "../src/characterActions/work"
 import { itensSkillDataApi } from "../src/services/api/api"
 import { executeCheat } from "../src/cheats/cheats"
@@ -48,8 +53,7 @@ describe('Exemplo teste suite', () => {
   it('Exemplo', () => {
     expect(true).toBeTruthy()
   })
-}
-)
+})
 
 describe('04 - Trabalho', () => {
   it('Deve perder os pontos de energia ao trabalhar uma jornada padrão', async () => {
