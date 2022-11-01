@@ -50,14 +50,15 @@ Id da interação escolhida: `)
                     console.clear()
                     console.log("Pontos de energia insuficiente para realizar a interação")
                     await useQuestion("Pressione enter para continuar")
-                    return character
+                    return [character, false]
                 }
 
                 await updateCharacterBD([newCharacterSecond])
 
+                console.clear()
                 console.log(`Interação "${objInterection.interacao}" realizada com sucesso`)
                 await useQuestion("Pressione enter para continuar")
-                return newCharacter;
+                return [newCharacter, true];
             } catch {
                 console.log("Adicione um id de interação possivel")
             }

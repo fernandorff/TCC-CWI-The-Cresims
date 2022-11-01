@@ -13,6 +13,7 @@ import { updateCharacterBD } from "../crud/character.js"
 export const characterActionMenu = async (character) => {
   let actingCharacter = character;
   let warningMessage = "";
+  let status;
 
   while (true) {
     console.clear();
@@ -112,12 +113,16 @@ Sua escolha:`);
       // Interagir com outro personagem
       case "6":
         console.clear();
-        actingCharacter = await menuInteraction(actingCharacter)
+        [actingCharacter, status] = await menuInteraction(actingCharacter)
         
         warningMessage = `
 - Opção ${input} escolhida
-### Relacionamento realizado com sucesso ###
-        `;
+  ### Interação entre usuarios realizado com sucesso ###`;
+        if (!status) {
+          warningMessage = `
+- Opção ${input} escolhida
+  !!! Energia insuficiente para realizar interação !!!`;
+        }
         break;
 
       // Voltar para menu principal
