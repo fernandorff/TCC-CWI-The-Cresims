@@ -1,5 +1,6 @@
 import { getCharacter } from "../crud/character.js"
 import { useQuestion } from "../services/question/use-question.js";
+import { updateStorage } from "../crud/storage.js";
 import { 
     getLevelInteraction,
     listInteraction,
@@ -17,28 +18,31 @@ export const menuInteraction = async (character) => {
             const newCharacter = createRelation(character, characterInteraction)
             const characterSecond = createRelation(characterInteraction, character)
 
-            return await selectInteraction(newCharacter, characterSecond.id);
+            return await selectInteraction(newCharacter, characterSecond);
         } else {
             console.log("Informe um id de personagem diferente do seu")
         }
     }
 }
 
-const selectInteraction = async (character, idCharacter) => {
+const selectInteraction = async (character, characterSecond) => {
     while (true) {
         console.log(`Escolha uma das opções de interação abaixo:`)
 
-        const points = pointsInteraction(character, idCharacter);
+        const points = pointsInteraction(character, characterSecond.id);
         const level = getLevelInteraction(points);
         const list = await listInteraction(level);
 
         while (true) {
             showInteractions(list)
-            console.log(list[0])
             const input = await useQuestion(`Id da interação escolhida: `)
 
             if (Number(input)) {
-                return interaction(character, idCharacter, list[input - 1])
+                const [ newCharacter, newCharacterSecond ] = await interaction(
+                    character, characterSecond, list[input - 1]
+                )
+                await updateStorage([newCharacterSecond])
+                return newCharacter;
             }
         }
     }
@@ -80,33 +84,3 @@ const showInteractions = (list) => {
         cont++;
     }
 }
-
-menuInteraction({
-    id: 1,
-    name: 'Fulano',
-    aspiration: 'JOGOS',
-    cresceleons: 10500,
-    time: 3600000,
-    hygiene: 28,
-    energy: 32,
-    relationship: [],
-    skill: 0,
-    items: [],
-    employee: {
-      id: 1,
-      office: 'Jogador de Dota', 
-      category: 'JOGOS',
-      salary: 160
-    },
-    ability: [
-      {
-        name: 'CULINARIA',
-        skill: 0
-      },
-      {
-        name: 'JOGOS',
-        skill: 0,
-        aspiration: true
-      }
-    ]
-})

@@ -8,6 +8,7 @@ import { executeCheat } from "../cheats/cheats.js";
 import { menuWork } from "./menuWork.js";
 import { menuBuyItens } from "./menuBuyItens.js";
 import { menuTrainning } from "./menuTranning.js";
+import { menuInteraction } from "./menuInteraction.js" 
 
 export const characterActionMenu = async (character) => {
   let actingCharacter = character;
@@ -111,6 +112,7 @@ Sua escolha:`);
       // Interagir com outro personagem
       case "6":
         console.clear();
+        actingCharacter = await menuInteraction(actingCharacter)
         
         warningMessage = `
 - Opção ${input} escolhida
