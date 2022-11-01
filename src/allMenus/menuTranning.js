@@ -1,6 +1,9 @@
+import { animationTimeCount } from "../animations/animationTimeCount.js"
 import { cicleTrainCharacterProductPurchased } from "../characterActions/skillAspiration.js"
 import { itensSkillDataApi } from "../services/api/api.js"
 import { useQuestion } from "../services/question/use-question.js"
+
+const TIME_CICLE_TRAINNING = 8000
 
 export const menuTrainning = async (character) => {
     if (character.items.length === 0) {
@@ -16,6 +19,7 @@ export const menuTrainning = async (character) => {
     const choice = await choiceItensCresim(character.items)
     const response = await itensSkillDataApi()
     const choiceItem = getItemSkill(response, choice)
+    animationTimeCount(TIME_CICLE_TRAINNING)
 
     return cicleTrainCharacterProductPurchased(character, choiceItem, choice)
 }
