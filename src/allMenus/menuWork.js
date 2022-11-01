@@ -17,8 +17,7 @@ export const menuWork = async (character) => {
     };
   }
 
-  // Aqui atualiza os dados do cresim com localStorage
-  console.log(characterWork);
+  return characterWork
 };
 
 export const choiceEmployee = async (response) => {
