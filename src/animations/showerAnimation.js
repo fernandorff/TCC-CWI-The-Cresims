@@ -19,7 +19,7 @@ ${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}
 ${a(r())}${a(r())},,,${a(r())}${a(r())}
 ${a(r())}<(u_u)>${a(r())}
 ${a(r())}${a(r())} |${a(r())}${a(r())}
-${a(r())}${a(r())} LL ${a(r())}${a(r())}
+${a(r())}${a(r())} LL ${a(r())}${a(r())}  
 `);
 
   await new Promise((resolve) => setTimeout(resolve, 500));
