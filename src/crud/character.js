@@ -38,6 +38,7 @@ export const getCharacter = async () => {
     while (true) {
         const input = await useQuestion("Escolha o id do personagem: ");
         const character = storage.find((charac) => charac.id == input);
+        console.log(character)
   
         if (character) {
             return character;

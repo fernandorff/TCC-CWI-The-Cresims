@@ -111,6 +111,7 @@ Sua escolha:`);
       // Interagir com outro personagem
       case "6":
         console.clear();
+        
         warningMessage = `
 - Opção ${input} escolhida
 !!! Essa opção se encontra em implementação !!!
