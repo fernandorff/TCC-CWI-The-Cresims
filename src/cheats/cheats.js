@@ -23,9 +23,11 @@ export const executeCheat = async (character, input) => {
                 }
             }
         case "DEITADONAREDE":
+            let newEnergy = character.energy + 5;
+            if (32 <= newEnergy) { newEnergy = 32 } 
             return {
                 ...character,
-                energy: character.energy + 5
+                energy: newEnergy
             }
         case "JUNIM":
             const ability = menuAbilitys("Escolha uma das habilidades a seguir:");

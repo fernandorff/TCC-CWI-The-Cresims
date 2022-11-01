@@ -118,11 +118,19 @@ Sua escolha:`);
       // Aplicar cheats
       case "7":
         const inputCheat = await useQuestion("Escreva seu cheat: ");
+        const characterTemp = { ...actingCharacter }
         actingCharacter = await executeCheat(actingCharacter, inputCheat);
-        warningMessage = `
+        if (characterTemp != actingCharacter) {
+          warningMessage = `
 - Opção ${input} escolhida
 ### Cheat aplicado com sucesso ###
 `;
+        } else {
+          warningMessage = `
+- Opção ${input} escolhida
+!!! Codigo de cheat não existente !!!
+`;
+        }
         break;
 
       // Perder 10 energia
