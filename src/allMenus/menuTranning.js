@@ -8,7 +8,12 @@ export const menuTrainning = async (character) => {
         return character
     }
 
-    const choice = choiceItensCresim(character.items)
+    if(character.energy <= 6) {
+        console.log('Energia insuficiente para treinamento');
+        return character
+    }
+
+    const choice = await choiceItensCresim(character.items)
     const response = await itensSkillDataApi()
     const choiceItem = getItemSkill(response, choice)
 
