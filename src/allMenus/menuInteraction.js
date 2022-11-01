@@ -8,26 +8,10 @@ export const menuInteraction = async (character) => {
         const characterInteraction = await getCharacter();
 
         if (characterInteraction.id != character.id) {
-            const relation = getRelation(character, characterInteraction)
-            const relationSecond = getRelation(characterInteraction, character)
+            const newCharacter = createRelation(character, characterInteraction)
+            const characterSecond = createRelation(characterInteraction, character)
 
-            if (!relation) {
-                character.relationship.push({
-                    id: characterInteraction.id,
-                    name: characterInteraction.name,
-                    pontos: 0
-                })
-            }
-
-            if (!relationSecond) {
-                characterInteraction.relationship.push({
-                    id: character.id,
-                    name: character.name,
-                    pontos: 0
-                })
-            }
-
-            return selectInteraction(character, characterInteraction);
+            return selectInteraction(newCharacter, characterSecond);
         } else {
             console.log("Informe um id de personagem diferente do seu")
         }
@@ -40,7 +24,17 @@ const selectInteraction = (character, characterInterac) => {
 }
 
 const createRelation = (character, characterSecondary) => {
-    
+    const relation = getRelation(character, characterSecondary)
+
+    if (!relation) {
+        character.relationship.push({
+            id: characterSecondary.id,
+            name: characterSecondary.name,
+            pontos: 0
+        })
+    }
+
+    return character
 }
 
 const getRelation = (character, characterSecondary) => {
