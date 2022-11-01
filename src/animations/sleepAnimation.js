@@ -1,4 +1,5 @@
-while (true) {
+export const sleepAnimation = async () => {
+  swi;
   console.log(`
 ˖⁺｡˚⋆˙♥️⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆*✧˖°☁︎｡
          .           .
@@ -66,4 +67,4 @@ while (true) {
 
   await new Promise((resolve) => setTimeout(resolve, 500));
   console.clear();
-}
+};
