@@ -8,11 +8,10 @@ import { executeCheat } from "../cheats/cheats.js";
 import { menuWork } from "./menuWork.js";
 
 export const characterActionMenu = async (character) => {
-  let showMenu = true;
   let actingCharacter = character;
   let warningMessage = "";
 
-  while (showMenu) {
+  while (true) {
     console.clear();
     const input = await useQuestion(`
 ${await theCresimsLogo()}
@@ -33,7 +32,7 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
 
 6.  ❌ Interagir com outro persongaem ( -2000⌛️  +❤️ )
 
-7.  ✅ Aplicar cheat
+7.  ✅ Voltar ao menu principal
 
 8.  ✅ ( -10✨ )
 
@@ -117,23 +116,9 @@ Sua escolha:`);
         `;
         break;
 
-      // Aplicar cheats
+      // Voltar para menu principal
       case "7":
-        const inputCheat = await useQuestion("Escreva seu cheat: ");
-        const characterTemp = { ...actingCharacter }
-        actingCharacter = await executeCheat(actingCharacter, inputCheat);
-        if (characterTemp != actingCharacter) {
-          warningMessage = `
-- Opção ${input} escolhida
-### Cheat aplicado com sucesso ###
-`;
-        } else {
-          warningMessage = `
-- Opção ${input} escolhida
-!!! Codigo de cheat não existente !!!
-`;
-        }
-        break;
+        return;
 
       // Perder 10 energia
       case "8":
@@ -155,13 +140,23 @@ Sua escolha:`);
         actingCharacter.hygiene -= 10;
         break;
 
-      // OPÇÃO INVALIDA
+      // OPÇÃO INVALIDA e Cheat
       default:
-        console.clear();
-        warningMessage = `
+        const characterTemp = { ...actingCharacter }
+        actingCharacter = await executeCheat(actingCharacter, input);
+        if (characterTemp != actingCharacter) {
+          warningMessage = `
+- Opção ${input} escolhida
+### Cheat aplicado com sucesso ###
+`;
+        } else {
+          warningMessage = `
 - Opção ${input} escolhida
 ### Escolha uma opção válida ###
 `;
+        }
+
+        console.clear();
         break;
     }
 

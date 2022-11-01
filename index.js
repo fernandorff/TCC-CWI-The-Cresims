@@ -3,11 +3,13 @@ import { gameStartMenu } from "./src/allMenus/gameStartMenu.js";
 import { characterActionMenu } from "./src/allMenus/characterActionMenu.js";
 
 const main = async () => {
-  const obj = await gameStartMenu();
-
-  console.clear();
-
-  await characterActionMenu(obj);
+  while (true) {
+    const obj = await gameStartMenu();
+  
+    console.clear();
+  
+    await characterActionMenu(obj);
+  }
 };
 
 main();

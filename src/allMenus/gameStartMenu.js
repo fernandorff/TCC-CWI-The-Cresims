@@ -4,9 +4,8 @@ import { menuAbilitys } from "./menuAbilitys.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const gameStartMenu = async () => {
-  let gameStartMenuRunning = true;
   let warningMessage = ``;
-  while (gameStartMenuRunning == true) {
+  while (true) {
     console.clear();
     const input = await useQuestion(`
   ▀██ ▀██▀  ▀█▀         ▀██                                          ▄           
