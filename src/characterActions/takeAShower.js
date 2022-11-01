@@ -1,6 +1,21 @@
 import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
 import { useQuestion } from "../services/question/use-question.js";
 
+function a(x) {
+  switch (x) {
+    case 1:
+      return `、`;
+    case 2:
+      return `ヽ`;
+    case 3:
+      return `｀`;
+  }
+}
+
+function r() {
+  return Math.ceil(Math.random() * 3);
+}
+
 export const takeAShower = async (actingCharacter, showerTime) => {
   for (let i = 0; i < showerTime; ++i) {
     let waitingDots = ".";
@@ -11,7 +26,15 @@ export const takeAShower = async (actingCharacter, showerTime) => {
     console.log(`
 ${await theCresimsLogo()}
 
+${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}
+${a(r())}${a(r())},,,${a(r())}${a(r())}
+${a(r())}<(u_u)>${a(r())}
+${a(r())}${a(r())} |${a(r())}${a(r())}
+${a(r())}${a(r())} LL ${a(r())}${a(r())}  
+
 ${actingCharacter.name} está tomando banho${waitingDots}
+
+
             
 ${i} / ${showerTime}
 `);
@@ -21,6 +44,12 @@ ${i} / ${showerTime}
   console.clear();
   console.log(`
 ${await theCresimsLogo()}
+
+${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}
+${a(r())}${a(r())},,,${a(r())}${a(r())}
+${a(r())}<(u_u)>${a(r())}
+${a(r())}${a(r())} |${a(r())}${a(r())}
+${a(r())}${a(r())} LL ${a(r())}${a(r())}  
         
 ${actingCharacter.name} terminou de tomar banho!
     
@@ -28,5 +57,5 @@ ${showerTime} / ${showerTime}
 `);
   await useQuestion(`Pressione ENTER para continuar...`);
 
-  return actingCharacter
+  return actingCharacter;
 };
