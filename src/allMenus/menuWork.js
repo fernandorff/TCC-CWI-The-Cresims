@@ -1,5 +1,5 @@
 import { setEmployee, work } from "../characterActions/work.js"
-import { employeesDataApi } from "../services/api/app.js";
+import { employeesDataApi } from "../services/api/api.js"
 import { useQuestion } from "../services/question/use-question.js";
 
 export const menuWork = async (character) => {
