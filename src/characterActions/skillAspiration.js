@@ -10,15 +10,25 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
   const ENERGY_DECREMENT = 4
   const HYGIENE_DECREMENT = 2
 
-  const skill = setSkill(character, productChoice, skillChoice)
-  const time = setTimeLife(character, TIME_CICLE_TRAINNING)
-  const energy = setEnergy(character, ENERGY_DECREMENT)
-  const levelSkill = checkLevelSkill(skill)
-  const employee = { ...character.employee, level: levelSkill }
-  const hygiene = setHygiene(character, HYGIENE_DECREMENT)
-  const ability = { name: skillChoice, skill: productChoice.pontos }
+  const characterTrainning = { ...character }
 
-  return { ...character, skill, time, energy, employee, hygiene, ability }
+  if (!characterTrainning.ability) {
+    characterTrainning.ability = []
+  }
+
+  const skill = setSkill(characterTrainning, productChoice, skillChoice)
+  const time = setTimeLife(characterTrainning, TIME_CICLE_TRAINNING)
+  const energy = setEnergy(characterTrainning, ENERGY_DECREMENT)
+  const levelSkill = checkLevelSkill(skill)
+  const employee = { ...characterTrainning.employee, level: levelSkill }
+  const hygiene = setHygiene(characterTrainning, HYGIENE_DECREMENT)
+  let ability = [...characterTrainning.ability]
+
+  if (!containAbility(characterTrainning.ability, skillChoice)) {
+    ability = [...characterTrainning.ability, { name: skillChoice, skill: productChoice.pontos }]
+  }
+
+  return { ...characterTrainning, skill, time, energy, employee, hygiene, ability }
 }
 
 export const buyProductItens = (character, productChoice) => {
@@ -42,4 +52,11 @@ export const checkLevelSkill = (points) => {
   if (points >= 0 && points <= 16) return 'JUNIOR'
   else if (points >= 17 && points <= 26) return 'PLENO'
   else if (points >= 27) return 'SENIOR'
+}
+
+
+export const containAbility = (abilitys, newAbility) => {
+  return abilitys.find(ability => {
+    return ability.name === newAbility
+  })
 }
