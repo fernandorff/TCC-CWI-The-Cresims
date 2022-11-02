@@ -78,8 +78,8 @@ const menuDead = async () => {
 ### Escolha um personagem para vizualizar tumulo ###
 `);
 
-  for (const obj of storage) {
-    console.log(`${obj.id} - ${obj.name}`);
+  for (let cont = 0; cont < storage.length; cont++) {
+    console.log(`${cont + 1} - ${storage[cont].name}`);
   }
   console.log(`X - Retornar ao menu principal.`);
 
