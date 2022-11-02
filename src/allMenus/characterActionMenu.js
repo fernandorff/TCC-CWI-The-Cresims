@@ -8,9 +8,10 @@ import { menuWork } from "./menuWork.js";
 import { menuBuyItens } from "./menuBuyItens.js";
 import { menuTrainning } from "./menuTranning.js";
 import { menuInteraction } from "./menuInteraction.js";
-import { updateCharacterBD } from "../crud/character.js";
+import { deleteCharacters, updateCharacterBD } from "../crud/character.js";
 import { characterDeath } from "../characterActions/characterDeath.js";
 import { gameStartMenu } from "./gameStartMenu.js";
+import { updateStorageDead, getStorageDead } from "../crud/storage.js";
 
 export const validateEnergyAndHygiene = async (character) => {
   if (character.energy > 32) {
@@ -38,6 +39,9 @@ export const characterActionMenu = async (character) => {
     validateEnergyAndHygiene(character);
     if (character.time <= 0) {
       await characterDeath(character);
+      await updateStorageDead(...getStorageDead(), character)
+      deleteCharacters(character.id)
+      console.log("delaçao premiada")
       return;
     }
     console.clear();
