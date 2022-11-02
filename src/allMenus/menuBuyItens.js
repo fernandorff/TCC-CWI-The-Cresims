@@ -9,7 +9,7 @@ export const menuBuyItens = async (character) => {
   const TIME = 3000;
   const response = await itensSkillDataApi();
   const skillChoice = await skillChoiceProduct();
-  const product = await productChoice(response, skillChoice);
+  const product = await productChoice(response, skillChoice, character);
   const characterBuys = buyProductItens(
     character,
     product,
@@ -25,14 +25,38 @@ export const menuBuyItens = async (character) => {
   return characterBuys;
 };
 
-export const productChoice = async (response, skillChoice) => {
+export const productChoice = async (response, skillChoice, character) => {
   const listItensSkill = response[skillChoice.toUpperCase()];
+  console.log(`
+${await theCresimsLogo()}
+  
+ ___________________________________________________________
+| : : : : : : : : : : : : : : : : : : : : : : : : : : : : : |
+|: : : : : : : : :_________________________: : : : : : : : :|
+| : : : : : : : _)  :                   :  (_ : : : : : : : |
+|: : : : : : : )_ :   $ Lojas CWIanas $   : _( : : : : : : :|
+| : : :__________)_________________________(__________  : : |
+| /_/  '---------------------------------------------'  /_/ |
+|: | : |Música * Games * Jardinagem * Cozinha * Artes| : | :|
+| : : :|   ______    _    _________         ______   |: : : |
+|======| .' ,|,  '. /_/ .'         '. /_/ .'  ,|, '. |======|
+|      | |_';;;'__|  |  |   ,,,,    |  |  |__';;;'_| |      |
+|      | |_|-;-|__|     |  (⚆_⚆     |     |__|-;-|_| |      |
+|      | |________|     |   /|-$    |     |________| |      |
+|      |                |    LL     |                |      |
+l______|________________|           |________________|______|
+`);
 
   listItensSkill.forEach((product) => {
-    console.log(product.id + " - " + product.nome);
+    console.log(product.id + ". " + product.nome);
   });
+  console.log(`X. Retornar`);
 
   const choice = await useQuestion("Escolha uma produto");
+
+  if (choice.toUpperCase() == "X") {
+    return character;
+  }
   return listItensSkill[choice - 1];
 };
 

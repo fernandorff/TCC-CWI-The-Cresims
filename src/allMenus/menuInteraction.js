@@ -8,13 +8,14 @@ import {
 import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const menuInteraction = async (character) => {
-  while (true) {
+  let menuInteractionDisplay = true;
+  while ((menuInteractionDisplay = true)) {
     console.clear();
     console.log(`
 ${await theCresimsLogo()}
 
 Para interagir com algum personagem é nescessario informar-lo primeiro`);
-    const characterInteraction = await getCharacter();
+    const characterInteraction = await getCharacter(character);
 
     try {
       if (characterInteraction.id != character.id) {
@@ -32,7 +33,8 @@ Para interagir com algum personagem é nescessario informar-lo primeiro`);
 };
 
 const selectInteraction = async (character, characterSecond) => {
-  while (true) {
+  let selectInteractionDisplay = true;
+  while ((selectInteractionDisplay = true)) {
     console.log(`
 ${await theCresimsLogo()}
 Escolha uma das opções de interação abaixo:`);

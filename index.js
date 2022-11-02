@@ -5,14 +5,14 @@ import { characterActionMenu } from "./src/allMenus/characterActionMenu.js";
 const main = async () => {
   while (true) {
     const obj = await gameStartMenu();
-  
+
     if (obj == "exit") {
       return;
-    } else if (obj) {
+    }
+    if (typeof obj == "object") {
       console.clear();
       await characterActionMenu(obj);
     }
-    
   }
 };
 
