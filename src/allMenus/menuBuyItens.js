@@ -4,6 +4,7 @@ import { buyProductItens } from "../characterActions/skillAspiration.js";
 import { itensSkillDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
 import { menuAbilitys } from "./menuAbilitys.js";
+import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const menuBuyItens = async (character) => {
   const TIME = 3000;
@@ -30,29 +31,27 @@ export const productChoice = async (response, skillChoice, character) => {
   console.log(`
 ${await theCresimsLogo()}
   
- ___________________________________________________________
-| : : : : : : : : : : : : : : : : : : : : : : : : : : : : : |
-|: : : : : : : : :_________________________: : : : : : : : :|
-| : : : : : : : _)  :                   :  (_ : : : : : : : |
-|: : : : : : : )_ :   $ Lojas CWIanas $   : _( : : : : : : :|
-| : : :__________)_________________________(__________  : : |
-| /_/  '---------------------------------------------'  /_/ |
-|: | : |Música * Games * Jardinagem * Cozinha * Artes| : | :|
-| : : :|   ______    _    _________         ______   |: : : |
-|======| .' ,|,  '. /_/ .'         '. /_/ .'  ,|, '. |======|
-|      | |_';;;'__|  |  |   ,,,,    |  |  |__';;;'_| |      |
-|      | |_|-;-|__|     |  (⚆_⚆     |     |__|-;-|_| |      |
-|      | |________|     |   /|-$    |     |________| |      |
-|      |                |    LL     |                |      |
-l______|________________|           |________________|______|
+   ___________________________________________________________
+  | : : : : : : : : : : : : : : : : : : : : : : : : : : : : : |
+  |: : : : : : : : :_________________________: : : : : : : : :|
+  | : : : : : : : _)  :                   :  (_ : : : : : : : |
+  |: : : : : : : )_ :   $ Lojas CWIanas $   : _( : : : : : : :|
+  | : : :__________)_________________________(__________  : : |
+  | /_/  '---------------------------------------------'  /_/ |
+  |: | : |Música * Games * Jardinagem * Cozinha * Artes| : | :|
+  | : : :|   ______    _    _________         ______   |: : : |
+  |======| .' ,|,  '. /_/ .'         '. /_/ .'  ,|, '. |======|
+  |      | |_';;;'__|  |  |   ,,,,    |  |  |__';;;'_| |      |
+  |      | |_|-;-|__|     |  (⚆_⚆     |     |__|-;-|_| |      |
+  |      | |________|     |   /|-$    |     |________| |      |
+  |      |                |    LL     |                |      |
+  l______|________________|           |________________|______|
 `);
 
   listItensSkill.forEach((product) => {
-    console.log(product.id + " - " + product.nome);
+    console.log(product.id + ". " + product.nome);
   });
   console.log(`X. Retornar`);
-
-  console.log("X. Voltar ao menu principal \n");
 
   const choice = await useQuestion("Escolha uma produto");
 
