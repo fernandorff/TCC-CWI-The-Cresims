@@ -19,7 +19,7 @@ beforeEach(() => {
   character = {
     name: "Fulano",
     aspiration: "JOGOS",
-    cresceleons: 10500,
+    cresceleons: 1500,
     time: 3600000,
     hygiene: 28,
     energy: 32,
@@ -104,6 +104,7 @@ describe("04 - Trabalho", () => {
 
 describe("5 - Habilidades e aspirações", () => {
   it("Deve conseguir comprar um item de habilidade", () => {
+    character.cresceleons += 2000;
     const characterBuys = buyProductItens(character, productChoice);
 
     const itemPurchased = characterBuys.items;
@@ -226,7 +227,7 @@ describe("6 - Cheats", () => {
 describe("7 - Higience", () => {
   it("Deve descontar 10 Cresceleons ao tomar banho", async () => {
     const newCharacter = await takeAShower(character, 10, false);
-    const numExpect = 10490;
+    const numExpect = 1490;
     expect(newCharacter.cresceleons).toBe(numExpect);
   });
 });
