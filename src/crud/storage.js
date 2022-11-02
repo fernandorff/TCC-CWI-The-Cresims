@@ -5,7 +5,7 @@ export const updateStorage = (newStorage) => {
   localStorage.setObject("inGameCharacters.json", [...newStorage]);
 };
 
-export const updateStorageDead = (newStorage) => {
+export const updateStorageDead = (...newStorage) => {
   const localStorage = useLocalStorage();
   localStorage.setObject("deadCharacters.json", [...newStorage]);
 };

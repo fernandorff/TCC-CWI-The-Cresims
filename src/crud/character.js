@@ -102,21 +102,10 @@ export const getAllCharacters = async () => {
 Pressione ENTER para continuar...`);
 };
 
-export const deleteCharacters = async () => {
+export const deleteCharacters = (id) => {
   const storage = getStorage();
 
-  console.log(`
-### Delete um personagem ###
-`);
-
-  for (const obj of storage) {
-    console.log(`${obj.id} - ${obj.name} (Tempo restante: ${obj.time})`);
-  }
-  console.log(`X - Retornar ao menu principal.`);
-
-  const input = await useQuestion(`
-Escolha o id do personagem: `);
-  const newStorage = storage.filter((charac) => charac.id != input);
+  const newStorage = storage.filter((charac) => charac.id != id);
 
   updateStorage([...newStorage]);
 };

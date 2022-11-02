@@ -6,6 +6,7 @@ import {
   getAllCharacters,
   deleteCharacters,
 } from "../crud/character.js";
+import { getStorage } from "../crud/storage.js";
 
 export const gameStartMenu = async () => {
   let warningMessage = ``;
@@ -44,7 +45,8 @@ Sua escolha: `);
         await getAllCharacters();
         break;
       case "4":
-        await deleteCharacters();
+        const id = await menuDelete()
+        deleteCharacters(id);
         break;
       case "X":
         console.log("\nFinalizando Game");
@@ -57,3 +59,19 @@ Sua escolha: `);
     }
   }
 };
+
+const menuDelete = async () => {
+  const storage = getStorage();
+
+  console.log(`
+### Delete um personagem ###
+`);
+
+  for (const obj of storage) {
+    console.log(`${obj.id} - ${obj.name} (Tempo restante: ${obj.time})`);
+  }
+  console.log(`X - Retornar ao menu principal.`);
+
+  return await useQuestion(`
+Escolha o id do personagem: `);
+}
