@@ -30,7 +30,14 @@ export const executeCheat = async (character, input) => {
                 energy: newEnergy
             }
         case "JUNIM":
-            const ability = menuAbilitys("Escolha uma das habilidades a seguir:");
+            console.clear()
+            const ability = await menuAbilitys("Escolha uma das habilidades para aplicar o cheat:");
+            const verify = character.ability.find(obj => obj.name == ability)
+
+            if (!verify) {
+                return character;
+            }
+            
             return cheatJunim(character, ability);
         case "CAROLINAS":
             return {

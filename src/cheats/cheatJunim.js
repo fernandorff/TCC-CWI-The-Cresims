@@ -1,9 +1,8 @@
 export const cheatJunim = (character, ability) => {
-    const code = ability.toUpperCase();
     const listAbility = character.ability;
     
     listAbility.map(obj => {
-        if (obj.name == code) {
+        if (obj.name == ability) {
             obj.skill += 5
         }
     });
