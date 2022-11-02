@@ -26,11 +26,12 @@ export const takeAShower = async (actingCharacter, showerTime) => {
     console.log(`
 ${await theCresimsLogo()}
 
-${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}${a(r())}
-${a(r())}${a(r())},,,${a(r())}${a(r())}
-${a(r())}<(u_u)>${a(r())}
-${a(r())}${a(r())} |${a(r())}${a(r())}
-${a(r())}${a(r())} LL ${a(r())}${a(r())}  
+    _ꓕ_
+   ${a(r())}${a(r())}${a(r())} 
+ ${a(r())}${a(r())}${a(r())}${a(r())}        _
+${a(r())}<(u_u)>${a(r())}   ___| |
+${a(r())}${a(r())} | ${a(r())}${a(r())}  (    .'
+${a(r())}${a(r())} LL ${a(r())}${a(r())}  )  (    
 
 ${actingCharacter.name} está tomando banho${waitingDots}
 
@@ -45,11 +46,12 @@ ${i} / ${showerTime}
   console.log(`
 ${await theCresimsLogo()}
 
+    _ꓕ_
 
-    ,,,,
-  <(O_O)>
-     |
-.....LL.....   
+    ,,,,          _
+  <(O_O)>     ___| |
+     |       (    .'
+.....LL.....  )  (     
         
 ${actingCharacter.name} terminou de tomar banho!
     

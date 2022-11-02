@@ -107,7 +107,7 @@ Sua escolha:`);
         console.clear();
         actingCharacter.hygiene = 28;
         actingCharacter.cresceleons -= 10;
-        actingCharacter = await takeAShower(actingCharacter, 5);
+        actingCharacter = await takeAShower(actingCharacter, 10);
         break;
 
       // Comprar item
