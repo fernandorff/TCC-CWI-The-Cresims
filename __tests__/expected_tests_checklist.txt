@@ -16,8 +16,8 @@ Deve conseguir dormir e receber seus pontos de energia
 ✓ Deve receber o salario equivalente quando começar a trabalhar com os pontos de energia menores que 10 e pontos de higiene menores que 4  
 ✓ Deve validar para que o Cresim não consiga começar a trabalhar com os pontos de energia menores que 4  
 ✓ Deve descontar 10 Cresceleons ao tomar banho  
-Deve evoluir o relacionamento de dois Cresims para AMIZADE  
-Deve recuar o relacionamento de dois Cresims para INIMIZADE  
+✓ Deve evoluir o relacionamento de dois Cresims para AMIZADE  
+✓ Deve recuar o relacionamento de dois Cresims para INIMIZADE  
 Deve descontar os pontos de energia em uma interação entre dois Cresims  
 ✓ Deve conseguir aplicar o cheat SORTENAVIDA e receber as recompensas  
 ✓ Deve conseguir aplicar o cheat DEITADONAREDE e receber as recompensas  

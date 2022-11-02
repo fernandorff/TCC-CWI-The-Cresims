@@ -3,13 +3,15 @@ import {
   cicleTrainCharacterProductPurchased,
   isBuy,
 } from "../src/characterActions/skillAspiration";
+import { getLevelInteraction, interaction } from "../src/characterActions/interaction"
 import { isWork, work } from "../src/characterActions/work";
 import { itensSkillDataApi } from "../src/services/api/api";
 import { executeCheat } from "../src/cheats/cheats";
 import { cheatJunim } from "../src/cheats/cheatJunim";
 import { takeAShower } from "../src/characterActions/takeAShower";
 
-let character, itensSkill, product, productChoice;
+let character, character_02
+let itensSkill, product, productChoice;
 
 beforeAll(async () => {
   itensSkill = await itensSkillDataApi();
@@ -17,13 +19,20 @@ beforeAll(async () => {
 
 beforeEach(() => {
   character = {
+    id: 1,
     name: "Fulano",
     aspiration: "JOGOS",
     cresceleons: 1500,
     time: 3600000,
     hygiene: 28,
     energy: 32,
-    relationship: [],
+    relationship: [
+      {
+        id: 2,
+        name: "Sicrano",
+        level: 0
+      }
+    ],
     skill: 0,
     items: [],
     employee: {
@@ -45,11 +54,95 @@ beforeEach(() => {
     ],
   };
 
+  character_02 = {
+    ...character,
+    id: 2,
+    nome: "Sicrano",
+    relationship: [
+      {
+        id: 1,
+        name: "Fulano",
+        level: 0
+      }
+    ]
+  }
+
   product = itensSkill[character.aspiration];
   productChoice = product[0];
 });
 
-describe("04 - Trabalho", () => {
+describe("5 - Relacionamentos", () => {
+  it("Deve evoluir o relacionamento de dois Cresims para AMIZADE", () => {
+    const objInteraction = {
+      "id": 3,
+      "interacao": "Elogiar",
+      "pontos": 4,
+      "energia": 1
+    };
+    
+    let newCharacter, newCharacter_02;
+    for (let cont = 0; cont < 4; cont++) {
+      [newCharacter, newCharacter_02] = interaction(
+        character, character_02, objInteraction
+      );
+    }
+
+    const pointsCharacter = newCharacter.relationship[0].level;
+    const pointsCharacter_02 = newCharacter_02.relationship[0].level;
+
+    const levelCharacter = getLevelInteraction(pointsCharacter);
+    const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
+
+    expect(levelCharacter).toBe("AMIZADE");
+    expect(levelCharacter_02).toBe("AMIZADE");
+  })
+
+  it("Deve recuar o relacionamento de dois Cresims para INIMIZADE", () => {
+    const objInteraction = {
+      "id": 6,
+      "interacao": "Criticar",
+      "pontos": -3,
+      "energia": 2
+    };
+    
+    const [newCharacter, newCharacter_02] = interaction(
+      character, character_02, objInteraction
+    );
+
+    const pointsCharacter = newCharacter.relationship[0].level;
+    const pointsCharacter_02 = newCharacter_02.relationship[0].level;
+
+    const levelCharacter = getLevelInteraction(pointsCharacter);
+    const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
+
+    expect(levelCharacter).toBe("INIMIZADE");
+    expect(levelCharacter_02).toBe("INIMIZADE");
+  })
+
+  it("Deve descontar os pontos de energia em uma interação entre dois Cresims", () => {
+    const objInteraction = {
+      "id": 4,
+      "interacao": "Conversar",
+      "pontos": 2,
+      "energia": 2
+    };
+    
+    const [newCharacter, newCharacter_02] = interaction(
+      character, character_02, objInteraction
+    );
+
+    const energyCharacter = newCharacter.energy;
+    const energyCharacter_02 = newCharacter_02.energy;
+
+    const energyExpect = 30
+    const energyExpect_02 = 31
+
+    expect(energyCharacter).toBe(energyExpect);
+    expect(energyCharacter_02).toBe(energyExpect_02);
+  })
+})
+
+describe("4 - Trabalho", () => {
   it("Deve perder os pontos de energia ao trabalhar uma jornada padrão", async () => {
     const characterWork = await work(character);
 
@@ -102,7 +195,7 @@ describe("04 - Trabalho", () => {
   });
 });
 
-describe("5 - Habilidades e aspirações", () => {
+describe("2 - Habilidades e aspirações", () => {
   it("Deve conseguir comprar um item de habilidade", () => {
     character.cresceleons += 2000;
     const characterBuys = buyProductItens(character, productChoice);
