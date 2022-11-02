@@ -29,9 +29,7 @@ ${warningMessage}
 
 4. Deletar Personagem
 
-X - Deletar Personagem
-
-X - Deletar Personagem
+X. Deletar Personagem
 
 Sua escolha: `);
 
