@@ -101,8 +101,8 @@ const showInteractions = (list) => {
     console.clear()
     console.log("Escolha uma das Interações a seguir:\n")
 
-    for (const e of list) {
-        console.log(`${cont} - ${e.interacao} (pontos: ${e.pontos}, energia: ${e.energia})`)
+    for (const obj of list) {
+        console.log(`${cont} - ${obj.interacao} (pontos: ${obj.pontos}, energia: ${obj.energia})`)
         cont++;
     }
 
