@@ -38,10 +38,6 @@ export const printItens = async (items) => {
     })
 }
 
-export const getSkillName = (response, choiceItem) => {
-
-}
-
 export const getChoiceItem = (response, choiceItem) => {
     let choice = {}
 
