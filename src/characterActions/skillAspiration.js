@@ -5,10 +5,6 @@ export const setSkill = (character, productChoice, skillChoice) => {
   else return character.skill + productChoice.pontos
 }
 
-export const getSkillName = (itemSkill) => {
-
-}
-
 export const cicleTrainCharacterProductPurchased = (character, productChoice, skillChoice) => {
   const TIME_CICLE_TRAINNING = 8000
   const ENERGY_DECREMENT = 4
