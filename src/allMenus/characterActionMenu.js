@@ -58,7 +58,7 @@ X. Voltar ao menu principal
 
 Sua escolha:`);
 
-    switch (input) {
+    switch (input.toUpperCase()) {
       // Trabalhar
       case "1":
         if (character.energy <= 2) {
@@ -152,9 +152,6 @@ Sua escolha:`);
       case "X":
         return gameStartMenu();
 
-      case "x":
-        return gameStartMenu();
-
       // Perder 10 energia
       case "7":
         console.clear();
@@ -177,17 +174,15 @@ Sua escolha:`);
 
       // OPÇÃO INVALIDA e Cheat
       default:
-        const characterTemp = { ...character };
         character = await executeCheat(character, input);
-        if (characterTemp != character) {
-          warningMessage = `
+
+        warningMessage = `
 - Opção ${input} escolhida
-### Cheat aplicado com sucesso ###
+!!! Opção Invalida! Escolha uma opção válida !!!
 `;
-        } else {
+        if (verifyCheat(input)) {
           warningMessage = `
-- Opção ${input} escolhida
-### Escolha uma opção válida ###
+### Cheat aplicado com sucesso ###
 `;
         }
 
@@ -197,4 +192,14 @@ Sua escolha:`);
 
     updateCharacterBD(character);
   }
+};
+
+const verifyCheat = (input) => {
+  const inputUpper = input.toUpperCase();
+  return (
+    inputUpper == "SORTENAVIDA" ||
+    inputUpper == "DEITADONAREDE" ||
+    inputUpper == "JUNIM" ||
+    inputUpper == "SINUSITE"
+  );
 };

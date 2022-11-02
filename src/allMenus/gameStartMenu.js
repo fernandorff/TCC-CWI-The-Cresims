@@ -29,9 +29,13 @@ ${warningMessage}
 
 4. Deletar Personagem
 
+X - Deletar Personagem
+
+X - Deletar Personagem
+
 Sua escolha: `);
 
-    switch (input) {
+    switch (input.toUpperCase()) {
       case "1":
         return setCharacter();
       case "2":
@@ -42,13 +46,14 @@ Sua escolha: `);
       case "4":
         await deleteCharacters();
         break;
-
+      case "X":
+        console.log("\nFinalizando Game");
+        return "exit";
       default:
         console.clear();
         warningMessage = `
 ### Escolha uma opção válida ###
 `;
-        break;
     }
   }
 };

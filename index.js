@@ -6,9 +6,13 @@ const main = async () => {
   while (true) {
     const obj = await gameStartMenu();
   
-    console.clear();
-  
-    await characterActionMenu(obj);
+    if (obj == "exit") {
+      return;
+    } else if (obj) {
+      console.clear();
+      await characterActionMenu(obj);
+    }
+    
   }
 };
 
