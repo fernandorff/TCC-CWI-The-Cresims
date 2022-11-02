@@ -6,6 +6,44 @@ import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
 // calcula o tempo necessário para preencher energia completamente segundo as regras de negocio
 //
 
+const clouds = async (cloudId) => {
+  switch (cloudId) {
+    case 1:
+      return `˖⁺｡˚⋆˙♥️⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆*✧˖°☁︎｡`;
+
+    case 2:
+      return `⋆˙♥️⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆*✧˖°☁︎｡˖⁺｡˚`;
+
+    case 3:
+      return `｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆*✧˖°☁︎｡˖⁺｡˚⋆˙♥️⋆`;
+
+    case 4:
+      return `｡ ﾟ☾ ﾟ｡⋆*✧˖°☁︎｡˖⁺｡˚⋆˙♥️⋆｡ﾟ☁︎｡⋆`;
+
+    case 5:
+      return `｡⋆*✧˖°☁︎｡˖⁺｡˚⋆˙♥️⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ`;
+
+    case 6:
+      return `˖°☁︎｡˖⁺｡˚⋆˙♥️⋆｡ﾟ☁︎｡⋆｡ ﾟ☾ ﾟ｡⋆*✧`;
+
+    case 7:
+      return `ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ`;
+  }
+};
+
+const zZz = async (zZzId) => {
+  switch (zZzId) {
+    case 1:
+      return `z  `;
+    case 2:
+      return `zZ `;
+    case 3:
+      return `zZz`;
+    case 4:
+      return `!!!`;
+  }
+};
+
 const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
   let timeForFullEnergy = 0;
   let energyForFull = 32 - actingCharacter.energy;
@@ -26,29 +64,59 @@ const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
 //
 
 const sleepAction = async (actingCharacter, sleepTime) => {
+  let cloudId = 1;
+  let zZzId = 1;
   for (let i = 0; i < sleepTime; ++i) {
     let waitingDots = ".";
     for (let j = 0; j < i % 3; ++j) {
       waitingDots += ".";
     }
+    if (cloudId > 6) {
+      cloudId = 1;
+    }
+    if (zZzId > 3) {
+      zZzId = 1;
+    }
     console.clear();
     console.log(`
 ${await theCresimsLogo()}
 
+${await clouds(cloudId)}
+         .           .
+      .  |,,,_______/|
+  ${await zZz(zZzId)} | (u_u)/    .//| ${await zZz(zZzId)}
+      |/___/______|//! 
+      |___________|/
+      !           !
+
+        ${i} / ${sleepTime}
+
 ${actingCharacter.name} está dormindo${waitingDots}
             
-${i} / ${sleepTime}
+
 `);
     actingCharacter.time -= 1000;
+    cloudId += 1;
+    zZzId += 1;
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
   console.clear();
+  zZzId = 4;
+  cloudId = 7;
   console.log(`
 ${await theCresimsLogo()}
-        
+
+${await clouds(cloudId)}
+         .           .
+      .  |,,,_______/|
+  ${await zZz(zZzId)} | (O_O)/    .//| WAKE ME UP
+      |/___/______|//! 
+      |___________|/
+      !           !
+
+        ${sleepTime} / ${sleepTime}
+
 ${actingCharacter.name} terminou de dormir!
-    
-${sleepTime} / ${sleepTime}
 `);
   await useQuestion(`Pressione ENTER para continuar...`);
 };
@@ -72,13 +140,13 @@ ${await characterInfoDisplay(actingCharacter)}
 
 Quanto tempo você quer dormir?
 ${warningMessage}
-1. Até recuperar toda a energia ( -${await calculateNecessaryTimeForFullEnergy(
+1. 1 ciclo de sono  ( -5000⌛️  +4✨ )
+2. 2 ciclos de sono ( -10000⌛️  +10✨ )
+3. 3 ciclos de sono ( -15000⌛️  +18✨ )
+4. 4 ciclos de sono ( -20000⌛️  +28✨ )
+5. Até recuperar toda a energia ( -${await calculateNecessaryTimeForFullEnergy(
       actingCharacter
     )}⌛️  +100%✨ )
-2. 1 ciclo de sono  ( -5000⌛️  +4✨ )
-3. 2 ciclos de sono ( -10000⌛️  +10✨ )
-4. 3 ciclos de sono ( -15000⌛️  +18✨ )
-5. 4 ciclos de sono ( -20000⌛️  +28✨ )
 
 X. Voltar ao menu de ações
 
@@ -86,16 +154,16 @@ Sua escolha:`);
     input = input.toUpperCase();
 
     switch (input) {
-      case "1":
+      case "5":
         await sleepAction(
           actingCharacter,
           (await calculateNecessaryTimeForFullEnergy(actingCharacter)) / 1000
         );
 
-        actingCharacter.energy = 32
+        actingCharacter.energy = 32;
         return actingCharacter;
 
-      case "2":
+      case "1":
         sleepTime = 5;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 4;
@@ -106,7 +174,7 @@ Sua escolha:`);
 
         return actingCharacter;
 
-      case "3":
+      case "2":
         sleepTime = 10;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 10;
@@ -114,10 +182,10 @@ Sua escolha:`);
         if (actingCharacter.energy > 32) {
           actingCharacter.energy = 32;
         }
-        
+
         return actingCharacter;
 
-      case "4":
+      case "3":
         sleepTime = 15;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 18;
@@ -128,7 +196,7 @@ Sua escolha:`);
 
         return actingCharacter;
 
-      case "5":
+      case "4":
         sleepTime = 20;
         await sleepAction(actingCharacter, sleepTime);
         actingCharacter.energy += 28;

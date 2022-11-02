@@ -4,8 +4,8 @@ import {
   setCharacter,
   getCharacter,
   getAllCharacters,
-  deleteCharacters
-} from "../crud/character.js"
+  deleteCharacters,
+} from "../crud/character.js";
 
 export const gameStartMenu = async () => {
   let warningMessage = ``;
@@ -22,8 +22,11 @@ ${await theCresimsLogo()}
 Escolha uma das opções:
 ${warningMessage}
 1 - Criar Personagem
+
 2 - Escolher Personagem
+
 3 - Listar Personagens
+
 4 - Deletar Personagem
 
 Sua escolha: `);

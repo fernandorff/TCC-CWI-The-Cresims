@@ -47,11 +47,18 @@ Sua escolha:`);
     switch (input) {
       // Trabalhar
       case "1":
+        if (actingCharacter.energy <= 2) {
+          warningMessage = `
+- Opção ${input} escolhida
+!!! O personagem precisa de no mínimo 3 de energia para trabalhar !!!
+        `;
+          break;
+        }
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
         `;
-        actingCharacter = await menuWork(actingCharacter)
+        actingCharacter = await menuWork(actingCharacter);
         break;
 
       // Treinar habilidade
@@ -60,7 +67,7 @@ Sua escolha:`);
         warningMessage = `
 - Opção ${input} escolhida
         `;
-        actingCharacter = await menuTrainning(actingCharacter)
+        actingCharacter = await menuTrainning(actingCharacter);
         break;
 
       // Dormir
@@ -73,7 +80,8 @@ Sua escolha:`);
 `;
           break;
         }
-        
+        warningMessage = ``;
+
         console.clear();
         actingCharacter = await sleepMenu(actingCharacter);
         break;
@@ -95,10 +103,11 @@ Sua escolha:`);
 `;
           break;
         }
+        warningMessage = ``;
         console.clear();
         actingCharacter.hygiene = 28;
         actingCharacter.cresceleons -= 10;
-        actingCharacter = await takeAShower(actingCharacter, 5)
+        actingCharacter = await takeAShower(actingCharacter, 5);
         break;
 
       // Comprar item
@@ -107,7 +116,7 @@ Sua escolha:`);
         warningMessage = `
 - Opção ${input} escolhida
         `;
-        actingCharacter = await menuBuyItens(actingCharacter)
+        actingCharacter = await menuBuyItens(actingCharacter);
         break;
 
       // Interagir com outro personagem
@@ -151,7 +160,7 @@ Sua escolha:`);
 
       // OPÇÃO INVALIDA e Cheat
       default:
-        const characterTemp = { ...actingCharacter }
+        const characterTemp = { ...actingCharacter };
         actingCharacter = await executeCheat(actingCharacter, input);
         if (characterTemp != actingCharacter) {
           warningMessage = `
