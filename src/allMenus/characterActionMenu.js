@@ -157,7 +157,7 @@ Sua escolha:`);
         if (!status) {
           warningMessage = `
 - Opção ${input} escolhida
-  !!! Energia insuficiente para realizar interação !!!`;
+  !!! Interação não realizada !!!`;
         }
         break;
 

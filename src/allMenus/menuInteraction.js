@@ -24,6 +24,10 @@ ${await theCresimsLogo()}
 Para interagir com algum personagem é nescessario informar-lo primeiro`);
     const characterInteraction = await getCharacter(character);
 
+    if (characterInteraction == character) {
+      return [character, false];
+    }
+
     try {
       if (characterInteraction.id != character.id) {
         const newCharacter = createRelation(character, characterInteraction);
