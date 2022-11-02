@@ -59,10 +59,6 @@ const calculateNecessaryTimeForFullEnergy = async (character) => {
   return timeForFullEnergy;
 };
 
-//
-// Executa ação de dormir
-//
-
 export const sleepAction = async (character, sleepTime, animation) => {
   let cloudId = 1;
   let zZzId = 1;
@@ -131,10 +127,6 @@ ${character.name} terminou de dormir!
     bonus += 2;
   }
 };
-
-//
-// Exibe o menu de opções de dormir
-//
 
 export const sleepMenu = async (character) => {
   console.clear();
