@@ -17,5 +17,5 @@ export const characterInfoDisplay = async (character) => {
        ${character.iconAspiration}  Pontos de ${character.aspiration}: ${
     character.skill
   }
-       Itens: ${await getItemList(character)}`;
+       📦  Itens: ${await getItemList(character)}`;
 };

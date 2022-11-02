@@ -49,7 +49,7 @@ ${await theCresimsLogo()}
 `);
 
   listItensSkill.forEach((product) => {
-    console.log(product.id + ". " + product.nome);
+    console.log(`${product.id}. ${product.nome}  $${product.preco}`);
   });
   console.log(`X. Retornar`);
 
