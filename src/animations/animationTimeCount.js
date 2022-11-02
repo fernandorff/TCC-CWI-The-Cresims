@@ -15,7 +15,7 @@ ${count} / ${time / 1000}
   }
 };
 
-const timeCount = (count) => {
+const vstimeCount = (count) => {
   for (let index = 0; index < 1000000000; index++) {}
 
   return ++count;

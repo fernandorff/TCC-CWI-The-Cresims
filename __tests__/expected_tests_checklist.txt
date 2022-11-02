@@ -2,7 +2,7 @@
 ✓ Deve conseguir atribuir uma aspiração ao Cresim  
 ✓ Deve validar os pontos de energia do personagem para que não passem de 32 pontos  
 ✓ Deve validar os pontos de energia do personagem para que não fiquem negativados  
-Deve conseguir dormir e receber seus pontos de energia  
+✓ Deve conseguir dormir e receber seus pontos de energia  
 ✓ Deve conseguir comprar um item de habilidade  
 ✓ Deve validar ao tentar comprar um item de habilidade sem Cresceleons suficientes  
 ✓ Deve conseguir concluir um ciclo de treino com habilidade que não é aspiração e receber os pontos corretamente  
