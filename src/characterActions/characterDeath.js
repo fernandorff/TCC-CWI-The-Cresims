@@ -1,4 +1,3 @@
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
 import { useQuestion } from "../services/question/use-question.js";
 
 const epitafios = [
@@ -12,14 +11,14 @@ const epitafios = [
   "Nunca foi um bom exemplo, mas era gente fina...",
 ];
 
-export const characterDeath = async (actingCharacter) => {
+export const characterDeath = async (character) => {
   console.clear();
   console.log(`
 
 
 
           -|-
-           |             Aqui jaz ${actingCharacter.name}...
+           |             Aqui jaz ${character.name}...
        .-¯¯¯¯¯-.
      .'         '.    “${epitafios[Math.floor(Math.random() * 7)]}”
      |  R  I  P  |    
@@ -32,5 +31,5 @@ export const characterDeath = async (actingCharacter) => {
 `);
   await useQuestion(`Pressione ENTER para continuar...`);
 
-  return actingCharacter;
+  return character;
 };

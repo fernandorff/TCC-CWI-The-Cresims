@@ -1,6 +1,8 @@
 import { useQuestion } from "../services/question/use-question.js";
 import { getStorage, updateStorage } from "./storage.js";
 import { menuAbilitys } from "../allMenus/menuAbilitys.js";
+import { gameStartMenu } from "../allMenus/gameStartMenu.js";
+import { characterActionMenu } from "../allMenus/characterActionMenu.js";
 
 export const setCharacter = async () => {
   const id = getId();
@@ -56,25 +58,30 @@ export const setCharacter = async () => {
 };
 
 export const getCharacter = async () => {
+  let warningMessage = `
+### Escolha um personagem ###
+`;
+
   const storage = getStorage();
 
-  console.log(`
-### Escolha um personagem para jogar ###
-`);
+  console.log(`${warningMessage}`);
 
   for (const obj of storage) {
     console.log(`${obj.id} - ${obj.name} (Tempo restante: ${obj.time})`);
   }
+  console.log(`X - Retornar`);
 
   const input = await useQuestion(`
-Escolha o id do personagem: `);
+Sua escolha `);
+
   const character = storage.find((charac) => charac.id == input);
 
   if (character) {
     return character;
   }
-
-  console.log("Escolha um id valido");
+  warningMessage = `
+!!! Insira um ID valido !!!
+`;
 };
 
 export const getAllCharacters = async () => {

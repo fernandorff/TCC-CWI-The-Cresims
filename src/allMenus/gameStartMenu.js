@@ -21,13 +21,13 @@ ${await theCresimsLogo()}
                                                                                           
 Escolha uma das opções:
 ${warningMessage}
-1 - Criar Personagem
+1. Criar Personagem
 
-2 - Escolher Personagem
+2. Escolher Personagem
 
-3 - Listar Personagens
+3. Listar Personagens
 
-4 - Deletar Personagem
+4. Deletar Personagem
 
 Sua escolha: `);
 
@@ -42,6 +42,7 @@ Sua escolha: `);
       case "4":
         await deleteCharacters();
         break;
+
       default:
         console.clear();
         warningMessage = `

@@ -10,8 +10,12 @@ import { menuTrainning } from "./menuTranning.js";
 import { menuInteraction } from "./menuInteraction.js";
 import { updateCharacterBD } from "../crud/character.js";
 import { characterDeath } from "../characterActions/characterDeath.js";
+import { gameStartMenu } from "./gameStartMenu.js";
 
 export const characterActionMenu = async (character) => {
+  if (character == null) {
+    return;
+  }
   if (character.energy < 0) {
     character.energy = 0;
   }
@@ -34,23 +38,23 @@ ${await characterInfoDisplay(character)}
 ${warningMessage}
 Escolha uma ação para o(a) ${character.name}:
 
-1.  ✅ Trabalhar ⬇⌛️ ⬇🛁 ⬆💵
+1. Trabalhar ⬇⌛️ ⬇🛁 ⬆💵
 
-2.  ✅ Treinar habilidade de ${character.aspiration} ⬇⌛️ ⬇🛁 ⬆🎮
+2. Treinar habilidade de ${character.aspiration} ⬇⌛️ ⬇🛁 ⬆🎮
 
-3.  ✅ Dormir ⬇⌛️ ⬆✨
+3. Dormir ⬇⌛️ ⬆✨
 
-4.  ✅ Tomar banho ⬇⌛️ ⬇💵 ⬆🛁
+4. Tomar banho ⬇⌛️ ⬇💵 ⬆🛁
  
-5.  ✅ Comprar item ⬇💵 ⬆🎮
+5. Comprar item ⬇💵 ⬆🎮
 
-6.  ✅ Interagir com outro persongaem ⬇⌛️ ⬆❤️
+6. Interagir com outro personagem ⬇⌛️ ⬆❤️
 
-7.  ✅ ⬇10✨
+7. ⬇10✨
 
-8.  ✅ ⬇10🛁
+8. ⬇10🛁
 
-X.  ✅ Voltar ao menu principal
+X. Voltar ao menu principal
 
 Sua escolha:`);
 
@@ -146,10 +150,10 @@ Sua escolha:`);
 
       // Voltar para menu principal
       case "X":
-        return;
+        return gameStartMenu();
 
       case "x":
-        return;
+        return gameStartMenu();
 
       // Perder 10 energia
       case "7":

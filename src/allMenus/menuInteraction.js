@@ -13,8 +13,7 @@ export const menuInteraction = async (character) => {
     console.log(`
 ${await theCresimsLogo()}
 
-Para interagir com algum personagem é nescessario 
-informar-lo primeiro`);
+Para interagir com algum personagem é nescessario informar-lo primeiro`);
     const characterInteraction = await getCharacter();
 
     try {

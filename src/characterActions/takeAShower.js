@@ -33,14 +33,12 @@ ${a(r())}<(u_u)>${a(r())}   ___| |
 ${a(r())}${a(r())} | ${a(r())}${a(r())}  (    .'
 ${a(r())}${a(r())} LL ${a(r())}${a(r())}  )  (    
 
+        ${i} / ${showerTime}
+
 ${actingCharacter.name} está tomando banho${waitingDots}
-
-
-            
-${i} / ${showerTime}
 `);
     actingCharacter.time -= 1000;
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 500));
   }
   console.clear();
   console.log(`
@@ -52,10 +50,10 @@ ${await theCresimsLogo()}
   <(O_O)>     ___| |
      |       (    .'
 .....LL.....  )  (     
-        
+
+        ${showerTime} / ${showerTime}  
+
 ${actingCharacter.name} terminou de tomar banho!
-    
-${showerTime} / ${showerTime}
 `);
   await useQuestion(`Pressione ENTER para continuar...`);
 
