@@ -9,9 +9,19 @@ import { menuBuyItens } from "./menuBuyItens.js";
 import { menuTrainning } from "./menuTranning.js";
 import { menuInteraction } from "./menuInteraction.js";
 import { updateCharacterBD } from "../crud/character.js";
+import { characterDeath } from "../characterActions/characterDeath.js";
 
 export const characterActionMenu = async (character) => {
-  let actingCharacter = character;
+  if (character.energy < 0) {
+    character.energy = 0;
+  }
+  if (character.hygiene < 0) {
+    character.hygiene = 0;
+  }
+  if (character.time <= 0) {
+    await characterDeath(character);
+    return;
+  }
   let warningMessage = "";
   let status;
 
@@ -20,13 +30,13 @@ export const characterActionMenu = async (character) => {
     const input = await useQuestion(`
 ${await theCresimsLogo()}
 
-${await characterInfoDisplay(actingCharacter)}
+${await characterInfoDisplay(character)}
 ${warningMessage}
-Escolha uma ação para o(a) ${actingCharacter.name}:
+Escolha uma ação para o(a) ${character.name}:
 
 1.  ✅ Trabalhar ⬇⌛️ ⬇🛁 ⬆💵
 
-2.  ✅ Treinar habilidade de ${actingCharacter.aspiration} ⬇⌛️ ⬇🛁 ⬆🎮
+2.  ✅ Treinar habilidade de ${character.aspiration} ⬇⌛️ ⬇🛁 ⬆🎮
 
 3.  ✅ Dormir ⬇⌛️ ⬆✨
 
@@ -47,7 +57,7 @@ Sua escolha:`);
     switch (input) {
       // Trabalhar
       case "1":
-        if (actingCharacter.energy <= 2) {
+        if (character.energy <= 2) {
           warningMessage = `
 - Opção ${input} escolhida
 !!! O personagem precisa de no mínimo 3 de energia para trabalhar !!!
@@ -58,7 +68,7 @@ Sua escolha:`);
         warningMessage = `
 - Opção ${input} escolhida
         `;
-        actingCharacter = await menuWork(actingCharacter);
+        character = await menuWork(character);
         break;
 
       // Treinar habilidade
@@ -67,13 +77,13 @@ Sua escolha:`);
         warningMessage = `
 - Opção ${input} escolhida
         `;
-        actingCharacter = await menuTrainning(actingCharacter);
+        character = await menuTrainning(character);
         break;
 
       // Dormir
       case "3":
-        if (actingCharacter.energy >= 32) {
-          actingCharacter.energy = 32;
+        if (character.energy >= 32) {
+          character.energy = 32;
           warningMessage = `
 - Opção ${input} escolhida
 ### O personagem está com a energia completa ###
@@ -83,20 +93,20 @@ Sua escolha:`);
         warningMessage = ``;
 
         console.clear();
-        actingCharacter = await sleepMenu(actingCharacter);
+        character = await sleepMenu(character);
         break;
 
       // Tomar banho
       case "4":
-        if (actingCharacter.hygiene >= 28) {
-          actingCharacter.hygiene = 28;
+        if (character.hygiene >= 28) {
+          character.hygiene = 28;
           warningMessage = `
 - Opção ${input} escolhida
 ### O personagem está completamente limpo ###
 `;
           break;
         }
-        if (actingCharacter.cresceleons < 10) {
+        if (character.cresceleons < 10) {
           warningMessage = `
 - Opção ${input} escolhida
 !!! O personagem não tem 10 Cresceleons !!!
@@ -105,9 +115,9 @@ Sua escolha:`);
         }
         warningMessage = ``;
         console.clear();
-        actingCharacter.hygiene = 28;
-        actingCharacter.cresceleons -= 10;
-        actingCharacter = await takeAShower(actingCharacter, 10);
+        character.hygiene = 28;
+        character.cresceleons -= 10;
+        character = await takeAShower(character, 10);
         break;
 
       // Comprar item
@@ -116,13 +126,13 @@ Sua escolha:`);
         warningMessage = `
 - Opção ${input} escolhida
         `;
-        actingCharacter = await menuBuyItens(actingCharacter);
+        character = await menuBuyItens(character);
         break;
 
       // Interagir com outro personagem
       case "6":
         console.clear();
-        [actingCharacter, status] = await menuInteraction(actingCharacter);
+        [character, status] = await menuInteraction(character);
 
         warningMessage = `
 - Opção ${input} escolhida
@@ -146,9 +156,9 @@ Sua escolha:`);
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
-### ${actingCharacter.name} perde 10 de energia ###
+### ${character.name} perde 10 de energia ###
 `;
-        actingCharacter.energy -= 10;
+        character.energy -= 10;
         break;
 
       // Perder 10 higiene
@@ -156,16 +166,16 @@ Sua escolha:`);
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
-### ${actingCharacter.name} perde 10 de energia ###
+### ${character.name} perde 10 de energia ###
 `;
-        actingCharacter.hygiene -= 10;
+        character.hygiene -= 10;
         break;
 
       // OPÇÃO INVALIDA e Cheat
       default:
-        const characterTemp = { ...actingCharacter };
-        actingCharacter = await executeCheat(actingCharacter, input);
-        if (characterTemp != actingCharacter) {
+        const characterTemp = { ...character };
+        character = await executeCheat(character, input);
+        if (characterTemp != character) {
           warningMessage = `
 - Opção ${input} escolhida
 ### Cheat aplicado com sucesso ###
@@ -181,6 +191,6 @@ Sua escolha:`);
         break;
     }
 
-    updateCharacterBD(actingCharacter);
+    updateCharacterBD(character);
   }
 };
