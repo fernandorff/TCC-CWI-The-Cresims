@@ -13,23 +13,23 @@ import { characterDeath } from "../characterActions/characterDeath.js";
 import { gameStartMenu } from "./gameStartMenu.js";
 
 export const characterActionMenu = async (character) => {
-  if (character == null) {
-    return;
-  }
-  if (character.energy < 0) {
-    character.energy = 0;
-  }
-  if (character.hygiene < 0) {
-    character.hygiene = 0;
-  }
-  if (character.time <= 0) {
-    await characterDeath(character);
-    return;
-  }
   let warningMessage = "";
   let status;
 
   while (true) {
+    if (character == null) {
+      return;
+    }
+    if (character.energy < 0) {
+      character.energy = 0;
+    }
+    if (character.hygiene < 0) {
+      character.hygiene = 0;
+    }
+    if (character.time <= 0) {
+      await characterDeath(character);
+      return;
+    }
     console.clear();
     const input = await useQuestion(`
 ${await theCresimsLogo()}
@@ -119,9 +119,8 @@ Sua escolha:`);
         }
         warningMessage = ``;
         console.clear();
-        character.hygiene = 28;
-        character.cresceleons -= 10;
-        character = await takeAShower(character, 10);
+
+        character = await takeAShower(character, 10, true);
         break;
 
       // Comprar item

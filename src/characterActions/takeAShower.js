@@ -16,14 +16,15 @@ function r() {
   return Math.ceil(Math.random() * 3);
 }
 
-export const takeAShower = async (actingCharacter, showerTime) => {
-  for (let i = 0; i < showerTime; ++i) {
-    let waitingDots = ".";
-    for (let j = 0; j < i % 3; ++j) {
-      waitingDots += ".";
-    }
-    console.clear();
-    console.log(`
+export const takeAShower = async (character, showerTime, animation) => {
+  if (animation) {
+    for (let i = 0; i < showerTime; ++i) {
+      let waitingDots = ".";
+      for (let j = 0; j < i % 3; ++j) {
+        waitingDots += ".";
+      }
+      console.clear();
+      console.log(`
 ${await theCresimsLogo()}
 
     _ꓕ_
@@ -35,13 +36,13 @@ ${a(r())}${a(r())} LL ${a(r())}${a(r())}  )  (
 
         ${i} / ${showerTime}
 
-${actingCharacter.name} está tomando banho${waitingDots}
+${character.name} está tomando banho${waitingDots}
 `);
-    actingCharacter.time -= 1000;
-    await new Promise((resolve) => setTimeout(resolve, 500));
-  }
-  console.clear();
-  console.log(`
+      character.time -= 1000;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
+    console.clear();
+    console.log(`
 ${await theCresimsLogo()}
 
     _ꓕ_
@@ -53,9 +54,13 @@ ${await theCresimsLogo()}
 
         ${showerTime} / ${showerTime}  
 
-${actingCharacter.name} terminou de tomar banho!
+${character.name} terminou de tomar banho!
 `);
-  await useQuestion(`Pressione ENTER para continuar...`);
+    await useQuestion(`Pressione ENTER para continuar...`);
+  }
 
-  return actingCharacter;
+  character.hygiene = 28;
+  character.cresceleons -= 10;
+
+  return character;
 };

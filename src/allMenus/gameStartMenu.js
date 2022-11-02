@@ -29,7 +29,7 @@ ${warningMessage}
 
 4. Deletar Personagem
 
-X. Deletar Personagem
+X. Finalizar jogo
 
 Sua escolha: `);
 
