@@ -44,9 +44,9 @@ const zZz = async (zZzId) => {
   }
 };
 
-const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
+const calculateNecessaryTimeForFullEnergy = async (character) => {
   let timeForFullEnergy = 0;
-  let energyForFull = 32 - actingCharacter.energy;
+  let energyForFull = 32 - character.energy;
   let bonus = 0;
 
   while (energyForFull > 0) {
@@ -63,11 +63,11 @@ const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
 // Executa ação de dormir
 //
 
-export const sleepAction = async (actingCharacter, sleepTime, animation) => {
+export const sleepAction = async (character, sleepTime, animation) => {
   let cloudId = 1;
   let zZzId = 1;
   for (let i = 0; i < sleepTime; ++i) {
-    actingCharacter.time -= 1000;
+    character.time -= 1000;
     if (animation) {
       let waitingDots = ".";
       for (let j = 0; j < i % 3; ++j) {
@@ -93,7 +93,7 @@ ${await clouds(cloudId)}
 
         ${i} / ${sleepTime}
 
-${actingCharacter.name} está dormindo${waitingDots}
+${character.name} está dormindo${waitingDots}
             
 
 `);
@@ -120,11 +120,16 @@ ${await clouds(cloudId)}
 
         ${sleepTime} / ${sleepTime}
 
-${actingCharacter.name} terminou de dormir!
+${character.name} terminou de dormir!
 `);
     await useQuestion(`Pressione ENTER para continuar...`);
   }
-  for (let i = 0; i < sleepTime; i++) {}
+  let bonus = 0;
+  for (let i = 0; i < sleepTime / 5; i++) {
+    character.energy += 4;
+    character.energy += bonus;
+    bonus += 2;
+  }
 };
 
 //
@@ -133,7 +138,6 @@ ${actingCharacter.name} terminou de dormir!
 
 export const sleepMenu = async (character) => {
   console.clear();
-  const actingCharacter = character;
   let sleepTime = 0;
   let warningMessage = ``;
 
@@ -142,7 +146,7 @@ export const sleepMenu = async (character) => {
     let input = await useQuestion(`
 ${await theCresimsLogo()}
 
-${await characterInfoDisplay(actingCharacter)}
+${await characterInfoDisplay(character)}
 
 Quanto tempo você quer dormir?
 ${warningMessage}
@@ -151,7 +155,7 @@ ${warningMessage}
 3. 3 ciclos de sono ( -15000⌛️  +18✨ )
 4. 4 ciclos de sono ( -20000⌛️  +28✨ )
 5. Até recuperar toda a energia ( -${await calculateNecessaryTimeForFullEnergy(
-      actingCharacter
+      character
     )}⌛️  +100%✨ )
 
 X. Voltar ao menu de ações
@@ -162,60 +166,39 @@ Sua escolha:`);
     switch (input) {
       case "5":
         await sleepAction(
-          actingCharacter,
-          (await calculateNecessaryTimeForFullEnergy(actingCharacter)) / 1000,
+          character,
+          (await calculateNecessaryTimeForFullEnergy(character)) / 1000,
           true
         );
 
-        actingCharacter.energy = 32;
-        return actingCharacter;
+        return character;
 
       case "1":
         sleepTime = 5;
-        await sleepAction(actingCharacter, sleepTime, true);
-        actingCharacter.energy += 4;
+        await sleepAction(character, sleepTime, true);
 
-        if (actingCharacter.energy > 32) {
-          actingCharacter.energy = 32;
-        }
-
-        return actingCharacter;
+        return character;
 
       case "2":
         sleepTime = 10;
-        await sleepAction(actingCharacter, sleepTime, true);
-        actingCharacter.energy += 10;
+        await sleepAction(character, sleepTime, true);
 
-        if (actingCharacter.energy > 32) {
-          actingCharacter.energy = 32;
-        }
-
-        return actingCharacter;
+        return character;
 
       case "3":
         sleepTime = 15;
-        await sleepAction(actingCharacter, sleepTime, true);
-        actingCharacter.energy += 18;
+        await sleepAction(character, sleepTime, true);
 
-        if (actingCharacter.energy > 32) {
-          actingCharacter.energy = 32;
-        }
-
-        return actingCharacter;
+        return character;
 
       case "4":
         sleepTime = 20;
-        await sleepAction(actingCharacter, sleepTime, true);
-        actingCharacter.energy += 28;
+        await sleepAction(character, sleepTime, true);
 
-        if (actingCharacter.energy > 32) {
-          actingCharacter.energy = 32;
-        }
-
-        return actingCharacter;
+        return character;
 
       case "X":
-        return actingCharacter;
+        return character;
 
       default:
         console.clear();

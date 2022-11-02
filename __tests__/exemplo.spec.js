@@ -13,6 +13,7 @@ import { executeCheat } from "../src/cheats/cheats";
 import { cheatJunim } from "../src/cheats/cheatJunim";
 import { takeAShower } from "../src/characterActions/takeAShower";
 import { validateEnergyAndHygiene } from "../src/allMenus/characterActionMenu";
+import { sleepAction } from "../src/characterActions/sleepMenu";
 
 let character, character_02;
 let itensSkill, product, productChoice;
@@ -116,11 +117,11 @@ describe("01 - Regras Gerais / Criação do Cresim", () => {
 
 describe("02 - Energia", () => {
   it("Deve conseguir dormir e receber seus pontos de energia", async () => {
-    character.energy -= 1000;
+    character.energy = 0;
 
-    await validateEnergyAndHygiene(character);
+    await sleepAction(character, 15, false);
 
-    const expectedData = 0;
+    const expectedData = 18;
 
     expect(character.energy).toBe(expectedData);
   });
@@ -378,7 +379,7 @@ describe("6 - Cheats", () => {
   });
 });
 
-describe("7 - Higience", () => {
+describe("7 - Higiene", () => {
   it("Deve descontar 10 Cresceleons ao tomar banho", async () => {
     const newCharacter = await takeAShower(character, 10, false);
     const numExpect = 1490;
