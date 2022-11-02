@@ -96,17 +96,18 @@ const getId = () => {
     if (!character) {
       return cont;
     }
+  }
 }
 
 export const updateCharacterBD = character => {
-    const listCharacter = getStorage();
-    
-    const newList = listCharacter.map(element => {
-      if (character.id == element.id) {
-        return character
-      }
-      return element
-    })
+  const listCharacter = getStorage();
   
-    updateStorage([ ...newList ])
+  const newList = listCharacter.map(element => {
+    if (character.id == element.id) {
+      return character
+    }
+    return element
+  })
+
+  updateStorage([ ...newList ])
 }
