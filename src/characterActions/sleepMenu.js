@@ -63,22 +63,24 @@ const calculateNecessaryTimeForFullEnergy = async (actingCharacter) => {
 // Executa ação de dormir
 //
 
-const sleepAction = async (actingCharacter, sleepTime) => {
+export const sleepAction = async (actingCharacter, sleepTime, animation) => {
   let cloudId = 1;
   let zZzId = 1;
   for (let i = 0; i < sleepTime; ++i) {
-    let waitingDots = ".";
-    for (let j = 0; j < i % 3; ++j) {
-      waitingDots += ".";
-    }
-    if (cloudId > 6) {
-      cloudId = 1;
-    }
-    if (zZzId > 3) {
-      zZzId = 1;
-    }
-    console.clear();
-    console.log(`
+    actingCharacter.time -= 1000;
+    if (animation) {
+      let waitingDots = ".";
+      for (let j = 0; j < i % 3; ++j) {
+        waitingDots += ".";
+      }
+      if (cloudId > 6) {
+        cloudId = 1;
+      }
+      if (zZzId > 3) {
+        zZzId = 1;
+      }
+      console.clear();
+      console.log(`
 ${await theCresimsLogo()}
 
 ${await clouds(cloudId)}
@@ -95,15 +97,17 @@ ${actingCharacter.name} está dormindo${waitingDots}
             
 
 `);
-    actingCharacter.time -= 1000;
-    cloudId += 1;
-    zZzId += 1;
-    await new Promise((resolve) => setTimeout(resolve, 500));
+
+      cloudId += 1;
+      zZzId += 1;
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
   }
-  console.clear();
-  zZzId = 4;
-  cloudId = 7;
-  console.log(`
+  if (animation) {
+    console.clear();
+    zZzId = 4;
+    cloudId = 7;
+    console.log(`
 ${await theCresimsLogo()}
 
 ${await clouds(cloudId)}
@@ -118,7 +122,9 @@ ${await clouds(cloudId)}
 
 ${actingCharacter.name} terminou de dormir!
 `);
-  await useQuestion(`Pressione ENTER para continuar...`);
+    await useQuestion(`Pressione ENTER para continuar...`);
+  }
+  for (let i = 0; i < sleepTime; i++) {}
 };
 
 //
@@ -157,7 +163,8 @@ Sua escolha:`);
       case "5":
         await sleepAction(
           actingCharacter,
-          (await calculateNecessaryTimeForFullEnergy(actingCharacter)) / 1000
+          (await calculateNecessaryTimeForFullEnergy(actingCharacter)) / 1000,
+          true
         );
 
         actingCharacter.energy = 32;
@@ -165,7 +172,7 @@ Sua escolha:`);
 
       case "1":
         sleepTime = 5;
-        await sleepAction(actingCharacter, sleepTime);
+        await sleepAction(actingCharacter, sleepTime, true);
         actingCharacter.energy += 4;
 
         if (actingCharacter.energy > 32) {
@@ -176,7 +183,7 @@ Sua escolha:`);
 
       case "2":
         sleepTime = 10;
-        await sleepAction(actingCharacter, sleepTime);
+        await sleepAction(actingCharacter, sleepTime, true);
         actingCharacter.energy += 10;
 
         if (actingCharacter.energy > 32) {
@@ -187,7 +194,7 @@ Sua escolha:`);
 
       case "3":
         sleepTime = 15;
-        await sleepAction(actingCharacter, sleepTime);
+        await sleepAction(actingCharacter, sleepTime, true);
         actingCharacter.energy += 18;
 
         if (actingCharacter.energy > 32) {
@@ -198,7 +205,7 @@ Sua escolha:`);
 
       case "4":
         sleepTime = 20;
-        await sleepAction(actingCharacter, sleepTime);
+        await sleepAction(actingCharacter, sleepTime, true);
         actingCharacter.energy += 28;
 
         if (actingCharacter.energy > 32) {

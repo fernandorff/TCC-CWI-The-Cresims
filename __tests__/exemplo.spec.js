@@ -8,6 +8,7 @@ import { itensSkillDataApi } from "../src/services/api/api";
 import { executeCheat } from "../src/cheats/cheats";
 import { cheatJunim } from "../src/cheats/cheatJunim";
 import { takeAShower } from "../src/characterActions/takeAShower";
+import { validateEnergyAndHygiene } from "../src/allMenus/characterActionMenu";
 
 let character, itensSkill, product, productChoice;
 
@@ -47,6 +48,57 @@ beforeEach(() => {
 
   product = itensSkill[character.aspiration];
   productChoice = product[0];
+});
+
+describe("01 - Regras Gerais / Criação do Cresim", () => {
+  it("Deve conseguir criar um novo Cresim com nome, pontos de higiene e energia carregados e 1500 Cresceleons", async () => {
+    const dataExpected = ["Fulano", 28, 32, 1500];
+
+    expect([
+      character.name,
+      character.hygiene,
+      character.energy,
+      character.cresceleons,
+    ]).toMatchObject(dataExpected);
+  });
+
+  it("Deve conseguir atribuir uma aspiração ao Cresim  ", async () => {
+    const dataExpected = "JOGOS";
+
+    expect(character.aspiration).toBe(dataExpected);
+  });
+
+  it("Deve validar os pontos de energia do personagem para que não passem de 32 pontos", async () => {
+    character.energy += 1000;
+
+    await validateEnergyAndHygiene(character);
+
+    const expectedData = 32;
+
+    expect(character.energy).toBe(expectedData);
+  });
+
+  it("Deve validar os pontos de energia do personagem para que não fiquem negativados  ", async () => {
+    character.energy -= 1000;
+
+    await validateEnergyAndHygiene(character);
+
+    const expectedData = 0;
+
+    expect(character.energy).toBe(expectedData);
+  });
+});
+
+describe("02 - Energia", () => {
+  it("Deve conseguir dormir e receber seus pontos de energia", async () => {
+    character.energy -= 1000;
+
+    await validateEnergyAndHygiene(character);
+
+    const expectedData = 0;
+
+    expect(character.energy).toBe(expectedData);
+  });
 });
 
 describe("04 - Trabalho", () => {

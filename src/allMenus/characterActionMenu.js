@@ -12,6 +12,21 @@ import { updateCharacterBD } from "../crud/character.js";
 import { characterDeath } from "../characterActions/characterDeath.js";
 import { gameStartMenu } from "./gameStartMenu.js";
 
+export const validateEnergyAndHygiene = async (character) => {
+  if (character.energy > 32) {
+    character.energy = 32;
+  }
+  if (character.energy < 0) {
+    character.energy = 0;
+  }
+  if (character.hygiene > 28) {
+    character.hygiene = 28;
+  }
+  if (character.hygiene < 0) {
+    character.hygiene = 0;
+  }
+};
+
 export const characterActionMenu = async (character) => {
   let warningMessage = "";
   let status;
@@ -20,12 +35,7 @@ export const characterActionMenu = async (character) => {
     if (character == null) {
       return;
     }
-    if (character.energy < 0) {
-      character.energy = 0;
-    }
-    if (character.hygiene < 0) {
-      character.hygiene = 0;
-    }
+    validateEnergyAndHygiene(character);
     if (character.time <= 0) {
       await characterDeath(character);
       return;
