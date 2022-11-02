@@ -34,6 +34,10 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
 export const buyProductItens = (character, productChoice) => {
   const characterBuys = { ...character }
 
+  if (!character || !productChoice) {
+    return character
+  }
+
   if (isBuy(character.cresceleons, productChoice.preco)) {
     characterBuys.cresceleons = Number((characterBuys.cresceleons - productChoice.preco).toFixed(1))
     characterBuys.items.push(productChoice.nome)
