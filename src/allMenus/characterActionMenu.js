@@ -1,4 +1,3 @@
-import { getStorage, updateStorage } from "../crud/storage.js";
 import { sleepMenu } from "../characterActions/sleepMenu.js";
 import { takeAShower } from "../characterActions/takeAShower.js";
 import { useQuestion } from "../services/question/use-question.js";
@@ -8,10 +7,13 @@ import { executeCheat } from "../cheats/cheats.js";
 import { menuWork } from "./menuWork.js";
 import { menuBuyItens } from "./menuBuyItens.js";
 import { menuTrainning } from "./menuTranning.js";
+import { menuInteraction } from "./menuInteraction.js" 
+import { updateCharacterBD } from "../crud/character.js"
 
 export const characterActionMenu = async (character) => {
   let actingCharacter = character;
   let warningMessage = "";
+  let status;
 
   while (true) {
     console.clear();
@@ -32,7 +34,7 @@ Escolha uma ação para o(a) ${actingCharacter.name}:
  
 5.  ❌ Comprar item
 
-6.  ❌ Interagir com outro persongaem ( -2000⌛️  +❤️ )
+6.  ✅ Interagir com outro persongaem ( -2000⌛️  +❤️ )
 
 7.  ✅ Voltar ao menu principal
 
@@ -120,10 +122,16 @@ Sua escolha:`);
       // Interagir com outro personagem
       case "6":
         console.clear();
+        [actingCharacter, status] = await menuInteraction(actingCharacter)
+        
         warningMessage = `
 - Opção ${input} escolhida
-!!! Essa opção se encontra em implementação !!!
-        `;
+  ### Interação entre usuarios realizado com sucesso ###`;
+        if (!status) {
+          warningMessage = `
+- Opção ${input} escolhida
+  !!! Energia insuficiente para realizar interação !!!`;
+        }
         break;
 
       // Voltar para menu principal
@@ -172,17 +180,4 @@ Sua escolha:`);
 
     updateCharacterBD(actingCharacter);
   }
-};
-
-const updateCharacterBD = (character) => {
-  const listCharacter = getStorage();
-
-  const newList = listCharacter.map((element) => {
-    if (character.id == element.id) {
-      return character;
-    }
-    return element;
-  });
-
-  updateStorage([...newList]);
 };
