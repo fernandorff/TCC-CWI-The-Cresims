@@ -19,10 +19,10 @@ export const menuTrainning = async (character) => {
 
     const choice = await choiceItensCresim(character.items)
     const response = await itensSkillDataApi()
-    const choiceItem = getItemSkill(response, choice)
+    const choiceItem = getChoiceItem(response, choice)
     animationTimeCount(TIME_CICLE_TRAINNING, 'Treinando')
 
-    return cicleTrainCharacterProductPurchased(character, choiceItem, choice)
+    return cicleTrainCharacterProductPurchased(character, choiceItem, choiceItem.skillName)
 }
 
 export const choiceItensCresim = async (items) => {
@@ -38,13 +38,18 @@ export const printItens = async (items) => {
     })
 }
 
-export const getItemSkill = (response, choiceItem) => {
+export const getSkillName = (response, choiceItem) => {
+
+}
+
+export const getChoiceItem = (response, choiceItem) => {
     let choice = {}
 
     Object.keys(response).forEach(key => {
         response[key].forEach(item => {
             if (item.nome === choiceItem) {
                 choice = { ...item }
+                choice.skillName = key
             }
         })
     })

@@ -1,8 +1,12 @@
 import { setEnergy, setHygiene, setTimeLife } from "./common.js"
 
-export const setSkill = (character, productChoice, aspiration) => {
-  if (character.aspiration === aspiration) return character.skill + productChoice.pontos + 1
+export const setSkill = (character, productChoice, skillChoice) => {
+  if (character.aspiration === skillChoice) return character.skill + productChoice.pontos + 1
   else return character.skill + productChoice.pontos
+}
+
+export const getSkillName = (itemSkill) => {
+
 }
 
 export const cicleTrainCharacterProductPurchased = (character, productChoice, skillChoice) => {
@@ -16,8 +20,12 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
   const levelSkill = checkLevelSkill(skill)
   const employee = { ...character.employee, level: levelSkill }
   const hygiene = setHygiene(character, HYGIENE_DECREMENT)
+  const ability = {
+    name: skillChoice,
+    skill: productChoice.pontos
+  }
 
-  return { ...character, skill, time, energy, employee, hygiene }
+  return { ...character, skill, time, energy, employee, hygiene, ability }
 }
 
 export const buyProductItens = (character, productChoice) => {
