@@ -5,12 +5,9 @@ import { useQuestion } from "../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 
-<<<<<<< HEAD
 const TIME_CICLE_TRAINNING = 20000
 const TIME = 3000
-=======
-const TIME_CICLE_TRAINNING = 20000;
->>>>>>> 5cd9393336723e7372c42b31b9030b874703bb8c
+
 
 export const menuWork = async (character) => {
   let characterWork = await work(character);
