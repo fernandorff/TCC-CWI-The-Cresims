@@ -1,9 +1,11 @@
+import { animationTimeCount } from "../animations/animationTimeCount.js"
 import { buyProductItens } from "../characterActions/skillAspiration.js"
 import { itensSkillDataApi } from "../services/api/api.js"
 import { useQuestion } from "../services/question/use-question.js"
 import { menuAbilitys } from "./menuAbilitys.js"
 
 export const menuBuyItens = async (character) => {
+  const TIME = 3000
   const response = await itensSkillDataApi()
   const skillChoice = await skillChoiceProduct()
   const product = await productChoice(response, skillChoice)
@@ -13,7 +15,7 @@ export const menuBuyItens = async (character) => {
     return characterBuys
   }
 
-  console.log('Crescelons insufucientes');
+  animationTimeCount(TIME, 'Crescelons insufucientes')
 
   return characterBuys
 }
