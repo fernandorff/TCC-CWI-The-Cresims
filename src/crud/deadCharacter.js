@@ -1,5 +1,0 @@
-
-
-export updateStorageDead() {
-    updateStorageDead()
-}

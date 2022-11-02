@@ -6,7 +6,8 @@ import {
   getAllCharacters,
   deleteCharacters,
 } from "../crud/character.js";
-import { getStorage } from "../crud/storage.js";
+import { getStorage, getStorageDead } from "../crud/storage.js";
+import { characterDeath } from "../characterActions/characterDeath.js";
 
 export const gameStartMenu = async () => {
   let warningMessage = ``;
@@ -32,6 +33,8 @@ ${warningMessage}
 
 4. Deletar Personagem
 
+5. Visualizar Tumulo de Personagem
+
 X. Finalizar jogo
 
 Sua escolha: `);
@@ -46,7 +49,15 @@ Sua escolha: `);
         break;
       case "4":
         const id = await menuDelete()
-        deleteCharacters(id);
+        if (id) {
+          deleteCharacters(id);
+        }
+        break;
+      case "5":
+        const charDead = await menuDead()
+        if (charDead) {
+          await characterDeath(charDead)
+        }
         break;
       case "X":
         console.log("\nFinalizando Game");
@@ -60,6 +71,25 @@ Sua escolha: `);
   }
 };
 
+const menuDead = async () => {
+  const storage = getStorageDead();
+  console.clear()
+  console.log(`
+### Escolha um personagem para vizualizar tumulo ###
+`);
+
+  for (const obj of storage) {
+    console.log(`${obj.id} - ${obj.name}`);
+  }
+  console.log(`X - Retornar ao menu principal.`);
+
+  const id = await useQuestion(`Escolha o id do personagem: `);
+
+  if (id != "X" || id != "x") {
+    return storage[id - 1]
+  }
+}
+
 const menuDelete = async () => {
   const storage = getStorage();
 
@@ -72,6 +102,9 @@ const menuDelete = async () => {
   }
   console.log(`X - Retornar ao menu principal.`);
 
-  return await useQuestion(`
-Escolha o id do personagem: `);
+  const id = await useQuestion(`Escolha o id do personagem: `);
+
+  if (id != "X" || id != "x") {
+    return id
+  }
 }
