@@ -13,13 +13,17 @@ export const menuInteraction = async (character) => {
 informar-lo primeiro`)
         const characterInteraction = await getCharacter();
 
-        if (characterInteraction.id != character.id) {
-            const newCharacter = createRelation(character, characterInteraction)
-            const characterSecond = createRelation(characterInteraction, character)
-
-            return await selectInteraction(newCharacter, characterSecond);
-        } else {
-            console.log("Informe um id de personagem diferente do seu")
+        try {
+            if (characterInteraction.id != character.id) {
+                const newCharacter = createRelation(character, characterInteraction)
+                const characterSecond = createRelation(characterInteraction, character)
+    
+                return await selectInteraction(newCharacter, characterSecond);
+            } else {
+                console.log("Informe um id de personagem diferente do seu")
+            }
+        } catch {
+            console.log("Informe um id valido")
         }
     }
 }
@@ -94,11 +98,13 @@ const pointsInteraction = (character, idCharacter) => {
 
 const showInteractions = (list) => {
     let cont = 1;
-    for (const interaction of list) {
-        console.table({
-            ...interaction,
-            id: cont
-        })
+    console.clear()
+    console.log("Escolha uma das Interações a seguir:\n")
+
+    for (const e of list) {
+        console.log(`${cont} - ${e.interacao} (pontos: ${e.pontos}, energia: ${e.energia})`)
         cont++;
     }
+
+    console.log("")
 }
