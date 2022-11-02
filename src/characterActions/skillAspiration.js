@@ -16,10 +16,7 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
   const levelSkill = checkLevelSkill(skill)
   const employee = { ...character.employee, level: levelSkill }
   const hygiene = setHygiene(character, HYGIENE_DECREMENT)
-  const ability = {
-    name: skillChoice,
-    skill: productChoice.pontos
-  }
+  const ability = { name: skillChoice, skill: productChoice.pontos }
 
   return { ...character, skill, time, energy, employee, hygiene, ability }
 }
