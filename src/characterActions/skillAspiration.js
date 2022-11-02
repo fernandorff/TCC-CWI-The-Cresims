@@ -41,9 +41,10 @@ export const buyProductItens = (character, productChoice) => {
   if (isBuy(character.cresceleons, productChoice.preco)) {
     characterBuys.cresceleons = Number((characterBuys.cresceleons - productChoice.preco).toFixed(1))
     characterBuys.items.push(productChoice.nome)
+    return characterBuys
   }
 
-  return characterBuys
+  return undefined
 }
 
 export const isBuy = (cresceleons, priceProductChoice) => {

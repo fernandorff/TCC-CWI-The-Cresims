@@ -12,11 +12,14 @@ export const menuBuyItens = async (character) => {
   const product = await productChoice(response, skillChoice);
   const characterBuys = buyProductItens( character, product, skillChoice.toUpperCase());
 
+  if(!characterBuys) {
+    animationTimeCount(TIME, "Crescelons insufucientes");
+    return character
+  }
+
   if (characterBuys) {
     return characterBuys;
   }
-
-  animationTimeCount(TIME, "Crescelons insufucientes");
 
   return characterBuys;
 };

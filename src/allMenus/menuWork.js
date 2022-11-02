@@ -4,6 +4,7 @@ import { employeesDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
 
 const TIME_CICLE_TRAINNING = 20000
+const TIME = 3000
 
 export const menuWork = async (character) => {
   let characterWork = await work(character);
@@ -20,7 +21,12 @@ export const menuWork = async (character) => {
     characterWork = await work(characterWork)
   }
 
-  animationTimeCount(TIME_CICLE_TRAINNING, 'Trabalhando')
+  if (characterWork.energy <= 2) {
+    animationTimeCount(TIME, 'Energias insuficiente')
+  } else {
+    animationTimeCount(TIME_CICLE_TRAINNING, 'Trabalhando')
+  }
+
   return characterWork
 };
 
