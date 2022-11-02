@@ -1,6 +1,6 @@
 import { interactionsDataApi } from "../services/api/api.js"
 
-export const interaction = async (character, characterSecondary, interaction) => {    
+export const interaction = (character, characterSecondary, interaction) => {    
     const energy = interaction.energia
     const time = energy * 2000
 
@@ -23,10 +23,11 @@ export const interaction = async (character, characterSecondary, interaction) =>
     })
 
     characterSecondary.relationship.forEach(char => {
-        if (char.id == characterSecondary.id) {
+        if (char.id == character.id) {
             char.level += interaction.pontos
         }
     })
+
 
     return [ character, characterSecondary ]
 }
