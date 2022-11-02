@@ -7,6 +7,13 @@ import {
 } from "../characterActions/interaction.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 
+const interactionAnimation = async (character, display){
+  if (display == true) {
+    
+    
+  }
+}
+
 export const menuInteraction = async (character) => {
   let menuInteractionDisplay = true;
   while ((menuInteractionDisplay = true)) {
@@ -77,6 +84,8 @@ Pontos de energia insuficiente para realizar a interação`
         console.log(
           `
 ${await theCresimsLogo()}
+
+
 
 Interação "${objInterection.interacao}" realizada com sucesso
 `
