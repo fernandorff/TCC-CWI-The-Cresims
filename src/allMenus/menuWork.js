@@ -2,15 +2,29 @@ import { animationTimeCount } from "../animations/animationTimeCount.js";
 import { setEmployee, work } from "../characterActions/work.js";
 import { employeesDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
+import { characterInfoDisplay } from "./characterInfoDisplay.js";
+import { theCresimsLogo } from "./theCresimsLogo.js";
 
+<<<<<<< HEAD
 const TIME_CICLE_TRAINNING = 20000
 const TIME = 3000
+=======
+const TIME_CICLE_TRAINNING = 20000;
+>>>>>>> 5cd9393336723e7372c42b31b9030b874703bb8c
 
 export const menuWork = async (character) => {
   let characterWork = await work(character);
 
   if (!characterWork.employee) {
-    console.log(`O personagem ${character.name} não possui um emprego, escolha um: \n`);
+    console.log(
+      `
+${await theCresimsLogo()}
+
+${await characterInfoDisplay(character)}
+
+O personagem ${character.name} não possui um emprego, escolha um:
+`
+    );
     const response = await employeesDataApi();
     const choice = await choiceEmployee(response);
 
@@ -18,9 +32,10 @@ export const menuWork = async (character) => {
       ...(await setEmployee(character, response[choice - 1])),
     };
 
-    characterWork = await work(characterWork)
+    characterWork = await work(characterWork);
   }
 
+<<<<<<< HEAD
   if (characterWork.energy <= 2) {
     animationTimeCount(TIME, 'Energias insuficiente')
   } else {
@@ -28,6 +43,10 @@ export const menuWork = async (character) => {
   }
 
   return characterWork
+=======
+  animationTimeCount(TIME_CICLE_TRAINNING, "Trabalhando");
+  return characterWork;
+>>>>>>> 5cd9393336723e7372c42b31b9030b874703bb8c
 };
 
 export const choiceEmployee = async (response) => {

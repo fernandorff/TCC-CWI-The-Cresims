@@ -9,7 +9,9 @@ import {
 
 export const gameStartMenu = async () => {
   let warningMessage = ``;
-  while (true) {
+  let gameStartMenu = true;
+
+  while (gameStartMenu == true) {
     console.clear();
     const input = await useQuestion(`
   ▀██ ▀██▀  ▀█▀         ▀██                                          ▄           

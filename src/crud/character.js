@@ -57,7 +57,7 @@ export const setCharacter = async () => {
   return character;
 };
 
-export const getCharacter = async () => {
+export const getCharacter = async (charReturn) => {
   let warningMessage = `
 ### Escolha um personagem ###
 `;
@@ -73,6 +73,10 @@ export const getCharacter = async () => {
 
   const input = await useQuestion(`
 Sua escolha `);
+
+  if (input.toUpperCase() == "X") {
+    return charReturn;
+  }
 
   const character = storage.find((charac) => charac.id == input);
 
