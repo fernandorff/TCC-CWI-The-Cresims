@@ -13,6 +13,28 @@ export const setCharacter = async () => {
   const relationship = [];
   const skill = 0;
   const items = [];
+  let iconAspiration = "";
+  switch (aspiration) {
+    case "PINTURA":
+      iconAspiration = "🎨";
+      break;
+
+    case "GASTRONOMIA":
+      iconAspiration = "🥩";
+      break;
+
+    case "JOGOS":
+      iconAspiration = "🎮";
+      break;
+
+    case "MUSICA":
+      iconAspiration = "🎸";
+      break;
+
+    case "JARDINAGEM":
+      iconAspiration = "🌱";
+      break;
+  }
 
   const character = {
     id,
@@ -25,6 +47,7 @@ export const setCharacter = async () => {
     relationship,
     skill,
     items,
+    iconAspiration,
   };
 
   updateStorage([...getStorage(), character]);
@@ -97,17 +120,17 @@ const getId = () => {
       return cont;
     }
   }
-}
+};
 
-export const updateCharacterBD = character => {
+export const updateCharacterBD = (character) => {
   const listCharacter = getStorage();
-  
-  const newList = listCharacter.map(element => {
-    if (character.id == element.id) {
-      return character
-    }
-    return element
-  })
 
-  updateStorage([ ...newList ])
-}
+  const newList = listCharacter.map((element) => {
+    if (character.id == element.id) {
+      return character;
+    }
+    return element;
+  });
+
+  updateStorage([...newList]);
+};

@@ -7,8 +7,8 @@ import { executeCheat } from "../cheats/cheats.js";
 import { menuWork } from "./menuWork.js";
 import { menuBuyItens } from "./menuBuyItens.js";
 import { menuTrainning } from "./menuTranning.js";
-import { menuInteraction } from "./menuInteraction.js" 
-import { updateCharacterBD } from "../crud/character.js"
+import { menuInteraction } from "./menuInteraction.js";
+import { updateCharacterBD } from "../crud/character.js";
 
 export const characterActionMenu = async (character) => {
   let actingCharacter = character;
@@ -24,23 +24,23 @@ ${await characterInfoDisplay(actingCharacter)}
 ${warningMessage}
 Escolha uma ação para o(a) ${actingCharacter.name}:
 
-1.  ❌ Trabalhar ( -20000⌛️  -🛁  +💵 )
+1.  ✅ Trabalhar ⬇⌛️ ⬇🛁 ⬆💵
 
-2.  ❌ Treinar habilidade de ${actingCharacter.aspiration} ( -8000⌛️  +🎮 )
+2.  ✅ Treinar habilidade de ${actingCharacter.aspiration} ⬇⌛️ ⬇🛁 ⬆🎮
 
-3.  ✅ Dormir ( -⌛️  +✨ )
+3.  ✅ Dormir ⬇⌛️ ⬆✨
 
-4.  ✅ Tomar banho ( -2000⌛️  -10💵  +100%🛁 )
+4.  ✅ Tomar banho ⬇⌛️ ⬇💵 ⬆🛁
  
-5.  ❌ Comprar item
+5.  ✅ Comprar item ⬇💵 ⬆🎮
 
-6.  ✅ Interagir com outro persongaem ( -2000⌛️  +❤️ )
+6.  ✅ Interagir com outro persongaem ⬇⌛️ ⬆❤️
 
-7.  ✅ Voltar ao menu principal
+7.  ✅ ⬇10✨
 
-8.  ✅ ( -10✨ )
+8.  ✅ ⬇10🛁
 
-9.  ✅ ( -10🛁 )
+X.  ✅ Voltar ao menu principal
 
 Sua escolha:`);
 
@@ -122,8 +122,8 @@ Sua escolha:`);
       // Interagir com outro personagem
       case "6":
         console.clear();
-        [actingCharacter, status] = await menuInteraction(actingCharacter)
-        
+        [actingCharacter, status] = await menuInteraction(actingCharacter);
+
         warningMessage = `
 - Opção ${input} escolhida
   ### Interação entre usuarios realizado com sucesso ###`;
@@ -135,11 +135,14 @@ Sua escolha:`);
         break;
 
       // Voltar para menu principal
-      case "7":
+      case "X":
+        return;
+
+      case "x":
         return;
 
       // Perder 10 energia
-      case "8":
+      case "7":
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
@@ -149,7 +152,7 @@ Sua escolha:`);
         break;
 
       // Perder 10 higiene
-      case "9":
+      case "8":
         console.clear();
         warningMessage = `
 - Opção ${input} escolhida
