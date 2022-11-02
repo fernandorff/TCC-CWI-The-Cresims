@@ -20,7 +20,7 @@ export const menuWork = async (character) => {
     characterWork = await work(characterWork)
   }
 
-  animationTimeCount(TIME_CICLE_TRAINNING)
+  animationTimeCount(TIME_CICLE_TRAINNING, 'Trabalhando')
   return characterWork
 };
 

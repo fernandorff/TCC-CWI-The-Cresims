@@ -12,7 +12,7 @@ export const work = async (character) => {
   const characterWork = { ...character }
   const levelSkillCharacter = checkLevelSkill(character.skill)
 
-  if (character.energy < 4 || character.employee === undefined) {
+  if (!isWork(character.energy, character.employee)) {
     return character
   } else if (character.energy >= 4 && character.energy < 15) {
     const cresceleonsRecalculates = await recalculateCresceleons(character, WORKING_DAY)
@@ -25,6 +25,12 @@ export const work = async (character) => {
     characterWork.energy = setEnergy(character, POINT_ENERGY_DECREMENT)
     characterWork.cresceleons = characterWork.cresceleons + character.employee.salary
     characterWork.employee.salary = await getSalary(levelSkillCharacter, character.employee.office)
+  }
+
+  if (characterWork.hygiene < 4 && characterWork.employee.salary) {
+    const salaryDiscount = characterWork.employee.salary * TEN_PERCENT
+    characterWork.employee.salary = Number((characterWork.employee.salary - salaryDiscount).toFixed(1))
+    characterWork.cresceleons = Number((characterWork.cresceleons - salaryDiscount).toFixed(1))
   }
 
   return characterWork
@@ -45,6 +51,14 @@ export const recalculateCresceleons = async (character, workingDay) => {
   const energyDecrement = character.energy <= 11 ? POINT_ENERGY_MIN : character.energy - POINT_ENERGY_DECREMENT
 
   return { time, salary, energyDecrement }
+}
+
+export const isWork = (energy, employee) => {
+  if (energy < 4 || employee === undefined) {
+    return false
+  }
+
+  return true
 }
 
 const getPointEnergy = (energy) => {

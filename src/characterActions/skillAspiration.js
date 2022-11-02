@@ -1,4 +1,4 @@
-import { setEnergy, setTimeLife } from "./common.js"
+import { setEnergy, setHygiene, setTimeLife } from "./common.js"
 
 export const setSkill = (character, productChoice, aspiration) => {
   if (character.aspiration === aspiration) return character.skill + productChoice.pontos + 1
@@ -8,14 +8,16 @@ export const setSkill = (character, productChoice, aspiration) => {
 export const cicleTrainCharacterProductPurchased = (character, productChoice, skillChoice) => {
   const TIME_CICLE_TRAINNING = 8000
   const ENERGY_DECREMENT = 4
+  const HYGIENE_DECREMENT = 2
 
   const skill = setSkill(character, productChoice, skillChoice)
   const time = setTimeLife(character, TIME_CICLE_TRAINNING)
   const energy = setEnergy(character, ENERGY_DECREMENT)
   const levelSkill = checkLevelSkill(skill)
   const employee = { ...character.employee, level: levelSkill }
+  const hygiene = setHygiene(character, HYGIENE_DECREMENT)
 
-  return { ...character, skill, time, energy, employee }
+  return { ...character, skill, time, energy, employee, hygiene }
 }
 
 export const buyProductItens = (character, productChoice) => {
@@ -24,8 +26,6 @@ export const buyProductItens = (character, productChoice) => {
   if (isBuy(character.cresceleons, productChoice.preco)) {
     characterBuys.cresceleons = Number((characterBuys.cresceleons - productChoice.preco).toFixed(1))
     characterBuys.items.push(productChoice.nome)
-
-    return characterBuys
   }
 
   return characterBuys

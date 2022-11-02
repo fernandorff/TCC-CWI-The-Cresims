@@ -1,9 +1,9 @@
-import { 
-  buyProductItens, 
-  cicleTrainCharacterProductPurchased, 
-  isBuy 
+import {
+  buyProductItens,
+  cicleTrainCharacterProductPurchased,
+  isBuy
 } from "../src/characterActions/skillAspiration"
-import { work } from "../src/characterActions/work"
+import { isWork, work } from "../src/characterActions/work"
 import { itensSkillDataApi } from "../src/services/api/api"
 import { executeCheat } from "../src/cheats/cheats"
 import { cheatJunim } from "../src/cheats/cheatJunim"
@@ -27,7 +27,7 @@ beforeEach(() => {
     items: [],
     employee: {
       id: 1,
-      office: 'Jogador de Dota', 
+      office: 'Jogador de Dota',
       category: 'JOGOS',
       salary: 160
     },
@@ -78,22 +78,32 @@ describe('04 - Trabalho', () => {
     const characterWork = await work(character)
 
     const salary = characterWork.employee.salary
-    const salaryExpected = 119.1
+    const salaryExpected = 107.2
 
     expect(salary.toFixed(1)).toBe(salaryExpected.toFixed(1))
   })
 
-  it('Deve receber o salario equivalente quando começar a trabalhar com os pontos de energia menores que 10 e pontos de higiene menores que 4', () => {
+  it('Deve receber o salario equivalente quando começar a trabalhar com os pontos de energia menores que 10 e pontos de higiene menores que 4', async () => {
+    const characterCopy = { ...character }
 
+    characterCopy.energy = 10
+    characterCopy.hygiene = 3
+
+    const characterWork = await work(characterCopy)
+
+    const salary = characterWork.employee.salary
+    const salaryExpected = 110.9
+
+    expect(salary).toBe(salaryExpected)
   })
 
   it('Deve validar para que o Cresim não consiga começar a trabalhar com os pontos de energia menores que 4', async () => {
-    character.energy = 3
+    const ENERGY_CRESIM = 3
 
-    const characterWork = await work(character)
-    const characterWorkExpected = undefined
+    const boolWork = isWork(ENERGY_CRESIM, character.employee)
+    const boolWorkExpected = false
 
-    expect(characterWork).toBe(characterWorkExpected)
+    expect(boolWork).toBe(boolWorkExpected)
   })
 })
 
@@ -147,7 +157,12 @@ describe('5 - Habilidades e aspirações', () => {
   })
 
   it('Deve perder pontos de higiene ao terminar um ciclo de treino', () => {
+    const characterBuys = cicleTrainCharacterProductPurchased(character, productChoice)
 
+    const pointHygiene = characterBuys.hygiene
+    const pointHygieneExpected = 26
+
+    expect(pointHygiene).toBe(pointHygieneExpected)
   })
 
   it('Deve avançar o nivel de habilidade quando completar os pontos necessarios', () => {
@@ -170,8 +185,8 @@ describe('6 - Cheats', () => {
     expect(newCharacter.employee.salary).toBe(numExpect)
   })
 
-  it ('Deve conseguir aplicar o cheat DEITADONAREDE e receber as recompensas', async () => {
-    const newCharacter = {...character, energy: 27}
+  it('Deve conseguir aplicar o cheat DEITADONAREDE e receber as recompensas', async () => {
+    const newCharacter = { ...character, energy: 27 }
     const characterTest = await executeCheat(newCharacter, "DEITADONAREDE")
     const numExpect = 32
     expect(characterTest.energy).toBe(numExpect)
