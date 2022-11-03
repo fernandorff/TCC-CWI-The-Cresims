@@ -3,6 +3,10 @@ export const setTimeLife = (character, timeDecrement) => {
 }
 
 export const setEnergy = (character, energyDecrement) => {
+    return (character.energy - energyDecrement) < 0 ? character.energy : character.energy - energyDecrement
+}
+
+export const setEnergyTwo = (character, energyDecrement) => {
     return (character.energy - energyDecrement) < 2 ? character.energy : character.energy - energyDecrement
 }
 
