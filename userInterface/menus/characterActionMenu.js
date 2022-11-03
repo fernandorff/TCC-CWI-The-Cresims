@@ -3,7 +3,7 @@ import { takeAShower } from "../../src/characterActions/takeAShower.js";
 import { useQuestion } from "../../src/services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
-import { executeCheat } from "../../src/cheats/cheats.js";
+import { executeCheat } from "../../src/characterActions/cheats.js";
 import { menuWork } from "./menuWork.js";
 import { menuBuyItens } from "./menuBuyItens.js";
 import { menuTrainning } from "./menuTranning.js";

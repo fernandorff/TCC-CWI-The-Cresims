@@ -9,7 +9,7 @@ import {
 } from "../src/characterActions/interaction";
 import { isWork, work } from "../src/characterActions/work";
 import { itensSkillDataApi } from "../src/services/api/api";
-import { executeCheat } from "../src/cheats/cheats";
+import { executeCheat } from "../src/characterActions/cheats";
 import { takeAShower } from "../src/characterActions/takeAShower";
 import { validateEnergyAndHygiene } from "../src/allMenus/characterActionMenu";
 import { sleepAction } from "../src/characterActions/sleepMenu";
