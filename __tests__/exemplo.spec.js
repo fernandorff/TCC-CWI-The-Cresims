@@ -9,7 +9,7 @@ import {
   interaction,
 } from "../src/characterActions/interaction";
 import { isWork, work } from "../src/characterActions/work";
-import { itensSkillDataApi } from "../src/services/api/api";
+import { itensSkillDataApi } from "../services/api/api";
 import { executeCheat } from "../src/characterActions/cheats";
 import { takeAShower } from "../src/characterActions/takeAShower";
 import { validateEnergyAndHygiene } from "../userInterface/menus/characterActionMenu";
@@ -310,10 +310,10 @@ describe("5 - Relacionamentos", () => {
 
     const pointsCharacter = newCharacter.relationship[0].level;
     const pointsCharacter_02 = newCharacter_02.relationship[0].level;
-    
+
     const levelCharacter = getLevelInteraction(pointsCharacter);
     const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
-    
+
     expect(levelCharacter).toBe("AMIZADE");
     expect(levelCharacter_02).toBe("AMIZADE");
   });

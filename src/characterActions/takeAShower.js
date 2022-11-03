@@ -1,5 +1,5 @@
 import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { useQuestion } from "../../services/question/use-question.js";
 
 function a(x) {
   switch (x) {

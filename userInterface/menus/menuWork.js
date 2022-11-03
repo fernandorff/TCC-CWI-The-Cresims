@@ -1,8 +1,8 @@
 import { animationMenuWork } from "../animations/animations.js";
 import { workAnim } from "../animations/workAnim.js";
 import { setEmployee, work } from "../../src/characterActions/work.js";
-import { employeesDataApi } from "../../src/services/api/api.js";
-import { useQuestion } from "../../src/services/question/use-question.js";
+import { employeesDataApi } from "../../services/api/api.js";
+import { useQuestion } from "../../services/question/use-question.js";
 
 export const menuWork = async (character) => {
   let characterWork = await work(character);

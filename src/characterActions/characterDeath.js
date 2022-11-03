@@ -1,4 +1,4 @@
-import { useQuestion } from "../services/question/use-question.js";
+import { useQuestion } from "../../services/question/use-question.js";
 
 const epitafios = [
   "Aqueles que amamos nunca morrem, apenas partem antes de nós...",

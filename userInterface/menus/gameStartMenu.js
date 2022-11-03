@@ -1,12 +1,12 @@
-import { useQuestion } from "../../src/services/question/use-question.js";
+import { useQuestion } from "../../services/question/use-question.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 import {
   setCharacter,
   getCharacter,
   getAllCharacters,
   deleteCharacters,
-} from "../../src/crud/character.js";
-import { getStorage, getStorageDead } from "../../src/crud/storage.js";
+} from "../../services/crud/character.js";
+import { getStorage, getStorageDead } from "../../services/crud/storage.js";
 import { characterDeath } from "../../src/characterActions/characterDeath.js";
 
 export const gameStartMenu = async () => {
