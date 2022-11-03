@@ -21,9 +21,10 @@ export const musicTrainingAnim = async (character, display) => {
   function rnd(randomImages) {
     return randomImages[Math.floor(Math.random() * randomImages.length)];
   }
-  while (display == true) {
-    console.clear();
-    console.log(`
+  if (display == true) {
+    for (let i = 0; i < 5; i++) {
+      console.clear();
+      console.log(`
       ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}
     ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}
     _____________________
@@ -34,9 +35,9 @@ export const musicTrainingAnim = async (character, display) => {
 |  |       LL     |  |/
 
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
-    console.log(`
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.clear();
+      console.log(`
     ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}
     ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}   ${rnd(n)}
     _____________________
@@ -47,6 +48,7 @@ export const musicTrainingAnim = async (character, display) => {
 |  |       LL     |  |/
 
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
   }
 };

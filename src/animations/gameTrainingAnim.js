@@ -13,10 +13,11 @@ export const gameTrainingAnim = async (character, display) => {
   function rnd(randomImages) {
     return randomImages[Math.floor(Math.random() * randomImages.length)];
   }
-  while (display == true) {
-    console.clear();
+  if (display == true) {
+    for (let i = 0; i < 5; i++) {
+      console.clear();
 
-    console.log(`
+      console.log(`
 ${await theCresimsLogo()}  
                      
             _______  .--.
@@ -28,10 +29,10 @@ ${await theCresimsLogo()}
 
 ${character} esta jogando um dotinha.
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.clear();
 
-    console.log(`
+      console.log(`
 ${await theCresimsLogo()}  
                      
             _______  .--.
@@ -43,6 +44,7 @@ ${await theCresimsLogo()}
 
 ${character} esta jogando um dotinha.
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
   }
 };

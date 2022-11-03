@@ -4,9 +4,10 @@ export const paintTrainingAnim = async (character, display) => {
   function rnd(randomImages) {
     return randomImages[Math.floor(Math.random() * randomImages.length)];
   }
-  while (display == true) {
-    console.clear();
-    console.log(`        
+  if (display == true) {
+    for (let i = 0; i < 5; i++) {
+      console.clear();
+      console.log(`        
              |¯¯¯¯| |¯¯¯¯|         
   ,,,,  |¯|  | ̵͗̄̿̚͜ |¯¯¯¯|   |       
  (⚆_⚆=~${rnd(p)}|  |__| ̴̠̀͋ ̶̧̢̻̹͇̝̙̉̏ ̵̮̭̗͛́̍͝ͅ |___|
@@ -14,9 +15,9 @@ export const paintTrainingAnim = async (character, display) => {
    LL   |_|      '  '     
   '¯¯'  ' '     
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
-    console.log(`        
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.clear();
+      console.log(`        
              |¯¯¯¯| |¯¯¯¯|         
   ,,,,  |¯|  | ̵͗̄̿̚͜ |¯¯¯¯|   |       
  (⚆_⚆  ${rnd(p)}|  |__| ̴̠̀͋ ̶̧̢̻̹͇̝̙̉̏ ̵̮̭̗͛́̍͝ͅ |___|
@@ -24,6 +25,7 @@ export const paintTrainingAnim = async (character, display) => {
    LL   |_|      '  '     
   '¯¯'  ' '     
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
   }
 };
