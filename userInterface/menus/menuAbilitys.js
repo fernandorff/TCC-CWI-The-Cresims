@@ -1,4 +1,4 @@
-import { useQuestion } from "../../src/services/question/use-question.js";
+import { useQuestion } from "../../services/question/use-question.js";
 
 export const menuAbilitys = async (text) => {
   let menuAbilitysDisplay = true;
@@ -12,7 +12,7 @@ ${text}
 5.  Musica
 X.  Voltar ao menu principal
 Sua escolha:`);
-    console.log('\x1Bc');
+    console.log("\x1Bc");
 
     switch (input) {
       case "1":

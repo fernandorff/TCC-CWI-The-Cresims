@@ -1,4 +1,4 @@
-import { useQuestion } from "../services/question/use-question.js";
+import { useQuestion } from "../../services/question/use-question.js";
 import { characterInfoDisplay } from "../../userInterface/menus/characterInfoDisplay.js";
 import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
 

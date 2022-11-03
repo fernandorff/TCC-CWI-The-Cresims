@@ -1,4 +1,4 @@
-import { useQuestion } from "../services/question/use-question.js";
+import { useQuestion } from "../question/use-question.js";
 import { getStorage, updateStorage } from "./storage.js";
 import { menuAbilitys } from "../../userInterface/menus/menuAbilitys.js";
 

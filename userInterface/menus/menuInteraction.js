@@ -1,5 +1,8 @@
-import { getCharacter, updateCharacterBD } from "../../src/crud/character.js";
-import { useQuestion } from "../../src/services/question/use-question.js";
+import {
+  getCharacter,
+  updateCharacterBD,
+} from "../../services/crud/character.js";
+import { useQuestion } from "../../services/question/use-question.js";
 import {
   getLevelInteraction,
   listInteraction,

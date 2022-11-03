@@ -1,5 +1,4 @@
 import { theCresimsLogo } from "../menus/theCresimsLogo.js";
-import { useQuestion } from "../../src/services/question/use-question.js";
 
 export const workAnim = async (character, display) => {
   if (display == true) {
@@ -355,7 +354,7 @@ ${character.name} está trabalhando.
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
-    await useQuestion(`
+    console.log(`
 ${await theCresimsLogo()}
 
 ⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆

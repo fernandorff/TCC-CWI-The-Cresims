@@ -5,8 +5,8 @@ import { gardenTrainingAnim } from "../animations/gardenTrainingAnim.js";
 import { musicTrainingAnim } from "../animations/musicTrainingAnim.js";
 import { paintTrainingAnim } from "../animations/paintTrainingAnim.js";
 import { cicleTrainCharacterProductPurchased } from "../../src/characterActions/skillAspiration.js";
-import { itensSkillDataApi } from "../../src/services/api/api.js";
-import { useQuestion } from "../../src/services/question/use-question.js";
+import { itensSkillDataApi } from "../../services/api/api.js";
+import { useQuestion } from "../../services/question/use-question.js";
 
 const TIME = 5000;
 
