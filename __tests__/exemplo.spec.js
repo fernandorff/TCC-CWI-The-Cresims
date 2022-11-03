@@ -276,7 +276,7 @@ describe("5 - Relacionamentos", () => {
       energia: 1,
     };
 
-    let newCharacter, newCharacter_02 = [character, character_02];
+    let [newCharacter, newCharacter_02] = [character, character_02];
     for (let cont = 0; cont < 4; cont++) {
       [newCharacter, newCharacter_02] = interaction(
         newCharacter,
