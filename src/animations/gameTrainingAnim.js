@@ -46,5 +46,3 @@ ${character} esta jogando um dotinha.
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
 };
-
-playAnim("Fernando", true);
