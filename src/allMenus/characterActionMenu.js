@@ -39,9 +39,9 @@ export const characterActionMenu = async (character) => {
     validateEnergyAndHygiene(character);
     if (character.time <= 0) {
       await characterDeath(character);
-      await updateStorageDead(...getStorageDead(), character)
-      deleteCharacters(character.id)
-      console.log("delaçao premiada")
+      await updateStorageDead(...getStorageDead(), character);
+      deleteCharacters(character.id);
+      console.log("delaçao premiada");
       return;
     }
     console.clear();
@@ -63,10 +63,6 @@ Escolha uma ação para o(a) ${character.name}:
 5. Comprar item ⬇💵 ⬆🎮
 
 6. Interagir com outro personagem ⬇⌛️ ⬆❤️
-
-7. ⬇10✨
-
-8. ⬇10🛁
 
 X. Voltar ao menu principal
 
@@ -164,26 +160,6 @@ Sua escolha:`);
       // Voltar para menu principal
       case "X":
         return gameStartMenu();
-
-      // Perder 10 energia
-      case "7":
-        console.clear();
-        warningMessage = `
-- Opção ${input} escolhida
-### ${character.name} perde 10 de energia ###
-`;
-        character.energy -= 10;
-        break;
-
-      // Perder 10 higiene
-      case "8":
-        console.clear();
-        warningMessage = `
-- Opção ${input} escolhida
-### ${character.name} perde 10 de energia ###
-`;
-        character.hygiene -= 10;
-        break;
 
       // OPÇÃO INVALIDA e Cheat
       default:
