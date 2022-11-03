@@ -10,7 +10,7 @@ ${text}
 3.  Jogos
 4.  Jardinagem
 5.  Musica
-
+X.  Voltar ao menu principal
 Sua escolha:`);
 console.log('\x1Bc');
 
