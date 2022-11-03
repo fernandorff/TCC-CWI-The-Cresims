@@ -1,9 +1,8 @@
-import { animationTimeCount } from "../animations/animationTimeCount.js";
+import { animationMenuWork, animationTimeCount } from "../animations/animations.js";
 import { setEmployee, work } from "../characterActions/work.js";
 import { employeesDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
-import { characterInfoDisplay } from "./characterInfoDisplay.js";
-import { theCresimsLogo } from "./theCresimsLogo.js";
+
 
 const TIME_CICLE_TRAINNING = 20000;
 const TIME = 3000;
@@ -12,15 +11,7 @@ export const menuWork = async (character) => {
   let characterWork = await work(character);
 
   if (!characterWork.employee) {
-    console.log(
-      `
-${await theCresimsLogo()}
-
-${await characterInfoDisplay(character)}
-
-O personagem ${character.name} não possui um emprego, escolha um:
-`
-    );
+    animationMenuWork(character)
     const response = await employeesDataApi();
     const choice = await choiceEmployee(response);
 
