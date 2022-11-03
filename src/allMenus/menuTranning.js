@@ -34,9 +34,7 @@ export const choiceItensCresim = async (items) => {
 }
 
 export const printItens = async (items) => {
-    items.forEach((item, index) => {
-        console.log(`${index + 1} - ${item}`);
-    })
+    items.forEach((item, index) => console.log(`${index + 1} - ${item}`))
 }
 
 export const getChoiceItem = (response, choiceItem) => {

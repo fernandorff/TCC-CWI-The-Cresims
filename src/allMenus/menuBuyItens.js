@@ -17,9 +17,7 @@ export const menuBuyItens = async (character) => {
     return character
   }
 
-  if (characterBuys) {
-    return characterBuys;
-  }
+  if (characterBuys) return characterBuys;
 
   return characterBuys;
 };
@@ -27,9 +25,7 @@ export const menuBuyItens = async (character) => {
 export const productChoice = async (response, skillChoice) => {
   const listItensSkill = response[skillChoice.toUpperCase()];
 
-  listItensSkill.forEach((product) => {
-    console.log(`${product.id}. ${product.nome}  $${product.preco}`);
-  });
+  listItensSkill.forEach((product) => console.log(`${product.id}. ${product.nome}  $${product.preco}`));
 
   console.log('X. Voltar ao menu principal \n')
 
