@@ -1,3 +1,4 @@
+import { animationMenuWork } from "../animations/animations.js";
 import { animationTimeCount } from "../animations/animationTimeCount.js";
 import { workAnim } from "../animations/workAnim.js";
 import { setEmployee, work } from "../characterActions/work.js";
@@ -9,23 +10,17 @@ const TIME = 3000;
 export const menuWork = async (character) => {
   if (character.energy <= 2) {
     animationTimeCount(TIME, "Energias insuficiente");
-  } else {
-    await workAnim(character, true);
+    return character
   }
 
   let characterWork = await work(character);
 
   if (!characterWork.employee) {
     animationMenuWork(character)
-    const response = await employeesDataApi();
-    const choice = await choiceEmployee(response);
-
-    characterWork = {
-      ...(await setEmployee(character, response[choice - 1])),
-    };
-
-    characterWork = await work(characterWork);
+    characterWork = await work(await addEmployee(characterWork)) 
   }
+
+  await workAnim(character, true);
 
   return characterWork;
 };
@@ -42,3 +37,14 @@ export const printEmployes = (employees) => {
     console.log(employee.id + ". " + employee.cargo);
   });
 };
+
+export const addEmployee = async (character) => {
+  const response = await employeesDataApi();
+  const choice = await choiceEmployee(response);
+
+  let characterWork = {
+    ...(await setEmployee(character, response[choice - 1])),
+  };
+
+  return characterWork
+}
