@@ -512,9 +512,25 @@ describe("Teste common.js", () => {
     expect(lifeCharcter).toBe(lifeCharcterExpected)
   })
 
+  it("Deve decrementar a vida de um personagem e morrer", () => {
+    character.time = 10
+    const lifeCharcter = setTimeLife(character, 1000)
+    const lifeCharcterExpected = 0
+
+    expect(lifeCharcter).toBe(lifeCharcterExpected)
+  })
+
   it("Deve decrementar a energia de um personagem", () => {
     const energyCharcter = setEnergy(character, 4)
     const energyCharcterExpected = 28
+
+    expect(energyCharcter).toBe(energyCharcterExpected)
+  })
+
+  it("Deve decrementar a energia de um personagem e retornar 0", () => {
+    character.energy = 3
+    const energyCharcter = setEnergy(character, 4)
+    const energyCharcterExpected = 0
 
     expect(energyCharcter).toBe(energyCharcterExpected)
   })
@@ -526,9 +542,25 @@ describe("Teste common.js", () => {
     expect(energyCharcter).toBe(energyCharcterExpected)
   })
 
+  it("Deve decrementar a energia de um personagem e retornar 2", () => {
+    character.energy = 3
+    const energyCharcter = setEnergyTwo(character, 4)
+    const energyCharcterExpected = 2
+
+    expect(energyCharcter).toBe(energyCharcterExpected)
+  })
+
   it("Deve decrementar a higiene de um personagem", () => {
     const hygieneCharcter = setHygiene(character, 4)
     const hygieneCharcterExpected = 24
+
+    expect(hygieneCharcter).toBe(hygieneCharcterExpected)
+  })
+
+  it("Deve decrementar a higiene de um personagem e retornar 0", () => {
+    character.hygiene = 3
+    const hygieneCharcter = setHygiene(character, 4)
+    const hygieneCharcterExpected = 0
 
     expect(hygieneCharcter).toBe(hygieneCharcterExpected)
   })
