@@ -12,6 +12,7 @@ import { deleteCharacters, updateCharacterBD } from "../crud/character.js";
 import { characterDeath } from "../characterActions/characterDeath.js";
 import { gameStartMenu } from "../../userInterface/menus/gameStartMenu.js";
 import { updateStorageDead, getStorageDead } from "../crud/storage.js";
+import { clearBash } from "../characterActions/common.js";
 
 export const validateEnergyAndHygiene = async (character) => {
   if (character.energy > 32) {
@@ -44,7 +45,7 @@ export const characterActionMenu = async (character) => {
       console.log("delaçao premiada");
       return;
     }
-    console.log("\x1Bc");
+    clearBash();
     const input = await useQuestion(`
 ${await theCresimsLogo()}
 
