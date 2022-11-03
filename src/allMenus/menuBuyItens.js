@@ -21,8 +21,6 @@ export const menuBuyItens = async (character) => {
     return character
   }
 
-  if (characterBuys) return characterBuys;
-
   return characterBuys;
 };
 
