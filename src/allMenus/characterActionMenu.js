@@ -74,7 +74,7 @@ Sua escolha:`);
         if (character.energy <= 2) {
           warningMessage = `
 - Opção ${input} escolhida
-!!! O personagem precisa de no mínimo 3 de energia para trabalhar !!!
+\x1b[33m !!! O personagem precisa de no mínimo 3 de energia para trabalhar !!! \x1b[0m
         `;
           break;
         }
@@ -100,7 +100,7 @@ Sua escolha:`);
           character.energy = 32;
           warningMessage = `
 - Opção ${input} escolhida
-### O personagem está com a energia completa ###
+\x1b[33m### O personagem está com a energia completa ###\x1b[0m
 `;
           break;
         }
@@ -116,14 +116,14 @@ Sua escolha:`);
           character.hygiene = 28;
           warningMessage = `
 - Opção ${input} escolhida
-### O personagem está completamente limpo ###
+\x1b[33m### O personagem está completamente limpo ###\x1b[0m
 `;
           break;
         }
         if (character.cresceleons < 10) {
           warningMessage = `
 - Opção ${input} escolhida
-!!! O personagem não tem 10 Cresceleons !!!
+\x1b[33m!!! O personagem não tem 10 Cresceleons !!!\x1b[0m
 `;
           break;
         }
@@ -149,11 +149,11 @@ Sua escolha:`);
 
         warningMessage = `
 - Opção ${input} escolhida
-  ### Interação entre usuarios realizado com sucesso ###`;
+\x1b[33m### Interação entre usuarios realizado com sucesso ###\x1b[0m`;
         if (!status) {
           warningMessage = `
 - Opção ${input} escolhida
-  !!! Interação não realizada !!!`;
+\x1b[33m!!! Interação não realizada !!!\x1b[0m`;
         }
         break;
 
@@ -167,11 +167,11 @@ Sua escolha:`);
 
         warningMessage = `
 - Opção ${input} escolhida
-!!! Opção Invalida! Escolha uma opção válida !!!
+\x1b[33m!!! Opção Invalida! Escolha uma opção válida !!!\x1b[0m
 `;
         if (verifyCheat(input)) {
           warningMessage = `
-### Cheat aplicado com sucesso ###
+\x1b[33m### Cheat aplicado com sucesso ###\x1b[0m
 `;
         }
 
