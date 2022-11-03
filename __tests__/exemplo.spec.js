@@ -1,11 +1,13 @@
 import {
   buyProductItens,
+  checkLevelSkill,
   cicleTrainCharacterProductPurchased,
   isBuy,
 } from "../src/characterActions/skillAspiration";
 import {
   getLevelInteraction,
   interaction,
+  listInteraction
 } from "../src/characterActions/interaction";
 import { isWork, work } from "../src/characterActions/work";
 import { itensSkillDataApi } from "../services/api/api";
@@ -13,6 +15,7 @@ import { executeCheat } from "../src/characterActions/cheats";
 import { takeAShower } from "../src/characterActions/takeAShower";
 import { validateEnergyAndHygiene } from "../userInterface/menus/characterActionMenu";
 import { sleepAction } from "../src/characterActions/sleepMenu";
+import { setEnergy, setEnergyTwo, setHygiene, setTimeLife } from "../src/characterActions/common";
 
 let character, character_02;
 let itensSkill, product, productChoice;
@@ -212,6 +215,27 @@ describe("3 - Habilidades e aspirações", () => {
 
     expect(levelSkill).toBe(levelSkillExpected);
   });
+
+  it("Deve retornar um nível JUNIOR", () => {
+    const levelSkill = checkLevelSkill(10)
+    const levelSkillExpected = 'JUNIOR'
+
+    expect(levelSkill).toBe(levelSkillExpected)
+  })
+
+  it("Deve retornar um nível PLENO", () => {
+    const levelSkill = checkLevelSkill(17)
+    const levelSkillExpected = 'PLENO'
+
+    expect(levelSkill).toBe(levelSkillExpected)
+  })
+
+  it("Deve retornar um nível SENIOR", () => {
+    const levelSkill = checkLevelSkill(28)
+    const levelSkillExpected = 'SENIOR'
+
+    expect(levelSkill).toBe(levelSkillExpected)
+  })
 });
 
 describe("4 - Trabalho", () => {
@@ -295,6 +319,60 @@ describe("5 - Relacionamentos", () => {
     expect(levelCharacter_02).toBe("AMIZADE");
   });
 
+  it("Deve evoluir o relacionamento de dois Cresims para AMIZADE", () => {
+    const objInteraction = {
+      id: 3,
+      interacao: "Elogiar",
+      pontos: 4,
+      energia: 1,
+    };
+
+    let [newCharacter, newCharacter_02] = [character, character_02];
+    for (let cont = 0; cont < 10; cont++) {
+      [newCharacter, newCharacter_02] = interaction(
+        newCharacter,
+        newCharacter_02,
+        objInteraction
+      );
+    }
+
+    const pointsCharacter = newCharacter.relationship[0].level;
+    const pointsCharacter_02 = newCharacter_02.relationship[0].level;
+    
+    const levelCharacter = getLevelInteraction(pointsCharacter);
+    const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
+    
+    expect(levelCharacter).toBe("AMOR");
+    expect(levelCharacter_02).toBe("AMOR");
+  });
+
+  it("Deve evoluir o relacionamento de dois Cresims para AMOR", () => {
+    const objInteraction = {
+      id: 3,
+      interacao: "Elogiar",
+      pontos: 4,
+      energia: 1,
+    };
+
+    let [newCharacter, newCharacter_02] = [character, character_02];
+    for (let cont = 0; cont < 10; cont++) {
+      [newCharacter, newCharacter_02] = interaction(
+        newCharacter,
+        newCharacter_02,
+        objInteraction
+      );
+    }
+
+    const pointsCharacter = newCharacter.relationship[0].level;
+    const pointsCharacter_02 = newCharacter_02.relationship[0].level;
+    
+    const levelCharacter = getLevelInteraction(pointsCharacter);
+    const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
+    
+    expect(levelCharacter).toBe("AMOR");
+    expect(levelCharacter_02).toBe("AMOR");
+  });
+
   it("Deve recuar o relacionamento de dois Cresims para INIMIZADE", () => {
     const objInteraction = {
       id: 6,
@@ -318,6 +396,46 @@ describe("5 - Relacionamentos", () => {
     expect(levelCharacter).toBe("INIMIZADE");
     expect(levelCharacter_02).toBe("INIMIZADE");
   });
+
+  it("Deve retornar uma lista com todas as interações para INIMIZADE", async () => {
+    const tamListExpect = 13;
+
+    const level = "INIMIZADE";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
+
+  it("Deve retornar uma lista com todas as interações para NEUTRO", async () => {
+    const tamListExpect = 9;
+
+    const level = "NEUTRO";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
+
+  it("Deve retornar uma lista com todas as interações para AMIZADE", async () => {
+    const tamListExpect = 13;
+
+    const level = "AMIZADE";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
+
+  it("Deve retornar uma lista com todas as interações para AMOR", async () => {
+    const tamListExpect = 16;
+
+    const level = "AMOR";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
 
   it("Deve descontar os pontos de energia em uma interação entre dois Cresims", () => {
     const objInteraction = {
@@ -385,3 +503,34 @@ describe("7 - Higiene", () => {
     expect(newCharacter.cresceleons).toBe(numExpect);
   });
 });
+
+describe("Teste common.js", () => {
+  it("Deve decrementar a vida de um personagem", () => {
+    const lifeCharcter = setTimeLife(character, 1000)
+    const lifeCharcterExpected = 3599000
+
+    expect(lifeCharcter).toBe(lifeCharcterExpected)
+  })
+
+  it("Deve decrementar a energia de um personagem", () => {
+    const energyCharcter = setEnergy(character, 4)
+    const energyCharcterExpected = 28
+
+    expect(energyCharcter).toBe(energyCharcterExpected)
+  })
+
+  it("Deve decrementar a energia de um personagem", () => {
+    const energyCharcter = setEnergyTwo(character, 4)
+    const energyCharcterExpected = 28
+
+    expect(energyCharcter).toBe(energyCharcterExpected)
+  })
+
+  it("Deve decrementar a higiene de um personagem", () => {
+    const hygieneCharcter = setHygiene(character, 4)
+    const hygieneCharcterExpected = 24
+
+    expect(hygieneCharcter).toBe(hygieneCharcterExpected)
+  })
+})
+
