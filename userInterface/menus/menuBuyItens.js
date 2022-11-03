@@ -4,6 +4,7 @@ import { buyProductItens } from "../../src/characterActions/skillAspiration.js";
 import { itensSkillDataApi } from "../../services/api/api.js";
 import { menuAbilitys } from "./menuAbilitys.js";
 import { useQuestion } from "../../services/question/use-question.js";
+import { theCresimsLogo } from "./theCresimsLogo.js";
 
 export const menuBuyItens = async (character) => {
   const TIME = 5000;
@@ -30,19 +31,24 @@ export const menuBuyItens = async (character) => {
 export const productChoice = async (response, skillChoice) => {
   const listItensSkill = response[skillChoice.toUpperCase()];
 
+  console.log(`${await theCresimsLogo()}
+  `);
+
   listItensSkill.forEach((product) =>
     console.log(`${product.id}. ${product.nome}  $${product.preco}`)
   );
 
   console.log("X. Voltar ao menu principal \n");
 
-  const choice = await useQuestion("Escolha uma produto");
+  const choice = await useQuestion(`
+  Escolha uma produto`);
   return listItensSkill[choice - 1];
 };
 
 export const skillChoiceProduct = async () => {
   await animationBuyItens();
-  const choiceAspiration = menuAbilitys("Escolha um setor da loja: ");
+  const choiceAspiration = menuAbilitys(`
+  Escolha um setor da loja: `);
 
   return choiceAspiration;
 };

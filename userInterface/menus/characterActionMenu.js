@@ -12,7 +12,7 @@ import {
   deleteCharacters,
   updateCharacterBD,
 } from "../../services/crud/character.js";
-import { characterDeath } from "../../src/characterActions/characterDeath.js";
+import { characterDeath } from "./characterDeath.js";
 import { gameStartMenu } from "./gameStartMenu.js";
 import {
   updateStorageDead,

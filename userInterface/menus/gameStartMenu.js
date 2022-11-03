@@ -7,7 +7,7 @@ import {
   deleteCharacters,
 } from "../../services/crud/character.js";
 import { getStorage, getStorageDead } from "../../services/crud/storage.js";
-import { characterDeath } from "../../src/characterActions/characterDeath.js";
+import { characterDeath } from "./characterDeath.js";
 
 export const gameStartMenu = async () => {
   let warningMessage = ``;
