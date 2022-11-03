@@ -1,6 +1,6 @@
 import { useLocalStorage } from "../services/local-storage/use-local-storage.js";
 
-export const updateStorage = (newStorage) => {
+export const updateStorage = (...newStorage) => {
   const localStorage = useLocalStorage();
   localStorage.setObject("inGameCharacters.json", [...newStorage]);
 };

@@ -16,6 +16,7 @@ export const setCharacter = async () => {
   const skill = 0;
   const items = [];
   let iconAspiration = "";
+
   switch (aspiration) {
     case "PINTURA":
       iconAspiration = "🎨";
@@ -52,12 +53,12 @@ export const setCharacter = async () => {
     iconAspiration,
   };
 
-  updateStorage([...getStorage(), character]);
+  updateStorage(...getStorage(), character);
 
   return character;
 };
 
-export const getCharacter = async (charReturn) => {
+export const getCharacter = async (characterPrev) => {
   let warningMessage = `
 ### Escolha um personagem ###
 `;
@@ -75,7 +76,7 @@ export const getCharacter = async (charReturn) => {
 Sua escolha `);
 
   if (input.toUpperCase() == "X") {
-    return charReturn;
+    return characterPrev;
   }
 
   const character = storage.find((charac) => charac.id == input);
@@ -107,7 +108,7 @@ export const deleteCharacters = (id) => {
 
   const newStorage = storage.filter((charac) => charac.id != id);
 
-  updateStorage([...newStorage]);
+  updateStorage(...newStorage);
 };
 
 const getId = () => {
@@ -132,5 +133,5 @@ export const updateCharacterBD = (character) => {
     return element;
   });
 
-  updateStorage([...newList]);
+  updateStorage(...newList);
 };
