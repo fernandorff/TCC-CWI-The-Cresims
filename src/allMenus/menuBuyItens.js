@@ -12,6 +12,9 @@ export const menuBuyItens = async (character) => {
   const TIME = 3000;
   const response = await itensSkillDataApi();
   const skillChoice = await skillChoiceProduct();
+
+  if(skillChoice.toUpperCase() === 'X') return character
+  
   const product = await productChoice(response, skillChoice);
   const characterBuys = buyProductItens( character, product, skillChoice.toUpperCase());
 

@@ -12,7 +12,7 @@ ${text}
 5.  Musica
 X.  Voltar ao menu principal
 Sua escolha:`);
-console.log('\x1Bc');
+    console.log('\x1Bc');
 
     switch (input) {
       case "1":
@@ -25,6 +25,10 @@ console.log('\x1Bc');
         return "JARDINAGEM";
       case "5":
         return "MUSICA";
+      case "x":
+        return "x";
+      case "X":
+        return "X";
       default:
         console.log("### Escolha uma opção válida ###");
     }
