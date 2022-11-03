@@ -6,6 +6,7 @@ import {
 import {
   getLevelInteraction,
   interaction,
+  listInteraction
 } from "../src/characterActions/interaction";
 import { isWork, work } from "../src/characterActions/work";
 import { itensSkillDataApi } from "../src/services/api/api";
@@ -372,6 +373,46 @@ describe("5 - Relacionamentos", () => {
     expect(levelCharacter).toBe("INIMIZADE");
     expect(levelCharacter_02).toBe("INIMIZADE");
   });
+
+  it("Deve retornar uma lista com todas as interações para INIMIZADE", async () => {
+    const tamListExpect = 13;
+
+    const level = "INIMIZADE";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
+
+  it("Deve retornar uma lista com todas as interações para NEUTRO", async () => {
+    const tamListExpect = 9;
+
+    const level = "NEUTRO";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
+
+  it("Deve retornar uma lista com todas as interações para AMIZADE", async () => {
+    const tamListExpect = 13;
+
+    const level = "AMIZADE";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
+
+  it("Deve retornar uma lista com todas as interações para AMOR", async () => {
+    const tamListExpect = 16;
+
+    const level = "AMOR";
+    const list = await listInteraction(level);
+    const tamList = list.length;
+
+    expect(tamList).toBe(tamListExpect);
+  })
 
   it("Deve descontar os pontos de energia em uma interação entre dois Cresims", () => {
     const objInteraction = {

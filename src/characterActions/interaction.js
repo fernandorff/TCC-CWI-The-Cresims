@@ -37,9 +37,9 @@ export const listInteraction = async (level) => {
         case "NEUTRO":
             return [...list.NEUTRO];
         case "AMIZADE":
-            return [...list.AMIZADE, list.NEUTRO]
+            return [...list.AMIZADE, ...list.NEUTRO]
         default:
-            return [...list.AMOR, ...list.AMIZADE, list.NEUTRO]
+            return [...list.AMOR, ...list.AMIZADE, ...list.NEUTRO]
     }
 }
 
