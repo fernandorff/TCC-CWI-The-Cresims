@@ -1,5 +1,6 @@
 import {
   buyProductItens,
+  checkLevelSkill,
   cicleTrainCharacterProductPurchased,
   isBuy,
 } from "../src/characterActions/skillAspiration";
@@ -13,6 +14,7 @@ import { executeCheat } from "../src/characterActions/cheats";
 import { takeAShower } from "../src/characterActions/takeAShower";
 import { validateEnergyAndHygiene } from "../userInterface/menus/characterActionMenu";
 import { sleepAction } from "../src/characterActions/sleepMenu";
+import { setEnergy, setEnergyTwo, setHygiene, setTimeLife } from "../src/characterActions/common";
 
 let character, character_02;
 let itensSkill, product, productChoice;
@@ -212,6 +214,27 @@ describe("3 - Habilidades e aspirações", () => {
 
     expect(levelSkill).toBe(levelSkillExpected);
   });
+
+  it("Deve retornar um nível JUNIOR", () => {
+    const levelSkill = checkLevelSkill(10)
+    const levelSkillExpected = 'JUNIOR'
+
+    expect(levelSkill).toBe(levelSkillExpected)
+  })
+
+  it("Deve retornar um nível PLENO", () => {
+    const levelSkill = checkLevelSkill(17)
+    const levelSkillExpected = 'PLENO'
+
+    expect(levelSkill).toBe(levelSkillExpected)
+  })
+
+  it("Deve retornar um nível SENIOR", () => {
+    const levelSkill = checkLevelSkill(28)
+    const levelSkillExpected = 'SENIOR'
+
+    expect(levelSkill).toBe(levelSkillExpected)
+  })
 });
 
 describe("4 - Trabalho", () => {
@@ -385,3 +408,34 @@ describe("7 - Higiene", () => {
     expect(newCharacter.cresceleons).toBe(numExpect);
   });
 });
+
+describe("Teste common.js", () => {
+  it("Deve decrementar a vida de um personagem", () => {
+    const lifeCharcter = setTimeLife(character, 1000)
+    const lifeCharcterExpected = 3599000
+
+    expect(lifeCharcter).toBe(lifeCharcterExpected)
+  })
+
+  it("Deve decrementar a energia de um personagem", () => {
+    const energyCharcter = setEnergy(character, 4)
+    const energyCharcterExpected = 28
+
+    expect(energyCharcter).toBe(energyCharcterExpected)
+  })
+
+  it("Deve decrementar a energia de um personagem", () => {
+    const energyCharcter = setEnergyTwo(character, 4)
+    const energyCharcterExpected = 28
+
+    expect(energyCharcter).toBe(energyCharcterExpected)
+  })
+
+  it("Deve decrementar a higiene de um personagem", () => {
+    const hygieneCharcter = setHygiene(character, 4)
+    const hygieneCharcterExpected = 24
+
+    expect(hygieneCharcter).toBe(hygieneCharcterExpected)
+  })
+})
+
