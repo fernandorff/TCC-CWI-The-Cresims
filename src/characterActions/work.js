@@ -1,5 +1,5 @@
 import { employeesDataApi } from "../services/api/api.js"
-import { setEnergy, setTimeLife } from "./common.js"
+import { setEnergyTwo, setTimeLife } from "./common.js"
 import { checkLevelSkill } from "./skillAspiration.js"
 
 const POINT_ENERGY_MIN = 2
@@ -22,7 +22,7 @@ export const work = async (character) => {
     characterWork.employee.salary = cresceleonsRecalculates.salary
   } else if (character.energy >= 15) {
     characterWork.time = setTimeLife(character, WORKING_DAY)
-    characterWork.energy = setEnergy(character, POINT_ENERGY_DECREMENT)
+    characterWork.energy = setEnergyTwo(character, POINT_ENERGY_DECREMENT)
     characterWork.cresceleons = Number((characterWork.cresceleons + character.employee.salary).toFixed(1))
     characterWork.employee.salary = await getSalary(levelSkillCharacter, character.employee.office)
   }
