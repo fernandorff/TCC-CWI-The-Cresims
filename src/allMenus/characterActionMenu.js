@@ -1,8 +1,8 @@
 import { sleepMenu } from "../characterActions/sleepMenu.js";
 import { takeAShower } from "../characterActions/takeAShower.js";
 import { useQuestion } from "../services/question/use-question.js";
-import { characterInfoDisplay } from "./characterInfoDisplay.js";
-import { theCresimsLogo } from "./theCresimsLogo.js";
+import { characterInfoDisplay } from "../../userInterface/menus/characterInfoDisplay.js";
+import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
 import { executeCheat } from "../cheats/cheats.js";
 import { menuWork } from "./menuWork.js";
 import { menuBuyItens } from "./menuBuyItens.js";
@@ -10,7 +10,7 @@ import { menuTrainning } from "./menuTranning.js";
 import { menuInteraction } from "./menuInteraction.js";
 import { deleteCharacters, updateCharacterBD } from "../crud/character.js";
 import { characterDeath } from "../characterActions/characterDeath.js";
-import { gameStartMenu } from "./gameStartMenu.js";
+import { gameStartMenu } from "../../userInterface/menus/gameStartMenu.js";
 import { updateStorageDead, getStorageDead } from "../crud/storage.js";
 
 export const validateEnergyAndHygiene = async (character) => {
@@ -44,7 +44,7 @@ export const characterActionMenu = async (character) => {
       console.log("delaçao premiada");
       return;
     }
-    console.log('\x1Bc');
+    console.log("\x1Bc");
     const input = await useQuestion(`
 ${await theCresimsLogo()}
 
@@ -78,7 +78,7 @@ Sua escolha:`);
         `;
           break;
         }
-        console.log('\x1Bc');
+        console.log("\x1Bc");
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -87,7 +87,7 @@ Sua escolha:`);
 
       // Treinar habilidade
       case "2":
-        console.log('\x1Bc');
+        console.log("\x1Bc");
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -106,7 +106,7 @@ Sua escolha:`);
         }
         warningMessage = ``;
 
-        console.log('\x1Bc');
+        console.log("\x1Bc");
         character = await sleepMenu(character);
         break;
 
@@ -128,14 +128,14 @@ Sua escolha:`);
           break;
         }
         warningMessage = ``;
-        console.log('\x1Bc');
+        console.log("\x1Bc");
 
         character = await takeAShower(character, 10, true);
         break;
 
       // Comprar item
       case "5":
-        console.log('\x1Bc');
+        console.log("\x1Bc");
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -144,7 +144,7 @@ Sua escolha:`);
 
       // Interagir com outro personagem
       case "6":
-        console.log('\x1Bc');
+        console.log("\x1Bc");
         [character, status] = await menuInteraction(character);
 
         warningMessage = `
@@ -175,7 +175,7 @@ Sua escolha:`);
 `;
         }
 
-        console.log('\x1Bc');
+        console.log("\x1Bc");
         break;
     }
 

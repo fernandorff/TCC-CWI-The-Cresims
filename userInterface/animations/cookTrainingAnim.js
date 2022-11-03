@@ -1,5 +1,4 @@
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { theCresimsLogo } from "../menus/theCresimsLogo.js";
 
 export const cookTrainingAnim = async (character, display) => {
   const f = ["₊", "｡"];

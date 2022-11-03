@@ -1,16 +1,17 @@
-import { characterInfoDisplay } from "../allMenus/characterInfoDisplay.js";
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
-
+import { characterInfoDisplay } from "../menus/characterInfoDisplay.js";
+import { theCresimsLogo } from "../menus/theCresimsLogo.js";
 
 export const animationMenuWork = async (character) => {
-    console.log(`${await theCresimsLogo()}`)
-    console.log(`${await characterInfoDisplay(character)}\n`);
-    console.log(`O personagem ${character.name} não possui um emprego, escolha um:`);
-}
+  console.log(`${await theCresimsLogo()}`);
+  console.log(`${await characterInfoDisplay(character)}\n`);
+  console.log(
+    `O personagem ${character.name} não possui um emprego, escolha um:`
+  );
+};
 
 export const animationBuyItens = async () => {
-    console.log(`${await theCresimsLogo()}`);
-    console.log(`
+  console.log(`${await theCresimsLogo()}`);
+  console.log(`
      ___________________________________________________________
     | : : : : : : : : : : : : : : : : : : : : : : : : : : : : : |
     |: : : : : : : : :_________________________: : : : : : : : :|
@@ -27,5 +28,4 @@ export const animationBuyItens = async () => {
     |      |                |    LL     |                |      |
     l______|________________|           |________________|______|
     `);
-}
-
+};

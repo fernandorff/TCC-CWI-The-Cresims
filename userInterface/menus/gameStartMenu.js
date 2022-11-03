@@ -1,20 +1,20 @@
-import { useQuestion } from "../services/question/use-question.js";
+import { useQuestion } from "../../src/services/question/use-question.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
 import {
   setCharacter,
   getCharacter,
   getAllCharacters,
   deleteCharacters,
-} from "../crud/character.js";
-import { getStorage, getStorageDead } from "../crud/storage.js";
-import { characterDeath } from "../characterActions/characterDeath.js";
+} from "../../src/crud/character.js";
+import { getStorage, getStorageDead } from "../../src/crud/storage.js";
+import { characterDeath } from "../../src/characterActions/characterDeath.js";
 
 export const gameStartMenu = async () => {
   let warningMessage = ``;
   let gameStartMenu = true;
 
   while (gameStartMenu == true) {
-    console.log('\x1Bc');;
+    console.log("\x1Bc");
     const input = await useQuestion(`
   ▀██ ▀██▀  ▀█▀         ▀██                                          ▄           
    ▀█▄ ▀█▄  ▄▀    ▄▄▄▄   ██    ▄▄▄▄    ▄▄▄   ▄▄ ▄▄ ▄▄     ▄▄▄▄     ▄██▄    ▄▄▄   
@@ -48,22 +48,22 @@ Sua escolha: `);
         await getAllCharacters();
         break;
       case "4":
-        const id = await menuDelete()
+        const id = await menuDelete();
         if (id) {
           deleteCharacters(id);
         }
         break;
       case "5":
-        const charDead = await menuDead()
+        const charDead = await menuDead();
         if (charDead) {
-          await characterDeath(charDead)
+          await characterDeath(charDead);
         }
         break;
       case "X":
         console.log("\nFinalizando Game");
         return "exit";
       default:
-        console.log('\x1Bc');;
+        console.log("\x1Bc");
         warningMessage = `
 ### Escolha uma opção válida ###
 `;
@@ -73,7 +73,7 @@ Sua escolha: `);
 
 const menuDead = async () => {
   const storage = getStorageDead();
-  console.log('\x1Bc');
+  console.log("\x1Bc");
   console.log(`
 ### Escolha um personagem para vizualizar tumulo ###
 `);
@@ -86,9 +86,9 @@ const menuDead = async () => {
   const id = await useQuestion(`Escolha o id do personagem: `);
 
   if (id != "X" || id != "x") {
-    return storage[id - 1]
+    return storage[id - 1];
   }
-}
+};
 
 const menuDelete = async () => {
   const storage = getStorage();
@@ -105,6 +105,6 @@ const menuDelete = async () => {
   const id = await useQuestion(`Escolha o id do personagem: `);
 
   if (id != "X" || id != "x") {
-    return id
+    return id;
   }
-}
+};

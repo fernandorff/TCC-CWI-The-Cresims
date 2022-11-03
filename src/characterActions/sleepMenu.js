@@ -1,6 +1,6 @@
 import { useQuestion } from "../services/question/use-question.js";
-import { characterInfoDisplay } from "../allMenus/characterInfoDisplay.js";
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
+import { characterInfoDisplay } from "../../userInterface/menus/characterInfoDisplay.js";
+import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
 
 //
 // calcula o tempo necessário para preencher energia completamente segundo as regras de negocio

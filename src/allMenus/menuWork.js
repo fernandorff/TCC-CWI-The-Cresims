@@ -1,5 +1,5 @@
-import { animationMenuWork } from "../animations/animations.js";
-import { workAnim } from "../animations/workAnim.js";
+import { animationMenuWork } from "../../userInterface/animations/animations.js";
+import { workAnim } from "../../userInterface/animations/workAnim.js";
 import { setEmployee, work } from "../characterActions/work.js";
 import { employeesDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
@@ -8,8 +8,8 @@ export const menuWork = async (character) => {
   let characterWork = await work(character);
 
   if (!characterWork.employee) {
-    animationMenuWork(character)
-    characterWork = await work(await addEmployee(characterWork))
+    animationMenuWork(character);
+    characterWork = await work(await addEmployee(characterWork));
   }
 
   await workAnim(character, true);
@@ -25,12 +25,14 @@ export const choiceEmployee = async (response) => {
 };
 
 export const printEmployes = (employees) => {
-  employees.forEach((employee) => console.log(employee.id + ". " + employee.cargo));
+  employees.forEach((employee) =>
+    console.log(employee.id + ". " + employee.cargo)
+  );
 };
 
 export const addEmployee = async (character) => {
   const response = await employeesDataApi();
   const choice = await choiceEmployee(response);
 
-  return { ...(await setEmployee(character, response[choice - 1])) }
-}
+  return { ...(await setEmployee(character, response[choice - 1])) };
+};

@@ -1,5 +1,4 @@
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { theCresimsLogo } from "../menus/theCresimsLogo.js";
 
 export const musicTrainingAnim = async (character, display) => {
   const n = [
@@ -78,7 +77,7 @@ ${character.name} está tocando aquele Raul${reticencias}
   }
   await new Promise((resolve) => setTimeout(resolve, 500));
   console.clear();
-  await useQuestion(`
+  console.log(`
   ${await theCresimsLogo()}
 
 

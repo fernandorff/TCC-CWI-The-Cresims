@@ -1,3 +1,5 @@
+import { checkLevelSkill } from "../../src/characterActions/skillAspiration.js";
+
 const getItemList = async (character) => {
   let str = "";
   character.items.forEach((i) => {
@@ -16,6 +18,6 @@ export const characterInfoDisplay = async (character) => {
   LL   💵  Cresceleons: ${character.cresceleons}
        ${character.iconAspiration}  Pontos de ${character.aspiration}: ${
     character.skill
-  }
+  } (${checkLevelSkill(character.skill)})
        📦  Itens: ${await getItemList(character)}`;
 };

@@ -1,5 +1,5 @@
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { theCresimsLogo } from "../menus/theCresimsLogo.js";
+import { useQuestion } from "../../src/services/question/use-question.js";
 
 export const workAnim = async (character, display) => {
   if (display == true) {

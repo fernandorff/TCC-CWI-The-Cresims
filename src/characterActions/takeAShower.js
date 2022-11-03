@@ -1,4 +1,4 @@
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
+import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
 import { useQuestion } from "../services/question/use-question.js";
 
 function a(x) {

@@ -1,5 +1,5 @@
-import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { theCresimsLogo } from "../menus/theCresimsLogo.js";
+
 export const gameTrainingAnim = async (character, display) => {
   const r = [
     " ̵͕̉ ̴̰̄ ̸̟̾ ̷̥̐ ̴̞̀  | |=.| ",
@@ -68,7 +68,7 @@ ${character.name} esta jogando um dotinha${reticencias}
   }
   await new Promise((resolve) => setTimeout(resolve, 500));
   console.clear();
-  let input = await useQuestion(`
+  console.log(`
 ${await theCresimsLogo()}  
                        
             _______  .--.

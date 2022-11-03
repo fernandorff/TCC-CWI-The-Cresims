@@ -1,5 +1,4 @@
-import { useLocalStorage } from "./src/services/local-storage/use-local-storage.js";
-import { gameStartMenu } from "./src/allMenus/gameStartMenu.js";
+import { gameStartMenu } from "./userInterface/menus/gameStartMenu.js";
 import { characterActionMenu } from "./src/allMenus/characterActionMenu.js";
 
 const main = async () => {
