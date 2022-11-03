@@ -23,7 +23,7 @@ export const work = async (character) => {
   } else if (character.energy >= 15) {
     characterWork.time = setTimeLife(character, WORKING_DAY)
     characterWork.energy = setEnergy(character, POINT_ENERGY_DECREMENT)
-    characterWork.cresceleons = characterWork.cresceleons + character.employee.salary
+    characterWork.cresceleons = Number((characterWork.cresceleons + character.employee.salary).toFixed(1))
     characterWork.employee.salary = await getSalary(levelSkillCharacter, character.employee.office)
   }
 
