@@ -12,7 +12,7 @@ ${text}
 5.  Musica
 
 Sua escolha:`);
-    console.clear();
+console.log('\x1Bc');
 
     switch (input) {
       case "1":

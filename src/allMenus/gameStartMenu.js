@@ -14,7 +14,7 @@ export const gameStartMenu = async () => {
   let gameStartMenu = true;
 
   while (gameStartMenu == true) {
-    console.clear();
+    console.log('\x1Bc');;
     const input = await useQuestion(`
   ▀██ ▀██▀  ▀█▀         ▀██                                          ▄           
    ▀█▄ ▀█▄  ▄▀    ▄▄▄▄   ██    ▄▄▄▄    ▄▄▄   ▄▄ ▄▄ ▄▄     ▄▄▄▄     ▄██▄    ▄▄▄   
@@ -63,7 +63,7 @@ Sua escolha: `);
         console.log("\nFinalizando Game");
         return "exit";
       default:
-        console.clear();
+        console.log('\x1Bc');;
         warningMessage = `
 ### Escolha uma opção válida ###
 `;
@@ -73,7 +73,7 @@ Sua escolha: `);
 
 const menuDead = async () => {
   const storage = getStorageDead();
-  console.clear()
+  console.log('\x1Bc');
   console.log(`
 ### Escolha um personagem para vizualizar tumulo ###
 `);

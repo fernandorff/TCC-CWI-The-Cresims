@@ -9,7 +9,7 @@ import { theCresimsLogo } from "./theCresimsLogo.js";
 
 const interactionAnimation = async (character1, character2, display) => {
   if (display == true) {
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -24,7 +24,7 @@ ${await theCresimsLogo()}
         1 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -40,7 +40,7 @@ ${await theCresimsLogo()}
 `);
 
     await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -56,7 +56,7 @@ ${await theCresimsLogo()}
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -72,7 +72,7 @@ ${await theCresimsLogo()}
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -88,7 +88,7 @@ ${await theCresimsLogo()}
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -104,7 +104,7 @@ ${await theCresimsLogo()}
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -119,7 +119,7 @@ ${await theCresimsLogo()}
         7 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -135,7 +135,7 @@ ${await theCresimsLogo()}
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -150,7 +150,7 @@ ${await theCresimsLogo()}
         9 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
+    console.log('\x1Bc');
 
     console.log(`
 ${await theCresimsLogo()}
@@ -171,7 +171,7 @@ ${await theCresimsLogo()}
 export const menuInteraction = async (character) => {
   let menuInteractionDisplay = true;
   while ((menuInteractionDisplay = true)) {
-    console.clear();
+    console.log('\x1Bc');
     console.log(`
 ${await theCresimsLogo()}
 
@@ -226,7 +226,7 @@ Id da interação escolhida: `);
         );
 
         if (newCharacter.energy < 0 || newCharacterSecond.energy < 0) {
-          console.clear();
+          console.log('\x1Bc');
           console.log(
             `
 ${await theCresimsLogo()}
@@ -238,9 +238,9 @@ Pontos de energia insuficiente para realizar a interação`
 
         await updateCharacterBD([newCharacterSecond]);
 
-        console.clear();
+        console.log('\x1Bc');
         await interactionAnimation(character, characterSecond, true);
-        console.clear();
+        console.log('\x1Bc');
         console.log(
           `
 ${await theCresimsLogo()}
@@ -290,7 +290,7 @@ const pointsInteraction = (character, idCharacter) => {
 
 const showInteractions = async (list) => {
   let cont = 1;
-  console.clear();
+  console.log('\x1Bc');
   console.log(`
 ${await theCresimsLogo()}
 
