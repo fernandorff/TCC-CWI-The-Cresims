@@ -397,6 +397,17 @@ describe("5 - Relacionamentos", () => {
     expect(levelCharacter_02).toBe("INIMIZADE");
   });
 
+  it("Deve Retornar o relacionamento de dois cresim como NEUTRO", () => {
+    const pointsCharacter = character.relationship[0].level;
+    const pointsCharacter_02 = character_02.relationship[0].level;
+
+    const levelCharacter = getLevelInteraction(pointsCharacter);
+    const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
+    
+    expect(levelCharacter).toBe("NEUTRO");
+    expect(levelCharacter_02).toBe("NEUTRO");
+  })
+
   it("Deve retornar uma lista com todas as interações para INIMIZADE", async () => {
     const tamListExpect = 13;
 
@@ -457,8 +468,36 @@ describe("5 - Relacionamentos", () => {
     const energyExpect = 30;
     const energyExpect_02 = 31;
 
-    // expect(energyCharacter).toBe(energyExpect);
-    // expect(energyCharacter_02).toBe(energyExpect_02);
+    expect(energyCharacter).toBe(energyExpect);
+    expect(energyCharacter_02).toBe(energyExpect_02);
+  });
+
+  it("Deve impedir interação quando um cresim tiver 0 de energia", () => {
+    const objInteraction = {
+      id: 6,
+      interacao: "Criticar",
+      pontos: -3,
+      energia: 2,
+    };
+    
+    const characterEnergy = {
+      ...character,
+      energy: 0
+    }
+    const [newCharacter, newCharacter_02] = interaction(
+      characterEnergy,
+      character_02,
+      objInteraction
+    );
+
+    const pointsCharacter = newCharacter.relationship[0].level;
+    const pointsCharacter_02 = newCharacter_02.relationship[0].level;
+
+    const pointsExpect = character.relationship[0].level;
+    const pointsExpect_02 = character_02.relationship[0].level;
+
+    expect(pointsCharacter).toBe(pointsExpect)
+    expect(pointsCharacter_02).toBe(pointsExpect_02)
   });
 });
 
