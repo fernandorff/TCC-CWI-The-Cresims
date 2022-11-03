@@ -1,6 +1,4 @@
-import { menuAbilitys } from '../allMenus/menuAbilitys.js';
 import { cheatsDataApi } from '../services/api/api.js';
-import { cheatJunim } from './cheatJunim.js';
 
 export const executeCheat = async (character, input) => {
     const listCheats = await cheatsDataApi();
@@ -30,15 +28,10 @@ export const executeCheat = async (character, input) => {
                 energy: newEnergy
             }
         case "JUNIM":
-            console.clear()
-            const ability = await menuAbilitys("Escolha uma das habilidades para aplicar o cheat:");
-            const verify = character.ability.find(obj => obj.name == ability)
-
-            if (!verify) {
-                return character;
+            return {
+                ...character,
+                skill: character.skill + 5
             }
-            
-            return cheatJunim(character, ability);
         case "CAROLINAS":
             return {
                 ...character,

@@ -10,7 +10,6 @@ import {
 import { isWork, work } from "../src/characterActions/work";
 import { itensSkillDataApi } from "../src/services/api/api";
 import { executeCheat } from "../src/cheats/cheats";
-import { cheatJunim } from "../src/cheats/cheatJunim";
 import { takeAShower } from "../src/characterActions/takeAShower";
 import { validateEnergyAndHygiene } from "../src/allMenus/characterActionMenu";
 import { sleepAction } from "../src/characterActions/sleepMenu";
@@ -360,8 +359,8 @@ describe("6 - Cheats", () => {
   });
 
   it("Deve conseguir aplicar o cheat JUNIM e receber as recompensas para a habilidade escolhida", async () => {
-    const newCharacter = await cheatJunim(character, "CULINARIA");
-    const skillLevel = newCharacter.ability[0].skill;
+    const newCharacter = await executeCheat(character, "JUNIM");
+    const skillLevel = newCharacter.skill;
     const numExpect = 5;
     expect(skillLevel).toBe(numExpect);
   });

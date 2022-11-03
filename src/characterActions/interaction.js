@@ -48,12 +48,8 @@ export const listInteraction = async (level) => {
 }
 
 export const getLevelInteraction = (points) => {
-    if (points < 0) {
-        return "INIMIZADE";
-    } else if (points < 10) {
-        return "NEUTRO";
-    } else if (points < 25) {
-        return "AMIZADE";
-    }
+    if (points < 0) return "INIMIZADE";
+    else if (points < 10) return "NEUTRO";
+    else if (points < 25) return "AMIZADE";
     return "AMOR";
 }
