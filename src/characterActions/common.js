@@ -14,10 +14,7 @@ export const setHygiene = (character, hygieneDecrement) => {
     return (character.hygiene - hygieneDecrement) < 0 ? character.hygiene : character.hygiene - hygieneDecrement
 }
 
-export const clearCustomConsoleLog = () => {
+export const clearBash = () => {
     console.log('\x1Bc');
-}
-
-export const clearConsoleStandart = () => {
     console.clear()
 }
