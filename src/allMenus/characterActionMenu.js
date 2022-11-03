@@ -44,7 +44,7 @@ export const characterActionMenu = async (character) => {
       console.log("delaçao premiada");
       return;
     }
-    console.clear();
+    console.log('\x1Bc');
     const input = await useQuestion(`
 ${await theCresimsLogo()}
 
@@ -78,7 +78,7 @@ Sua escolha:`);
         `;
           break;
         }
-        console.clear();
+        console.log('\x1Bc');
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -87,7 +87,7 @@ Sua escolha:`);
 
       // Treinar habilidade
       case "2":
-        console.clear();
+        console.log('\x1Bc');
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -106,7 +106,7 @@ Sua escolha:`);
         }
         warningMessage = ``;
 
-        console.clear();
+        console.log('\x1Bc');
         character = await sleepMenu(character);
         break;
 
@@ -128,14 +128,14 @@ Sua escolha:`);
           break;
         }
         warningMessage = ``;
-        console.clear();
+        console.log('\x1Bc');
 
         character = await takeAShower(character, 10, true);
         break;
 
       // Comprar item
       case "5":
-        console.clear();
+        console.log('\x1Bc');
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -144,7 +144,7 @@ Sua escolha:`);
 
       // Interagir com outro personagem
       case "6":
-        console.clear();
+        console.log('\x1Bc');
         [character, status] = await menuInteraction(character);
 
         warningMessage = `
@@ -175,7 +175,7 @@ Sua escolha:`);
 `;
         }
 
-        console.clear();
+        console.log('\x1Bc');
         break;
     }
 
