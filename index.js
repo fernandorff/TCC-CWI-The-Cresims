@@ -3,11 +3,13 @@ import { characterActionMenu } from "./userInterface/menus/characterActionMenu.j
 
 const main = async () => {
   while (true) {
+    console.log("oi")
     const obj = await gameStartMenu();
 
     if (obj == "exit") {
       return;
     }
+    
     if (typeof obj == "object") {
       console.clear();
       await characterActionMenu(obj);
