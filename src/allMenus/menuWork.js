@@ -10,11 +10,6 @@ const TIME = 3000;
 export const menuWork = async (character) => {
   let characterWork = await work(character);
 
-  if (character.energy <= 2) {
-    animationTimeCount(TIME, "Energias insuficiente");
-    return character
-  }
-
   if (!characterWork.employee) {
     animationMenuWork(character)
     characterWork = await work(await addEmployee(characterWork))
