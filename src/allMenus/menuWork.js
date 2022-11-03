@@ -1,19 +1,11 @@
 import { animationMenuWork } from "../animations/animations.js";
-import { animationTimeCount } from "../animations/animationTimeCount.js";
 import { workAnim } from "../animations/workAnim.js";
 import { setEmployee, work } from "../characterActions/work.js";
 import { employeesDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
 
-const TIME = 3000;
-
 export const menuWork = async (character) => {
   let characterWork = await work(character);
-
-  if (character.energy <= 2) {
-    animationTimeCount(TIME, "Energias insuficiente");
-    return character
-  }
 
   if (!characterWork.employee) {
     animationMenuWork(character)
