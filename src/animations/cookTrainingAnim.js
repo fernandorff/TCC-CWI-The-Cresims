@@ -7,9 +7,10 @@ export const cookTrainingAnim = async (character, display) => {
   function rnd(randomImages) {
     return randomImages[Math.floor(Math.random() * randomImages.length)];
   }
-  while (display == true) {
-    console.clear();
-    console.log(`
+  if (display == true) {
+    for (let i = 0; i < 5; i++) {
+      console.clear();
+      console.log(`
 ${await theCresimsLogo()}
 
    ,,,,          /¯¯¯ 
@@ -22,9 +23,9 @@ ${await theCresimsLogo()}
 
 ${character} esta fazendo uma sopa pra nois...
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
-    console.log(`
+      await new Promise((resolve) => setTimeout(resolve, 500));
+      console.clear();
+      console.log(`
 ${await theCresimsLogo()}
 
    ,,,,          /¯¯¯
@@ -37,6 +38,7 @@ ${await theCresimsLogo()}
 
 ${character} esta fazendo uma sopa pra nois...
 `);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+      await new Promise((resolve) => setTimeout(resolve, 500));
+    }
   }
 };
