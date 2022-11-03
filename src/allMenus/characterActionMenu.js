@@ -12,6 +12,7 @@ import { deleteCharacters, updateCharacterBD } from "../crud/character.js";
 import { characterDeath } from "../characterActions/characterDeath.js";
 import { gameStartMenu } from "./gameStartMenu.js";
 import { updateStorageDead, getStorageDead } from "../crud/storage.js";
+import { clearBash } from "../characterActions/common.js";
 
 export const validateEnergyAndHygiene = async (character) => {
   if (character.energy > 32) {
@@ -44,7 +45,7 @@ export const characterActionMenu = async (character) => {
       console.log("delaçao premiada");
       return;
     }
-    console.log('\x1Bc');
+    clearBash();
     const input = await useQuestion(`
 ${await theCresimsLogo()}
 
@@ -78,7 +79,7 @@ Sua escolha:`);
         `;
           break;
         }
-        console.log('\x1Bc');
+        clearBash();
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -87,7 +88,7 @@ Sua escolha:`);
 
       // Treinar habilidade
       case "2":
-        console.log('\x1Bc');
+        clearBash();
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -106,7 +107,7 @@ Sua escolha:`);
         }
         warningMessage = ``;
 
-        console.log('\x1Bc');
+        clearBash();
         character = await sleepMenu(character);
         break;
 
@@ -128,14 +129,14 @@ Sua escolha:`);
           break;
         }
         warningMessage = ``;
-        console.log('\x1Bc');
+        clearBash();
 
         character = await takeAShower(character, 10, true);
         break;
 
       // Comprar item
       case "5":
-        console.log('\x1Bc');
+        clearBash();
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -144,7 +145,7 @@ Sua escolha:`);
 
       // Interagir com outro personagem
       case "6":
-        console.log('\x1Bc');
+        clearBash();
         [character, status] = await menuInteraction(character);
 
         warningMessage = `
@@ -175,7 +176,7 @@ Sua escolha:`);
 `;
         }
 
-        console.log('\x1Bc');
+        clearBash();
         break;
     }
 
