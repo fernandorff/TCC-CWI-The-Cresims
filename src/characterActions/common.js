@@ -2,7 +2,7 @@ export const setTimeLife = (character, timeDecrement) => {
     return (character.time - timeDecrement) < 0 ? character.time : character.time - timeDecrement
 }
 
-export const setEnergy = (character, energyDecrement) => {
+export const setEnergyTwo = (character, energyDecrement) => {
     return (character.energy - energyDecrement) < 2 ? character.energy : character.energy - energyDecrement
 }
 
