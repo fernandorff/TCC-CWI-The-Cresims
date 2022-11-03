@@ -27,5 +27,3 @@ export const paintTrainingAnim = async (character, display) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
 };
-
-paintTrainingAnim("Fernando", true);

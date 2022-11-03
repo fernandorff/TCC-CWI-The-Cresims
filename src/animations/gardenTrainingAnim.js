@@ -201,5 +201,3 @@ ${character} cuidou do jardim.
           `);
   }
 };
-
-gardenTrainingAnim("Fernando", true);

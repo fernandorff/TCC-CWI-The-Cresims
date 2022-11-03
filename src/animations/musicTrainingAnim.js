@@ -50,5 +50,3 @@ export const musicTrainingAnim = async (character, display) => {
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
 };
-
-musicTrainingAnim("Fernando", true);
