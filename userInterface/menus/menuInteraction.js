@@ -1,11 +1,11 @@
-import { getCharacter, updateCharacterBD } from "../crud/character.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { getCharacter, updateCharacterBD } from "../../src/crud/character.js";
+import { useQuestion } from "../../src/services/question/use-question.js";
 import {
   getLevelInteraction,
   listInteraction,
   interaction,
-} from "../characterActions/interaction.js";
-import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
+} from "../../src/characterActions/interaction.js";
+import { theCresimsLogo } from "./theCresimsLogo.js";
 
 const interactionAnimation = async (character1, character2, display) => {
   if (display == true) {

@@ -1,5 +1,5 @@
 import { gameStartMenu } from "./userInterface/menus/gameStartMenu.js";
-import { characterActionMenu } from "./src/allMenus/characterActionMenu.js";
+import { characterActionMenu } from "./userInterface/menus/characterActionMenu.js";
 
 const main = async () => {
   while (true) {

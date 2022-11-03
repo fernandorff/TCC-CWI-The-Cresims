@@ -1,18 +1,18 @@
-import { sleepMenu } from "../characterActions/sleepMenu.js";
-import { takeAShower } from "../characterActions/takeAShower.js";
-import { useQuestion } from "../services/question/use-question.js";
-import { characterInfoDisplay } from "../../userInterface/menus/characterInfoDisplay.js";
-import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
-import { executeCheat } from "../cheats/cheats.js";
+import { sleepMenu } from "../../src/characterActions/sleepMenu.js";
+import { takeAShower } from "../../src/characterActions/takeAShower.js";
+import { useQuestion } from "../../src/services/question/use-question.js";
+import { characterInfoDisplay } from "./characterInfoDisplay.js";
+import { theCresimsLogo } from "./theCresimsLogo.js";
+import { executeCheat } from "../../src/cheats/cheats.js";
 import { menuWork } from "./menuWork.js";
 import { menuBuyItens } from "./menuBuyItens.js";
 import { menuTrainning } from "./menuTranning.js";
 import { menuInteraction } from "./menuInteraction.js";
-import { deleteCharacters, updateCharacterBD } from "../crud/character.js";
-import { characterDeath } from "../characterActions/characterDeath.js";
-import { gameStartMenu } from "../../userInterface/menus/gameStartMenu.js";
-import { updateStorageDead, getStorageDead } from "../crud/storage.js";
-import { clearBash } from "../characterActions/common.js";
+import { deleteCharacters, updateCharacterBD } from "../../src/crud/character.js";
+import { characterDeath } from "../../src/characterActions/characterDeath.js";
+import { gameStartMenu } from "./gameStartMenu.js";
+import { updateStorageDead, getStorageDead } from "../../src/crud/storage.js";
+import { clearBash } from "../../src/characterActions/common.js";
 
 export const validateEnergyAndHygiene = async (character) => {
   if (character.energy > 32) {

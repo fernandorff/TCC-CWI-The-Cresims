@@ -1,4 +1,4 @@
-import { useQuestion } from "../services/question/use-question.js";
+import { useQuestion } from "../../src/services/question/use-question.js";
 
 export const menuAbilitys = async (text) => {
   let menuAbilitysDisplay = true;

@@ -1,8 +1,6 @@
 import { useQuestion } from "../services/question/use-question.js";
 import { getStorage, updateStorage } from "./storage.js";
-import { menuAbilitys } from "../allMenus/menuAbilitys.js";
-import { gameStartMenu } from "../../userInterface/menus/gameStartMenu.js";
-import { characterActionMenu } from "../allMenus/characterActionMenu.js";
+import { menuAbilitys } from "../../userInterface/menus/menuAbilitys.js";
 
 export const setCharacter = async () => {
   const id = getId();

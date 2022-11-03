@@ -1,12 +1,12 @@
-import { animationTimeCount } from "../../userInterface/animations/animationTimeCount.js";
-import { cookTrainingAnim } from "../../userInterface/animations/cookTrainingAnim.js";
-import { gameTrainingAnim } from "../../userInterface/animations/gameTrainingAnim.js";
-import { gardenTrainingAnim } from "../../userInterface/animations/gardenTrainingAnim.js";
-import { musicTrainingAnim } from "../../userInterface/animations/musicTrainingAnim.js";
-import { paintTrainingAnim } from "../../userInterface/animations/paintTrainingAnim.js";
-import { cicleTrainCharacterProductPurchased } from "../characterActions/skillAspiration.js";
-import { itensSkillDataApi } from "../services/api/api.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { animationTimeCount } from "../animations/animationTimeCount.js";
+import { cookTrainingAnim } from "../animations/cookTrainingAnim.js";
+import { gameTrainingAnim } from "../animations/gameTrainingAnim.js";
+import { gardenTrainingAnim } from "../animations/gardenTrainingAnim.js";
+import { musicTrainingAnim } from "../animations/musicTrainingAnim.js";
+import { paintTrainingAnim } from "../animations/paintTrainingAnim.js";
+import { cicleTrainCharacterProductPurchased } from "../../src/characterActions/skillAspiration.js";
+import { itensSkillDataApi } from "../../src/services/api/api.js";
+import { useQuestion } from "../../src/services/question/use-question.js";
 
 const TIME = 5000;
 

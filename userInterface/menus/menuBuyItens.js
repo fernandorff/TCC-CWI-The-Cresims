@@ -1,9 +1,9 @@
-import { animationBuyItens } from "../../userInterface/animations/animations.js";
-import { animationTimeCount } from "../../userInterface/animations/animationTimeCount.js";
-import { buyProductItens } from "../characterActions/skillAspiration.js";
-import { itensSkillDataApi } from "../services/api/api.js";
+import { animationBuyItens } from "../animations/animations.js";
+import { animationTimeCount } from "../animations/animationTimeCount.js";
+import { buyProductItens } from "../../src/characterActions/skillAspiration.js";
+import { itensSkillDataApi } from "../../src/services/api/api.js";
 import { menuAbilitys } from "./menuAbilitys.js";
-import { useQuestion } from "../services/question/use-question.js";
+import { useQuestion } from "../../src/services/question/use-question.js";
 
 export const menuBuyItens = async (character) => {
   const TIME = 5000;
