@@ -1,4 +1,5 @@
-import { animationTimeCount } from "../animations/animations.js"
+
+import { animationTimeCount } from "../animations/animationTimeCount.js"
 import { cicleTrainCharacterProductPurchased } from "../characterActions/skillAspiration.js"
 import { itensSkillDataApi } from "../services/api/api.js"
 import { useQuestion } from "../services/question/use-question.js"

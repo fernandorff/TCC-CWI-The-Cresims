@@ -4,11 +4,15 @@ import { setEmployee, work } from "../characterActions/work.js";
 import { employeesDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
 
-
-const TIME_CICLE_TRAINNING = 20000;
 const TIME = 3000;
 
 export const menuWork = async (character) => {
+  if (character.energy <= 2) {
+    animationTimeCount(TIME, "Energias insuficiente");
+  } else {
+    await workAnim(character, true);
+  }
+
   let characterWork = await work(character);
 
   if (!characterWork.employee) {
@@ -21,12 +25,6 @@ export const menuWork = async (character) => {
     };
 
     characterWork = await work(characterWork);
-  }
-
-  if (characterWork.energy <= 2) {
-    animationTimeCount(TIME, "Energias insuficiente");
-  } else {
-    await workAnim(character, true);
   }
 
   return characterWork;
