@@ -1,9 +1,9 @@
 import { interactionsDataApi } from "../../services/api/api.js";
 import { setTimeLife, setEnergy } from "./common.js";
 
-export const interaction = (character, characterSecondary, interaction) => {
-  const energy = interaction.energia;
-  const points = interaction.pontos;
+export const interaction = (character, characterSecondary, relation) => {
+  const energy = relation.energia;
+  const points = relation.pontos;
   const time = energy * 2000;
 
   const newEnergy = setEnergy(character, energy);

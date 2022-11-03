@@ -3,12 +3,9 @@ import { cheatsDataApi } from "../../services/api/api.js";
 export const executeCheat = async (character, input) => {
   const listCheats = await cheatsDataApi();
   const code = input.toUpperCase();
-  const cheat = listCheats.find((cheat) => cheat.codigo == code);
+  const cheat = listCheats.find((che) => che.codigo == code);
 
-  if (!cheat) {
-    console.log("Este não é um dos cheats disponiveis");
-    return character;
-  }
+  if (!cheat) return character;
 
   switch (cheat.codigo) {
     case "SORTENAVIDA":
@@ -45,6 +42,4 @@ export const executeCheat = async (character, input) => {
         time: 0,
       };
   }
-
-  return character;
 };

@@ -533,6 +533,17 @@ describe("6 - Cheats", () => {
     const numExpect = 0;
     expect(newCharacter.time).toBe(numExpect);
   });
+
+  it("Deve impedir que o cheat seja aplicado para caso de tentar aplicar cheat inexistente", async () => {
+    const newCharacter = await executeCheat(character, "ARROZ");
+    expect(newCharacter).toEqual(character)
+  })
+
+  it("Deve manter 32 de energia quando for rodar o cheat deitado na rede DEITADONAREDE ", async () => {
+    const newCharacter = await executeCheat(character, "DEITADONAREDE");
+    const energyExpect = 32
+    expect(newCharacter.energy).toEqual(energyExpect)
+  })
 });
 
 describe("7 - Higiene", () => {
