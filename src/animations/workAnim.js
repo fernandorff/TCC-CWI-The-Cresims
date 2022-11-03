@@ -6,7 +6,7 @@ export const workAnim = async (character, display) => {
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}   
+${await theCresimsLogo()} 
 
  ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ   
 
@@ -23,7 +23,7 @@ ${character.name} está trabalhando.
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}      
+${await theCresimsLogo()}
 
 ☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°
           
@@ -40,7 +40,7 @@ ${character.name} está trabalhando.
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆  
           
@@ -52,13 +52,12 @@ ${await theCresimsLogo()}
        3 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ 
           
@@ -70,13 +69,12 @@ ${await theCresimsLogo()}
        4 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺
           
@@ -88,13 +86,12 @@ ${await theCresimsLogo()}
        5 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}      
+${await theCresimsLogo()}
 
  ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡
           
@@ -106,13 +103,12 @@ ${await theCresimsLogo()}
        6 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ
           
@@ -124,13 +120,12 @@ ${await theCresimsLogo()}
        7 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°
           
@@ -142,13 +137,12 @@ ${await theCresimsLogo()}
        8 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ⁺₊⋆ ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆
           
@@ -160,13 +154,12 @@ ${await theCresimsLogo()}
        9 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
  ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆
           
@@ -178,14 +171,13 @@ ${await theCresimsLogo()}
        10 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺
           
@@ -197,14 +189,13 @@ ${await theCresimsLogo()}
        11 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺
           
@@ -216,14 +207,13 @@ ${await theCresimsLogo()}
        12 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎
           
@@ -235,14 +225,13 @@ ${await theCresimsLogo()}
        13 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎
           
@@ -254,14 +243,13 @@ ${await theCresimsLogo()}
        14 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 -₊⋆⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎
           
@@ -273,14 +261,13 @@ ${await theCresimsLogo()}
        15 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆
           
@@ -292,14 +279,13 @@ ${await theCresimsLogo()}
        16 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
  ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎
           
@@ -311,14 +297,13 @@ ${await theCresimsLogo()}
        17 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ
           
@@ -330,14 +315,13 @@ ${await theCresimsLogo()}
        18 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡
           
@@ -349,14 +333,13 @@ ${await theCresimsLogo()}
        19 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
 
     console.log(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ☁︎-₊⋆⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°
           
@@ -368,13 +351,12 @@ ${await theCresimsLogo()}
        20 / 20
 
 ${character.name} está trabalhando.
-
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
     console.clear();
     await useQuestion(`
-${await theCresimsLogo()}  
+${await theCresimsLogo()}
 
 ⁺₊⋆ ☀︎ ⋆⁺⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆
           

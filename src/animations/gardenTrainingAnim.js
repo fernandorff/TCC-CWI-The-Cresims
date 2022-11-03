@@ -1,4 +1,5 @@
 import { theCresimsLogo } from "../allMenus/theCresimsLogo.js";
+import { useQuestion } from "../services/question/use-question.js";
 
 export const gardenTrainingAnim = async (character, display) => {
   if (display == true) {
@@ -18,7 +19,7 @@ ${await theCresimsLogo()}
           
            1 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
@@ -37,7 +38,7 @@ ${await theCresimsLogo()}
                 
            2 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
@@ -56,7 +57,7 @@ ${await theCresimsLogo()}
           
            3 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -76,7 +77,7 @@ ${await theCresimsLogo()}
           
            4 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -96,7 +97,7 @@ ${await theCresimsLogo()}
           
            5 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -116,7 +117,7 @@ ${await theCresimsLogo()}
           
             6 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -136,7 +137,7 @@ ${await theCresimsLogo()}
           
            7 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -153,10 +154,10 @@ ${await theCresimsLogo()}
   '.'.'.'.'.'.'. ⅃⅃─/ > '.
   '.'.'.'.'.'.'.'.'/////'.
   .:.|.:.|.:.|.:.|.:.|.:.|
-                                  
+    
            8 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -176,13 +177,14 @@ ${await theCresimsLogo()}
           
            9 / 10
           
-${character} está cuidando das plantinhas.
+${character.name} está cuidando das plantinhas.
           
           `);
     await new Promise((resolve) => setTimeout(resolve, 500));
+    await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
-    console.log(`
+    await useQuestion(`
 ${await theCresimsLogo()}  
           
  ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆
@@ -196,8 +198,10 @@ ${await theCresimsLogo()}
            
           10 / 10
           
-${character} cuidou do jardim.
-          
+${character.name}: Melhor comprar no mercantil mesmo...
+
+
+Pressione ENTER para continuar.
           `);
   }
 };
