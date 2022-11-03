@@ -7,5 +7,13 @@ export const setEnergy = (character, energyDecrement) => {
 }
 
 export const setHygiene = (character, hygieneDecrement) => {
-    return (character.hygiene - hygieneDecrement) < 0 ? character.hygiene   : character.hygiene - hygieneDecrement
+    return (character.hygiene - hygieneDecrement) < 0 ? character.hygiene : character.hygiene - hygieneDecrement
+}
+
+export const clearCustomConsoleLog = () => {
+    console.log('\x1Bc');
+}
+
+export const clearConsoleStandart = () => {
+    console.clear()
 }
