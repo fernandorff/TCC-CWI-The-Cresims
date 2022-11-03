@@ -1,15 +1,15 @@
 import { setEnergy, setHygiene, setTimeLife } from "./common.js"
 
+const TIME_CICLE_TRAINNING = 8000
+const ENERGY_DECREMENT = 4
+const HYGIENE_DECREMENT = 2
+
 export const setSkill = (character, productChoice, skillChoice) => {
   if (character.aspiration === skillChoice) return character.skill + productChoice.pontos + 1
   else return character.skill + productChoice.pontos
 }
 
 export const cicleTrainCharacterProductPurchased = (character, productChoice, skillChoice) => {
-  const TIME_CICLE_TRAINNING = 8000
-  const ENERGY_DECREMENT = 4
-  const HYGIENE_DECREMENT = 2
-
   const characterTrainning = { ...character }
 
   if (!characterTrainning.ability) {

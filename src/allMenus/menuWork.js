@@ -8,16 +8,16 @@ import { useQuestion } from "../services/question/use-question.js";
 const TIME = 3000;
 
 export const menuWork = async (character) => {
+  let characterWork = await work(character);
+
   if (character.energy <= 2) {
     animationTimeCount(TIME, "Energias insuficiente");
     return character
   }
 
-  let characterWork = await work(character);
-
   if (!characterWork.employee) {
     animationMenuWork(character)
-    characterWork = await work(await addEmployee(characterWork)) 
+    characterWork = await work(await addEmployee(characterWork))
   }
 
   await workAnim(character, true);
@@ -33,18 +33,12 @@ export const choiceEmployee = async (response) => {
 };
 
 export const printEmployes = (employees) => {
-  employees.forEach((employee) => {
-    console.log(employee.id + ". " + employee.cargo);
-  });
+  employees.forEach((employee) => console.log(employee.id + ". " + employee.cargo));
 };
 
 export const addEmployee = async (character) => {
   const response = await employeesDataApi();
   const choice = await choiceEmployee(response);
 
-  let characterWork = {
-    ...(await setEmployee(character, response[choice - 1])),
-  };
-
-  return characterWork
+  return { ...(await setEmployee(character, response[choice - 1])) }
 }
