@@ -5,8 +5,10 @@ import { gameTrainingAnim } from "../animations/gameTrainingAnim.js"
 import { gardenTrainingAnim } from "../animations/gardenTrainingAnim.js"
 import { musicTrainingAnim } from "../animations/musicTrainingAnim.js"
 import { paintTrainingAnim } from "../animations/paintTrainingAnim.js"
+
 import { cicleTrainCharacterProductPurchased } from "../characterActions/skillAspiration.js"
 import { itensSkillDataApi } from "../services/api/api.js"
+
 import { useQuestion } from "../services/question/use-question.js"
 
 const TIME = 3000
