@@ -14,12 +14,14 @@ const interactionAnimation = async (character1, character2, display) => {
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆    ̴̡̨̟̝̮̳̿̌̋  ⚆.⚆)  
- <|>       ─|> 
-  LL       ⅃⅃ 
-${character1.name}  
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆    ̴̡̨̟̝̮̳̿̌̋  ⚆.⚆)  
+     <|>       ─|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
+
+        1 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
@@ -27,12 +29,14 @@ ${character1.name}
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆    ̸̳̱̈́̍͒  ⚆_⚆)  
- <|>       v|> 
-  LL       ⅃⅃ 
-${character1.name}  
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆    ̸̳̱̈́̍͒  ⚆_⚆)  
+     <|>       v|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
+
+        2 / 10
 `);
 
     await new Promise((resolve) => setTimeout(resolve, 500));
@@ -41,26 +45,14 @@ ${character1.name}
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆    ̶̟̩́̚  ⚆.⚆)  
- <|>       ─|> 
-  LL       ⅃⅃ 
-${character1.name}  
-`);
-    await new Promise((resolve) => setTimeout(resolve, 500));
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆    ̶̟̩́̚  ⚆.⚆)  
+     <|>       ─|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
 
-    console.clear();
-
-    console.log(`
-${await theCresimsLogo()}
-
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆    ̸̛͎͍̈́̏͊̆̈̂͜  ⚆_⚆)  
- <|>       v|> 
-  LL       ⅃⅃ 
-${character1.name}  
+        3 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -69,12 +61,14 @@ ${character1.name}
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆      ⚆_⚆)  
- <|>       <|> 
-  LL       ⅃⅃ 
-${character1.name}  
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆    ̸̛͎͍̈́̏͊̆̈̂͜  ⚆_⚆)  
+     <|>       v|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
+
+        4 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -83,12 +77,14 @@ ${character1.name}
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆.⚆  ̶͇̣̏͑    ⚆_⚆)  
- <|v       <|> 
-  LL       ⅃⅃ 
-${character1.name}  
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆      ⚆_⚆)  
+     <|>       <|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
+
+        5 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -97,25 +93,14 @@ ${character1.name}
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆  ̴̛̮̖̘̿͐͜    ⚆_⚆)  
- <|─       <|> 
-  LL       ⅃⅃ 
-${character1.name}  
-`);
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    console.clear();
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆.⚆  ̶͇̣̏͑    ⚆_⚆)  
+     <|v       <|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
 
-    console.log(`
-${await theCresimsLogo()}
-
-          ${character2.name}
- ,,,,     ,,,,
-(⚆.⚆  ̶̢̛̱̝̫̪̌̅͌͑̕    ⚆_⚆)  
- <|v       <|> 
-  LL       ⅃⅃ 
-${character1.name}  
+        6 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
 
@@ -124,12 +109,14 @@ ${character1.name}
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆  ̸̝̗͈̀͜͝    ⚆_⚆)  
- <|─       <|> 
-  LL       ⅃⅃ 
-${character1.name}  
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆  ̴̛̮̖̘̿͐͜    ⚆_⚆)  
+     <|─       <|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
+
+        7 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
@@ -137,12 +124,45 @@ ${character1.name}
     console.log(`
 ${await theCresimsLogo()}
 
-          ${character2.name}
- ,,,,     ,,,,
-(⚆_⚆      ⚆_⚆)  
- <|>       <|> 
-  LL       ⅃⅃ 
-${character1.name}  
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆.⚆  ̶̢̛̱̝̫̪̌̅͌͑̕    ⚆_⚆)  
+     <|v       <|> 
+      LL       ⅃⅃ 
+     ${character1.name} 
+     
+        8 / 10
+`);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    console.clear();
+
+    console.log(`
+${await theCresimsLogo()}
+
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆  ̸̝̗͈̀͜͝    ⚆_⚆)  
+     <|─       <|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
+
+        9 / 10
+`);
+    await new Promise((resolve) => setTimeout(resolve, 500));
+    console.clear();
+
+    console.log(`
+${await theCresimsLogo()}
+
+              ${character2.name}
+     ,,,,     ,,,,
+    (⚆_⚆      ⚆_⚆)  
+     <|>       <|> 
+      LL       ⅃⅃ 
+     ${character1.name}  
+
+        10 / 10
 `);
     await new Promise((resolve) => setTimeout(resolve, 500));
   }
@@ -225,12 +245,12 @@ Pontos de energia insuficiente para realizar a interação`
           `
 ${await theCresimsLogo()}
 
-          ${characterSecond.name}
- ,,,,     ,,,,
-(⚆_⚆      ⚆_⚆)  
- <|>       <|> 
-  LL       ⅃⅃ 
-${character.name}  
+              ${characterSecond.name}
+     ,,,,     ,,,,
+    (⚆_⚆      ⚆_⚆)  
+     <|>       <|> 
+      LL       ⅃⅃ 
+     ${character.name}  
 
 Interação "${objInterection.interacao}" realizada com sucesso
 `

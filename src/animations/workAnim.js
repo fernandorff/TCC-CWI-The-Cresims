@@ -191,7 +191,7 @@ ${await theCresimsLogo()}
           
                         ,,    
                         x.  
-                        -|   
+                        ~|   
                         ⅃     
                         
        11 / 20
@@ -210,7 +210,7 @@ ${await theCresimsLogo()}
           
                      ,,,,    
                      x.x)  
-                     -|-   
+                     ─|~   
                      ⅃⅃    
                      
        12 / 20
@@ -229,7 +229,7 @@ ${await theCresimsLogo()}
           
                   ,,,,    
                   x.x)  
-                  -|-   
+                  ~|─   
                   ⅃ ⅃     
                   
        13 / 20
@@ -248,7 +248,7 @@ ${await theCresimsLogo()}
           
                ,,,,    
                x.x)  
-               -|-   
+               ─|~   
                ⅃⅃    
                
        14 / 20
@@ -267,7 +267,7 @@ ${await theCresimsLogo()}
           
             ,,,,    
             x.x)  
-            -|-   
+            ~|─   
             ⅃ ⅃     
             
        15 / 20
@@ -286,7 +286,7 @@ ${await theCresimsLogo()}
           
          ,,,,    
          x.x)  
-         -|-   
+         ─|~   
          ⅃⅃      
 
        16 / 20
@@ -305,7 +305,7 @@ ${await theCresimsLogo()}
           
       ,,,,    
       x.x)  
-      -|-   
+      ~|─   
       ⅃ ⅃      
 
        17 / 20
@@ -324,7 +324,7 @@ ${await theCresimsLogo()}
           
    ,,,,    
    x.x)  
-   -|-   
+   ─|~   
    ⅃⅃      
 
        18 / 20
@@ -343,7 +343,7 @@ ${await theCresimsLogo()}
           
  ,,,,    
  x.x)  
- -|-   
+ ~|─   
  ⅃ ⅃     
  
        19 / 20
@@ -362,7 +362,7 @@ ${await theCresimsLogo()}
           
 ,,,    
 .x)  
-|-   
+|~   
 ⅃     
 
        20 / 20
