@@ -30,19 +30,19 @@ export const interaction = (character, characterSecondary, interaction) => {
 };
 
 export const listInteraction = async (level) => {
-  const list = await interactionsDataApi();
+    const list = await interactionsDataApi();
 
-  switch (level) {
-    case "INIMIZADE":
-      return [...list.INIMIZADE, ...list.NEUTRO];
-    case "NEUTRO":
-      return [...list.NEUTRO];
-    case "AMIZADE":
-      return [...list.AMIZADE, list.NEUTRO];
-    default:
-      return [...list.AMOR, ...list.AMIZADE, list.NEUTRO];
-  }
-};
+    switch (level) {
+        case "INIMIZADE":
+            return [...list.INIMIZADE, ...list.NEUTRO];
+        case "NEUTRO":
+            return [...list.NEUTRO];
+        case "AMIZADE":
+            return [...list.AMIZADE, ...list.NEUTRO]
+        default:
+            return [...list.AMOR, ...list.AMIZADE, ...list.NEUTRO]
+    }
+}
 
 export const getLevelInteraction = (points) => {
   if (points < 0) return "INIMIZADE";
