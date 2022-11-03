@@ -295,6 +295,60 @@ describe("5 - Relacionamentos", () => {
     expect(levelCharacter_02).toBe("AMIZADE");
   });
 
+  it("Deve evoluir o relacionamento de dois Cresims para AMIZADE", () => {
+    const objInteraction = {
+      id: 3,
+      interacao: "Elogiar",
+      pontos: 4,
+      energia: 1,
+    };
+
+    let [newCharacter, newCharacter_02] = [character, character_02];
+    for (let cont = 0; cont < 10; cont++) {
+      [newCharacter, newCharacter_02] = interaction(
+        newCharacter,
+        newCharacter_02,
+        objInteraction
+      );
+    }
+
+    const pointsCharacter = newCharacter.relationship[0].level;
+    const pointsCharacter_02 = newCharacter_02.relationship[0].level;
+    
+    const levelCharacter = getLevelInteraction(pointsCharacter);
+    const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
+    
+    expect(levelCharacter).toBe("AMOR");
+    expect(levelCharacter_02).toBe("AMOR");
+  });
+
+  it("Deve evoluir o relacionamento de dois Cresims para AMOR", () => {
+    const objInteraction = {
+      id: 3,
+      interacao: "Elogiar",
+      pontos: 4,
+      energia: 1,
+    };
+
+    let [newCharacter, newCharacter_02] = [character, character_02];
+    for (let cont = 0; cont < 10; cont++) {
+      [newCharacter, newCharacter_02] = interaction(
+        newCharacter,
+        newCharacter_02,
+        objInteraction
+      );
+    }
+
+    const pointsCharacter = newCharacter.relationship[0].level;
+    const pointsCharacter_02 = newCharacter_02.relationship[0].level;
+    
+    const levelCharacter = getLevelInteraction(pointsCharacter);
+    const levelCharacter_02 = getLevelInteraction(pointsCharacter_02);
+    
+    expect(levelCharacter).toBe("AMOR");
+    expect(levelCharacter_02).toBe("AMOR");
+  });
+
   it("Deve recuar o relacionamento de dois Cresims para INIMIZADE", () => {
     const objInteraction = {
       id: 6,
