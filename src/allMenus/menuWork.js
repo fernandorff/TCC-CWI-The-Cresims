@@ -1,4 +1,5 @@
 import { animationTimeCount } from "../animations/animationTimeCount.js";
+import { workAnim } from "../animations/workAnim.js";
 import { setEmployee, work } from "../characterActions/work.js";
 import { employeesDataApi } from "../services/api/api.js";
 import { useQuestion } from "../services/question/use-question.js";
@@ -34,7 +35,7 @@ O personagem ${character.name} não possui um emprego, escolha um:
   if (characterWork.energy <= 2) {
     animationTimeCount(TIME, "Energias insuficiente");
   } else {
-    animationTimeCount(TIME_CICLE_TRAINNING, "Trabalhando");
+    await workAnim(character, true);
   }
 
   return characterWork;
@@ -49,6 +50,6 @@ export const choiceEmployee = async (response) => {
 
 export const printEmployes = (employees) => {
   employees.forEach((employee) => {
-    console.log(employee.id + " - " + employee.cargo);
+    console.log(employee.id + ". " + employee.cargo);
   });
 };
