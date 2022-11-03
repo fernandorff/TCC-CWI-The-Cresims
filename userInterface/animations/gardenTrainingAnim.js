@@ -1,5 +1,4 @@
 import { theCresimsLogo } from "../menus/theCresimsLogo.js";
-import { useQuestion } from "../../src/services/question/use-question.js";
 
 export const gardenTrainingAnim = async (character, display) => {
   if (display == true) {
@@ -184,7 +183,7 @@ ${character.name} está cuidando das plantinhas.
     await new Promise((resolve) => setTimeout(resolve, 500));
     console.clear();
 
-    await useQuestion(`
+    console.log(`
 ${await theCresimsLogo()}  
           
  ☀︎ ⋆⁺₊⋆-ﾟ☁︎｡ﾟ☁︎｡ﾟ ﾟ☁︎｡ﾟ°☁︎-₊⋆⁺₊⋆
