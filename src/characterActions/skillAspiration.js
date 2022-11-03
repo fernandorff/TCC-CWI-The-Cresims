@@ -1,4 +1,4 @@
-import { setEnergy, setHygiene, setTimeLife } from "./common.js"
+import { setEnergyTwo, setHygiene, setTimeLife } from "./common.js"
 
 const TIME_CICLE_TRAINNING = 8000
 const ENERGY_DECREMENT = 4
@@ -18,7 +18,7 @@ export const cicleTrainCharacterProductPurchased = (character, productChoice, sk
 
   const skill = setSkill(characterTrainning, productChoice, skillChoice)
   const time = setTimeLife(characterTrainning, TIME_CICLE_TRAINNING)
-  const energy = setEnergy(characterTrainning, ENERGY_DECREMENT)
+  const energy = setEnergyTwo(characterTrainning, ENERGY_DECREMENT)
   const levelSkill = checkLevelSkill(skill)
   const employee = { ...characterTrainning.employee, level: levelSkill }
   const hygiene = setHygiene(characterTrainning, HYGIENE_DECREMENT)
