@@ -5,7 +5,6 @@ import {
 import { useQuestion } from "../../services/question/use-question.js";
 import { characterInfoDisplay } from "../../userInterface/menus/characterInfoDisplay.js";
 import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
-import { sleepAction } from "../../src/characterActions/sleepMenu.js";
 
 export const sleepMenu = async (character) => {
     console.clear();

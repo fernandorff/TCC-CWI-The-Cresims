@@ -6,7 +6,7 @@ import { clouds, zZz } from "../../userInterface/animations/sleepAnim.js"
 // calcula o tempo necessário para preencher energia completamente segundo as regras de negocio
 //
 
-const calculateNecessaryTimeForFullEnergy = async (character) => {
+export const calculateNecessaryTimeForFullEnergy = async (character) => {
   let timeForFullEnergy = 0;
   let energyForFull = 32 - character.energy;
   let bonus = 0;
