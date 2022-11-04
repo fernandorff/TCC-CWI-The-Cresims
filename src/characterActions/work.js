@@ -15,12 +15,8 @@ export const work = async (character) => {
   if (!isWork(character.energy, character.employee)) {
     return character;
   } else if (character.energy >= 4 && character.energy < 15) {
-    const cresceleonsRecalculates = await recalculateCresceleons(
-      character,
-      WORKING_DAY
-    );
-    characterWork.cresceleons =
-      characterWork.cresceleons + cresceleonsRecalculates.salary;
+    const cresceleonsRecalculates = await recalculateCresceleons(character, WORKING_DAY);
+    characterWork.cresceleons = characterWork.cresceleons + cresceleonsRecalculates.salary;
     characterWork.time = cresceleonsRecalculates.time;
     characterWork.energy = cresceleonsRecalculates.energyDecrement;
     characterWork.employee.salary = cresceleonsRecalculates.salary;
@@ -30,20 +26,13 @@ export const work = async (character) => {
     characterWork.cresceleons = Number(
       (characterWork.cresceleons + character.employee.salary).toFixed(1)
     );
-    characterWork.employee.salary = await getSalary(
-      levelSkillCharacter,
-      character.employee.office
-    );
+    characterWork.employee.salary = await getSalary(levelSkillCharacter, character.employee.office);
   }
 
   if (characterWork.hygiene < 4 && characterWork.employee.salary) {
     const salaryDiscount = characterWork.employee.salary * TEN_PERCENT;
-    characterWork.employee.salary = Number(
-      (characterWork.employee.salary - salaryDiscount).toFixed(1)
-    );
-    characterWork.cresceleons = Number(
-      (characterWork.cresceleons - salaryDiscount).toFixed(1)
-    );
+    characterWork.employee.salary = Number((characterWork.employee.salary - salaryDiscount).toFixed(1));
+    characterWork.cresceleons = Number((characterWork.cresceleons - salaryDiscount).toFixed(1));
   }
 
   return characterWork;
@@ -52,24 +41,16 @@ export const work = async (character) => {
 export const recalculateCresceleons = async (character, workingDay) => {
   const salaryCresim = character.employee.salary;
   const cresceleonForEachPointEnergy = salaryCresim / POINT_ENERGY_DECREMENT;
-  const cresceleonTenPercentForEachPointEnergy =
-    cresceleonForEachPointEnergy - cresceleonForEachPointEnergy * TEN_PERCENT;
+  const cresceleonTenPercentForEachPointEnergy = cresceleonForEachPointEnergy - cresceleonForEachPointEnergy * TEN_PERCENT;
   const pointEnergyCresimRested = character.energy - POINT_ENERGY_FOR_DISCOUNT;
-  const pointEnergyCresimTired =
-    POINT_ENERGY_FOR_DISCOUNT - getPointEnergy(character.energy);
-  const salaryCresimRested =
-    pointEnergyCresimRested * cresceleonForEachPointEnergy;
-  const salaryCresimTired =
-    pointEnergyCresimTired * cresceleonTenPercentForEachPointEnergy;
-  const maxTimeToWork =
-    (workingDay / character.energy) * (character.energy - POINT_ENERGY_MIN);
+  const pointEnergyCresimTired = POINT_ENERGY_FOR_DISCOUNT - getPointEnergy(character.energy);
+  const salaryCresimRested = pointEnergyCresimRested * cresceleonForEachPointEnergy;
+  const salaryCresimTired = pointEnergyCresimTired * cresceleonTenPercentForEachPointEnergy;
+  const maxTimeToWork = (workingDay / character.energy) * (character.energy - POINT_ENERGY_MIN);
 
   const time = Math.floor(character.time - maxTimeToWork);
   const salary = Number((salaryCresimRested + salaryCresimTired).toFixed(1));
-  const energyDecrement =
-    character.energy <= 11
-      ? POINT_ENERGY_MIN
-      : character.energy - POINT_ENERGY_DECREMENT;
+  const energyDecrement = character.energy <= 11 ? POINT_ENERGY_MIN : character.energy - POINT_ENERGY_DECREMENT;
 
   return { time, salary, energyDecrement };
 };

@@ -14,11 +14,7 @@ export const menuBuyItens = async (character) => {
   if (skillChoice.toUpperCase() === "X") return character;
 
   const product = await productChoice(response, skillChoice);
-  const characterBuys = buyProductItens(
-    character,
-    product,
-    skillChoice.toUpperCase()
-  );
+  const characterBuys = buyProductItens(character, product, skillChoice.toUpperCase());
 
   if (!characterBuys) {
     animationTimeCount(TIME, "Crescelons insufucientes");
@@ -31,8 +27,7 @@ export const menuBuyItens = async (character) => {
 export const productChoice = async (response, skillChoice) => {
   const listItensSkill = response[skillChoice.toUpperCase()];
 
-  console.log(`${await theCresimsLogo()}
-  `);
+  console.log(`${await theCresimsLogo()}`);
 
   listItensSkill.forEach((product) =>
     console.log(`${product.id}. ${product.nome}  $${product.preco}`)
@@ -47,8 +42,7 @@ export const productChoice = async (response, skillChoice) => {
 
 export const skillChoiceProduct = async () => {
   await animationBuyItens();
-  const choiceAspiration = menuAbilitys(`
-  Escolha um setor da loja: `);
+  const choiceAspiration = menuAbilitys(`Escolha um setor da loja: `);
 
   return choiceAspiration;
 };

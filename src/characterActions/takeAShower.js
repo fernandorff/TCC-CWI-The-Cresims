@@ -1,62 +1,8 @@
-import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
-import { useQuestion } from "../../services/question/use-question.js";
-
-function a(x) {
-  switch (x) {
-    case 1:
-      return `、`;
-    case 2:
-      return `ヽ`;
-    case 3:
-      return `｀`;
-  }
-}
-
-function r() {
-  return Math.ceil(Math.random() * 3);
-}
+import { takeAshowerAnim } from "../../userInterface/animations/takeAShowerAnim.js";
 
 export const takeAShower = async (character, showerTime, animation) => {
   if (animation) {
-    for (let i = 0; i < showerTime; ++i) {
-      let waitingDots = ".";
-      for (let j = 0; j < i % 3; ++j) {
-        waitingDots += ".";
-      }
-      console.clear();
-      console.log(`
-${await theCresimsLogo()}
-
-    _ꓕ_
-   ${a(r())}${a(r())}${a(r())} 
- ${a(r())}${a(r())}${a(r())}${a(r())}        _
-${a(r())}<(u_u)>${a(r())}   ___| |
-${a(r())}${a(r())} | ${a(r())}${a(r())}  (    .'
-${a(r())}${a(r())} LL ${a(r())}${a(r())}  )  (    
-
-        ${i} / ${showerTime}
-
-${character.name} está tomando banho${waitingDots}
-`);
-      character.time -= 1000;
-      await new Promise((resolve) => setTimeout(resolve, 500));
-    }
-    console.clear();
-    console.log(`
-${await theCresimsLogo()}
-
-    _ꓕ_
-
-    ,,,,          _
-  <(O_O)>     ___| |
-     |       (    .'
-.....LL.....  )  (     
-
-        ${showerTime} / ${showerTime}  
-
-${character.name} terminou de tomar banho!
-`);
-    await useQuestion(`Pressione ENTER para continuar...`);
+    takeAshowerAnim(character, showerTime)
   }
 
   character.hygiene = 28;

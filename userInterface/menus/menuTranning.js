@@ -12,10 +12,7 @@ const TIME = 5000;
 
 export const menuTrainning = async (character) => {
   if (character.items.length === 0) {
-    animationTimeCount(
-      TIME,
-      "Você não possui nenhuma ferramenta para realizar o treinamento"
-    );
+    animationTimeCount(TIME, "Você não possui nenhuma ferramenta para realizar o treinamento");
     return character;
   }
 
