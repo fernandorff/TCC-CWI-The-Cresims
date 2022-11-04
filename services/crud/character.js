@@ -11,6 +11,7 @@ export const setCharacter = async () => {
   const hygiene = 28;
   const energy = 32;
   const relationship = [];
+  const employee = []
   const skill = 0;
   const items = [];
   let iconAspiration = "";
@@ -45,6 +46,7 @@ export const setCharacter = async () => {
     time,
     hygiene,
     energy,
+    employee,
     relationship,
     skill,
     items,
