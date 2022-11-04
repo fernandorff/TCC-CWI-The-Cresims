@@ -14,7 +14,7 @@ import { itensSkillDataApi } from "../services/api/api";
 import { executeCheat } from "../src/characterActions/cheats";
 import { takeAShower } from "../src/characterActions/takeAShower";
 import { validateEnergyAndHygiene } from "../userInterface/menus/characterActionMenu";
-import { sleepAction } from "../src/characterActions/sleepMenu";
+import { sleepAction } from "../src/characterActions/sleep";
 import { setEnergy, setEnergyTwo, setHygiene, setTimeLife } from "../src/characterActions/common";
 
 let character, character_02;

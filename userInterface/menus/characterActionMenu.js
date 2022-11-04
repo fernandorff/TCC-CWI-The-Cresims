@@ -1,4 +1,4 @@
-import { sleepMenu } from "../../src/characterActions/sleepMenu.js";
+import { sleepMenu } from "./sleepMenu.js";
 import { useQuestion } from "../../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
