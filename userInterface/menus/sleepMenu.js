@@ -2,6 +2,7 @@ import {
   calculateNecessaryTimeForFullEnergy,
   sleepAction
 } from "../../src/characterActions/sleep.js"
+import { sleepAnim } from "../animations/sleepAnim.js";
 import { useQuestion } from "../../services/question/use-question.js";
 import { characterInfoDisplay } from "../../userInterface/menus/characterInfoDisplay.js";
 import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
@@ -40,6 +41,7 @@ export const sleepMenu = async (character) => {
             (await calculateNecessaryTimeForFullEnergy(character)) / 1000,
             true
           );
+          sleepAnim(character, sleepTime)
   
           return character;
   
