@@ -1,5 +1,4 @@
 import { sleepMenu } from "../../src/characterActions/sleepMenu.js";
-import { takeAShower } from "../../src/characterActions/takeAShower.js";
 import { useQuestion } from "../../services/question/use-question.js";
 import { characterInfoDisplay } from "./characterInfoDisplay.js";
 import { theCresimsLogo } from "./theCresimsLogo.js";
@@ -19,6 +18,7 @@ import {
   getStorageDead,
 } from "../../services/crud/storage.js";
 import { clearBash } from "../../src/characterActions/common.js";
+import { menuTakeAShower } from "./menuTakeAShower.js";
 
 export const validateEnergyAndHygiene = async (character) => {
   if (character.energy > 32) {
@@ -137,8 +137,7 @@ Sua escolha:`);
         warningMessage = ``;
         console.log("\x1Bc");
 
-        character = await takeAShower(character, 10, true);
-        break;
+        character = await menuTakeAShower(character, 10)
 
       // Comprar item
       case "5":

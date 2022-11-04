@@ -1,10 +1,4 @@
-import { takeAshowerAnim } from "../../userInterface/animations/takeAShowerAnim.js";
-
-export const takeAShower = async (character, showerTime, animation) => {
-  if (animation) {
-    takeAshowerAnim(character, showerTime)
-  }
-
+export const takeAShower = async (character) => {
   character.hygiene = 28;
   character.cresceleons -= 10;
 
