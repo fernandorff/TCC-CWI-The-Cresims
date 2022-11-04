@@ -2,10 +2,6 @@ import { useQuestion } from "../../services/question/use-question.js";
 import { theCresimsLogo } from "../../userInterface/menus/theCresimsLogo.js";
 import { clouds, zZz } from "../../userInterface/animations/sleepAnim.js"
 
-//
-// calcula o tempo necessário para preencher energia completamente segundo as regras de negocio
-//
-
 export const calculateNecessaryTimeForFullEnergy = async (character) => {
   let timeForFullEnergy = 0;
   let energyForFull = 32 - character.energy;

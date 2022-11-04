@@ -1,4 +1,5 @@
 import { useQuestion } from "../../services/question/use-question.js";
+import { clearBash } from "../../src/characterActions/common.js";
 
 export const menuAbilitys = async (text) => {
   let menuAbilitysDisplay = true;
@@ -12,7 +13,7 @@ ${text}
 5.  Musica
 X.  Voltar ao menu principal
 Sua escolha:`);
-    console.log("\x1Bc");
+    clearBash();
 
     switch (input) {
       case "1":

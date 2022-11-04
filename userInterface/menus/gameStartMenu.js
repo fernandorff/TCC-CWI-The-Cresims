@@ -8,13 +8,14 @@ import {
 } from "../../services/crud/character.js";
 import { getStorage, getStorageDead } from "../../services/crud/storage.js";
 import { characterDeath } from "./characterDeath.js";
+import { clearBash } from "../../src/characterActions/common.js";
 
 export const gameStartMenu = async () => {
   let warningMessage = ``;
   let gameStartMenu = true;
 
   while (gameStartMenu == true) {
-    console.log("\x1Bc");
+    clearBash();
     const input = await useQuestion(`
   ▀██ ▀██▀  ▀█▀         ▀██                                          ▄           
    ▀█▄ ▀█▄  ▄▀    ▄▄▄▄   ██    ▄▄▄▄    ▄▄▄   ▄▄ ▄▄ ▄▄     ▄▄▄▄     ▄██▄    ▄▄▄   
@@ -63,7 +64,7 @@ Sua escolha: `);
         console.log("\nFinalizando Game");
         return "exit";
       default:
-        console.log("\x1Bc");
+        clearBash();
         warningMessage = `
 ### Escolha uma opção válida ###
 `;
@@ -73,7 +74,7 @@ Sua escolha: `);
 
 const menuDead = async () => {
   const storage = getStorageDead();
-  console.log("\x1Bc");
+  clearBash();
   console.log(`
 ### Escolha um personagem para vizualizar tumulo ###
 `);

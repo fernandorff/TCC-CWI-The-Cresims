@@ -85,7 +85,7 @@ Sua escolha:`);
         `;
           break;
         }
-        console.log("\x1Bc");
+        clearBash();
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -94,7 +94,7 @@ Sua escolha:`);
 
       // Treinar habilidade
       case "2":
-        console.log("\x1Bc");
+        clearBash();
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -113,7 +113,7 @@ Sua escolha:`);
         }
         warningMessage = ``;
 
-        console.log("\x1Bc");
+        clearBash();
         character = await sleepMenu(character);
         break;
 
@@ -135,13 +135,13 @@ Sua escolha:`);
           break;
         }
         warningMessage = ``;
-        console.log("\x1Bc");
+        clearBash();
 
         character = await menuTakeAShower(character, 10)
 
       // Comprar item
       case "5":
-        console.log("\x1Bc");
+        clearBash();
         warningMessage = `
 - Opção ${input} escolhida
         `;
@@ -150,7 +150,7 @@ Sua escolha:`);
 
       // Interagir com outro personagem
       case "6":
-        console.log("\x1Bc");
+        clearBash();
         [character, status] = await menuInteraction(character);
 
         warningMessage = `
@@ -181,7 +181,7 @@ Sua escolha:`);
 `;
         }
 
-        console.log("\x1Bc");
+        clearBash();
         break;
     }
 
